@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,700&amp;display=swap"
       rel="stylesheet"
     />
     <script>
@@ -34,19 +34,16 @@
   <body>
     <div class="site-shell">
       <header class="site-header">
-        <a class="logo" href="#top">
-          <span class="logo-mark">Q</span>
-          <span class="logo-text">
-            <strong>Quest</strong>
-            <span>OSU NLP Group</span>
-          </span>
-        </a>
+        <div class="logo">
+          <a class="logo-link" href="#top"><strong>Quest</strong></a>
+        </div>
 
         <nav class="site-nav">
           <a href="#tasks">Tasks</a>
           <a href="#data">Data</a>
           <a href="#memory">Memory</a>
           <a href="#training">Training</a>
+          <a href="#demo">Demo</a>
         </nav>
 
         <div class="site-links">
@@ -67,6 +64,7 @@
             <li><a href="#infrastructure">Infrastructure</a></li>
             <li><a href="#training">Training</a></li>
             <li><a href="#attempts">Unsuccessful Attempts</a></li>
+            <li><a href="#demo">Try Quest</a></li>
             <li><a href="#closing">Closing Remarks</a></li>
             <li><a href="#contribution">Contribution Statement</a></li>
           </ol>
@@ -98,8 +96,8 @@
             </div>
 
             <div class="article-head">
-              <h1>Quest: A Fully Open Recipe for Training Search Agents</h1>
-              <p class="subtitle">OSU NLP Group</p>
+              <h1><span class="brand">Quest</span>: A Fully Open Recipe for Training Search Agents</h1>
+              <p class="subtitle"><a href="https://x.com/osunlp" target="_blank" rel="noopener" class="subtitle-link">OSU NLP Group</a></p>
             </div>
           </section>
 
@@ -199,7 +197,7 @@
 
           <section id="quest" class="section">
             <div class="section-head">
-              <h2>Quest</h2>
+              <h2><span class="brand">Quest</span></h2>
             </div>
 
             <div class="body-copy">
@@ -313,25 +311,25 @@
             <div class="subsection effect-study">
               <h3>The Effect of Mid-training and Reinforcement Learning</h3>
               <p>
-                To isolate the contribution of mid-training, we compare a
-                35B SFT-only agent against a 35B agent that first undergoes
-                mid-training before SFT. The same evaluation suite is used as
-                above, and we report the primary average score for each
-                benchmark.
+                To trace how each training stage contributes, we evaluate the
+                same 35B agent at three checkpoints: SFT only, after adding
+                mid-training (SFT+MT), and after the final reinforcement
+                learning stage (SFT+MT+RL). Each panel below plots the score
+                progression on one benchmark.
               </p>
               <p>
                 Mid-training yields consistent gains on several search-heavy
                 and citation-grounded benchmarks, while keeping performance
                 largely stable on tasks where the SFT-only model is already
-                strong.
+                strong. Reinforcement learning further compounds these gains
+                on tasks that reward iterative search and reasoning.
               </p>
 
               <div class="small-model-panel">
                 <div class="small-model-legend" aria-label="Training stage legend">
-                  <span><i class="legend-sft"></i>Quest-35B-A3B SFT</span>
-                  <span><i class="legend-mt"></i>Quest-35B-A3B SFT+MT</span>
+                  <span><i class="legend-stage-line"></i>Quest-35B-A3B across training stages</span>
                 </div>
-                <div class="small-model-grid" aria-label="Mid-training effect benchmark results">
+                <div class="small-model-grid" aria-label="Training-stage progression benchmark results">
                   <div class="small-model-card">
                     <h4>BrowseComp</h4>
                     <p class="chart-metric">avg@3</p>
@@ -1008,6 +1006,58 @@
             </ol>
           </section>
 
+          <section id="demo" class="section">
+            <div class="section-head">
+              <h2>Try <span class="brand">Quest</span></h2>
+            </div>
+
+            <div class="body-copy">
+              <p>
+                Send a question to
+                <a href="https://huggingface.co/spaces/osunlp/Quest" target="_blank" rel="noopener" style="text-decoration: underline;">Quest HuggingFace Space</a>.
+                The first request may take 30–60 seconds while the Space wakes up.
+              </p>
+            </div>
+
+            <div class="quest-chat" aria-label="Quest demo chat">
+              <div class="quest-chat-stream" id="quest-chat-stream" aria-live="polite"></div>
+
+              <form class="quest-chat-input" id="quest-chat-form">
+                <textarea
+                  id="qc-question"
+                  rows="2"
+                  placeholder="Ask Quest a research question…"
+                  required>Who was the first person to walk on the Moon, and which U.S. President set that goal in his famous 1962 “Moon speech”?</textarea>
+                <button type="submit" id="qc-send">Run Research</button>
+              </form>
+
+              <details class="quest-chat-advanced">
+                <summary>Advanced settings</summary>
+                <div class="quest-chat-controls">
+                  <label>
+                    Max turns
+                    <input type="number" id="qc-max-turns" value="16" min="1" max="100" step="1">
+                  </label>
+                  <label>
+                    Memory strategy
+                    <select id="qc-memory">
+                      <option value="vanilla">vanilla</option>
+                      <option value="condenser" selected>condenser</option>
+                      <option value="discard-all">discard-all</option>
+                      <option value="hide-tool-results">hide-tool-results</option>
+                    </select>
+                  </label>
+                  <label>
+                    Temperature
+                    <input type="number" id="qc-temperature" value="0.4" min="0" max="1.5" step="0.1">
+                  </label>
+                </div>
+              </details>
+
+              <p class="quest-chat-status" id="qc-status"></p>
+            </div>
+          </section>
+
           <section id="closing" class="section">
             <div class="section-head">
               <h2>Closing Remarks</h2>
@@ -1128,6 +1178,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <button
       class="back-to-top"
@@ -1155,21 +1206,21 @@
 
         const FILL = [
           '#BFDBFE',
+          '#93C5FD',
           '#60A5FA',
-          '#1D4ED8',
         ];
-        const EDGE  = ['#93C5FD', '#3B82F6', '#1E40AF'];
+        const EDGE  = ['#93C5FD', '#60A5FA', '#3B82F6'];
         const SIZES = ['2B', '4B', '9B'];
 
         const defs = [
-          { id: 'c-browsecomp', vals: [28,    40,    45.4],  min: 20, max: 50 },
-          { id: 'c-m2w2',       vals: [8.81,  24.3,  24.4],  min: 0,  max: 30 },
-          { id: 'c-hle',        vals: [30.26, 36.15, 36.92], min: 25, max: 40 },
-          { id: 'c-drb',        vals: [22.27, 41.99, 41.13], min: 15, max: 45 },
-          { id: 'c-lrb',        vals: [33.75, 55.74, 52.91], min: 30, max: 60 },
-          { id: 'c-gaia',       vals: [72.82, 77.67, 78.64], min: 70, max: 82 },
-          { id: 'c-bcp',        vals: [52.57, 52.05, 55.64], min: 50, max: 58 },
-          { id: 'c-ws',         vals: [40.9,  55,    58.5],  min: 35, max: 62 },
+          { id: 'c-browsecomp', vals: [28,    40,    45.4],  min: 20, max: 50, step: 10 },
+          { id: 'c-m2w2',       vals: [8.81,  24.3,  24.4],  min: 0,  max: 30, step: 10 },
+          { id: 'c-hle',        vals: [30.26, 36.15, 36.92], min: 25, max: 40, step: 5  },
+          { id: 'c-drb',        vals: [22.27, 41.99, 41.13], min: 20, max: 50, step: 10 },
+          { id: 'c-lrb',        vals: [33.75, 55.74, 52.91], min: 30, max: 60, step: 10 },
+          { id: 'c-gaia',       vals: [72.82, 77.67, 78.64], min: 70, max: 82, step: 4  },
+          { id: 'c-bcp',        vals: [52.57, 52.05, 55.64], min: 50, max: 58, step: 2  },
+          { id: 'c-ws',         vals: [40.9,  55,    58.5],  min: 35, max: 60, step: 5  },
         ];
 
         const valueLabelPlugin = {
@@ -1193,7 +1244,7 @@
           },
         };
 
-        defs.forEach(({ id, vals, min, max }) => {
+        defs.forEach(({ id, vals, min, max, step }) => {
           const el = document.getElementById(id);
           if (!el) return;
           new Chart(el, {
@@ -1237,7 +1288,7 @@
                   ticks:  {
                     color: '#B8C4D0',
                     font:  { size: 9.5 },
-                    maxTicksLimit: 4,
+                    stepSize: step,
                     padding: 4,
                   },
                 },
@@ -1247,34 +1298,65 @@
           });
         });
 
-        const EFFECT_FILL = ['#1E40AF', '#1E3A8A'];
-        const EFFECT_EDGE = ['#1D4ED8', '#1E3A8A'];
-        const EFFECT_LABELS = ['SFT', 'SFT+MT'];
+        const STAGE_LABELS = ['SFT', '+MT', '+RL'];
+        const STAGE_LINE_COLOR  = '#1D4ED8';
+        const STAGE_POINT_COLOR = '#1E40AF';
+        const STAGE_FILL_COLOR  = 'rgba(59, 130, 246, 0.12)';
+
+        // RL values are placeholders — fill in real numbers when known.
         const effectDefs = [
-          { id: 'e-browsecomp', vals: [45.1, 45.9],   min: 42, max: 48 },
-          { id: 'e-m2w2',       vals: [26.5, 29.9],   min: 22, max: 32 },
-          { id: 'e-hle',        vals: [39.49, 39.74], min: 36, max: 42 },
-          { id: 'e-drb',        vals: [36.35, 37.9],  min: 33, max: 41 },
-          { id: 'e-lrb',        vals: [49.53, 49.99], min: 46, max: 53 },
-          { id: 'e-gaia',       vals: [83.5, 83.17],  min: 80, max: 86 },
-          { id: 'e-bcp',        vals: [54.87, 55.64], min: 52, max: 58 },
-          { id: 'e-ws',         vals: [61.1, 62.5],   min: 58, max: 66 },
+          { id: 'e-browsecomp', vals: [45.1,  45.9,  null], min: 42, max: 48, step: 2 },
+          { id: 'e-m2w2',       vals: [26.5,  29.9,  null], min: 20, max: 32, step: 4 },
+          { id: 'e-hle',        vals: [39.49, 39.74, null], min: 36, max: 42, step: 2 },
+          { id: 'e-drb',        vals: [36.35, 37.9,  null], min: 32, max: 40, step: 2 },
+          { id: 'e-lrb',        vals: [49.53, 49.99, null], min: 46, max: 54, step: 2 },
+          { id: 'e-gaia',       vals: [83.5,  83.17, null], min: 80, max: 86, step: 2 },
+          { id: 'e-bcp',        vals: [54.87, 55.64, null], min: 52, max: 58, step: 2 },
+          { id: 'e-ws',         vals: [61.1,  62.5,  null], min: 58, max: 66, step: 2 },
         ];
 
-        effectDefs.forEach(({ id, vals, min, max }) => {
+        const pointValueLabelPlugin = {
+          id: 'pointValueLabels',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            chart.data.datasets.forEach((ds, datasetIndex) => {
+              chart.getDatasetMeta(datasetIndex).data.forEach((pt, i) => {
+                const v = ds.data[i];
+                if (v == null) return;
+                const txt = Number.isInteger(v) ? String(v) : v.toFixed(1);
+                ctx.save();
+                ctx.font = '700 9.5px "Manrope", sans-serif';
+                ctx.fillStyle = '#475569';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText(txt, pt.x, pt.y - 6);
+                ctx.restore();
+              });
+            });
+          },
+        };
+
+        effectDefs.forEach(({ id, vals, min, max, step }) => {
           const el = document.getElementById(id);
           if (!el) return;
           new Chart(el, {
-            type: 'bar',
-            plugins: [valueLabelPlugin],
+            type: 'line',
+            plugins: [pointValueLabelPlugin],
             data: {
-              labels: EFFECT_LABELS,
+              labels: STAGE_LABELS,
               datasets: [{
                 data: vals,
-                backgroundColor: EFFECT_FILL,
-                borderColor: EFFECT_EDGE,
-                borderWidth: 1.5,
-                borderRadius: 5,
+                spanGaps: false,
+                borderColor: STAGE_LINE_COLOR,
+                backgroundColor: STAGE_FILL_COLOR,
+                borderWidth: 2,
+                tension: 0.25,
+                fill: true,
+                pointBackgroundColor: STAGE_POINT_COLOR,
+                pointBorderColor: '#FFFFFF',
+                pointBorderWidth: 1.5,
+                pointRadius: 4,
+                pointHoverRadius: 4,
               }],
             },
             options: {
@@ -1305,12 +1387,12 @@
                   ticks: {
                     color: '#B8C4D0',
                     font: { size: 9.5 },
-                    maxTicksLimit: 4,
+                    stepSize: step,
                     padding: 4,
                   },
                 },
               },
-              layout: { padding: { top: 18 } },
+              layout: { padding: { top: 18, right: 8, left: 4 } },
             },
           });
         });
@@ -1357,6 +1439,125 @@
         window.addEventListener("scroll", onScroll, { passive: true });
         onScroll();
       })();
+    </script>
+
+    <script type="module">
+      // ── Quest demo chat ──────────────────────────────────────
+      import { Client } from "https://esm.sh/@gradio/client";
+
+      const SPACE_ID = "osunlp/Quest";
+      const API_NAME = "/run_ui";
+      const DEFAULTS = { maxTurns: 16, memory: "condenser", temperature: 0.4 };
+
+      const form     = document.getElementById('quest-chat-form');
+      const textarea = document.getElementById('qc-question');
+      const stream   = document.getElementById('quest-chat-stream');
+      const statusEl = document.getElementById('qc-status');
+      const sendBtn  = document.getElementById('qc-send');
+      const maxTurnsInput    = document.getElementById('qc-max-turns');
+      const memoryInput      = document.getElementById('qc-memory');
+      const temperatureInput = document.getElementById('qc-temperature');
+      if (!form) { /* demo section absent */ } else {
+
+      function readSettings() {
+        const n  = parseInt(maxTurnsInput?.value, 10);
+        const t  = parseFloat(temperatureInput?.value);
+        const mem = (memoryInput?.value || '').trim();
+        return {
+          maxTurns:    Number.isFinite(n) && n > 0 ? n : DEFAULTS.maxTurns,
+          memory:      mem || DEFAULTS.memory,
+          temperature: Number.isFinite(t) && t >= 0 ? t : DEFAULTS.temperature,
+        };
+      }
+
+      let appPromise = null;
+      const getApp = () => {
+        if (!appPromise) {
+          const urlToken = new URLSearchParams(location.search).get("token");
+          const opts = urlToken ? { hf_token: urlToken, token: urlToken } : {};
+          appPromise = Client.connect(SPACE_ID, opts);
+        }
+        return appPromise;
+      };
+
+      const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+      ));
+
+      function appendMessage(role, html) {
+        const row = document.createElement('div');
+        row.className = `qc-msg qc-msg-${role}`;
+        const bubble = document.createElement('div');
+        bubble.className = 'qc-bubble';
+        bubble.innerHTML = html;
+        row.appendChild(bubble);
+        stream.appendChild(row);
+        stream.scrollTop = stream.scrollHeight;
+        return bubble;
+      }
+
+      const renderMd = (s) => (window.marked ? marked.parse(s) : escapeHtml(s));
+
+      // Send on Enter (Shift+Enter for newline)
+      textarea.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          form.requestSubmit();
+        }
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const question = textarea.value.trim();
+        if (!question || sendBtn.disabled) return;
+
+        textarea.value = '';
+        sendBtn.disabled = true;
+        appendMessage('user', escapeHtml(question));
+        const bubble = appendMessage(
+          'assistant',
+          '<span class="qc-thinking">Thinking…</span>'
+        );
+        statusEl.textContent =
+          'Connecting to Hugging Face Space (cold start may take 30–60s)…';
+
+        try {
+          const app = await getApp();
+          statusEl.textContent = 'Streaming response…';
+          const cfg = readSettings();
+          const job = app.submit(API_NAME, [
+            question,
+            cfg.maxTurns,
+            cfg.memory,
+            cfg.temperature,
+          ]);
+
+          let lastAnswer = '';
+          for await (const msg of job) {
+            if (msg.type === 'data' && Array.isArray(msg.data)) {
+              const [answer] = msg.data;
+              if (typeof answer === 'string' && answer !== lastAnswer) {
+                lastAnswer = answer;
+                bubble.innerHTML = renderMd(answer);
+                stream.scrollTop = stream.scrollHeight;
+              }
+            }
+          }
+          if (!lastAnswer) {
+            bubble.innerHTML =
+              '<span class="qc-error">No response received. Please retry.</span>';
+          }
+          statusEl.textContent = '';
+        } catch (err) {
+          bubble.innerHTML =
+            '<span class="qc-error">Service temporarily unavailable. Please retry.</span>';
+          statusEl.textContent = err?.message || 'Request failed.';
+          appPromise = null; // allow reconnect on next attempt
+        } finally {
+          sendBtn.disabled = false;
+        }
+      });
+      }
     </script>
   </body>
 </html>
