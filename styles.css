@@ -716,6 +716,33 @@ img.figure-media {
   color: var(--muted);
 }
 
+.capability-block {
+  margin-top: 26px;
+}
+
+.capability-table {
+  min-width: 640px;
+}
+
+.capability-table th,
+.capability-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.capability-table th:first-child,
+.capability-table td:first-child {
+  text-align: left;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.capability-table .support-mark {
+  width: 24px;
+  height: 24px;
+  font-size: 0.82rem;
+}
+
 /* ── Leaderboard table ─────────────────────────────────────── */
 .leaderboard-block .table-label {
   padding: 20px 16px 16px;

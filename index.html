@@ -47,7 +47,6 @@
         </nav>
 
         <div class="site-links">
-          <a href="./latex_template/quest-blog/main.pdf">Paper</a>
           <a href="#data">Data</a>
           <a href="#training">Training</a>
         </div>
@@ -119,7 +118,7 @@
           <figure class="figure-block comparison-figure">
             <img
               class="figure-media"
-              src="./latex_template/quest-blog/figures/Comparison.png"
+              src="./figures/Comparison.png"
               alt="Search Agent Training Recipe Comparison"
             />
             <figcaption class="figure-caption">
@@ -148,6 +147,72 @@
                 admit no ground truth; quality is evaluated along qualitative
                 dimensions such as comprehensiveness, insight, and clarity.
               </p>
+            </div>
+
+            <div class="table-block capability-block">
+              <div class="table-label">Benchmark capability coverage</div>
+              <div class="table-scroll">
+                <table class="content-table capability-table">
+                  <thead>
+                    <tr>
+                      <th>Benchmark</th>
+                      <th>Fact-seeking</th>
+                      <th>Citation grounding</th>
+                      <th>Report synthesis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>BrowseComp</td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                    </tr>
+                    <tr>
+                      <td>Mind2Web 2</td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                    </tr>
+                    <tr>
+                      <td>HLE</td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                    </tr>
+                    <tr>
+                      <td>DeepResearch Bench</td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                      <td>LiveResearchBench</td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                      <td>GAIA</td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                    </tr>
+                    <tr>
+                      <td>BrowseComp-Plus</td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                    </tr>
+                    <tr>
+                      <td>WideSearch</td>
+                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div class="body-copy task-copy">
@@ -312,10 +377,10 @@
               <h3>The Effect of Mid-training and Reinforcement Learning</h3>
               <p>
                 To trace how each training stage contributes, we evaluate the
-                same 35B agent at three checkpoints: SFT only, after adding
-                mid-training (SFT+MT), and after the final reinforcement
-                learning stage (SFT+MT+RL). Each panel below plots the score
-                progression on one benchmark.
+                same 35B agent from the vanilla checkpoint through three
+                training stages: SFT only, after adding mid-training (SFT+MT),
+                and after the final reinforcement learning stage (SFT+MT+RL).
+                Each panel below plots the score progression on one benchmark.
               </p>
               <p>
                 Mid-training yields consistent gains on several search-heavy
@@ -384,7 +449,7 @@
             <figure class="figure-block">
               <img
                 class="figure-media"
-                src="./latex_template/quest-blog/figures/Task.pdf.png"
+                src="./figures/Task.pdf.png"
                 alt="Quest task overview"
               />
               <figcaption class="figure-caption">Quest task overview.</figcaption>
@@ -519,7 +584,7 @@
             <figure class="figure-block">
               <img
                 class="figure-media"
-                src="./latex_template/quest-blog/figures/Memory.pdf.png"
+                src="./figures/Memory.pdf.png"
                 alt="Memory management overview"
               />
               <figcaption class="figure-caption">Memory management overview.</figcaption>
@@ -1298,21 +1363,21 @@
           });
         });
 
-        const STAGE_LABELS = ['SFT', '+MT', '+RL'];
+        const STAGE_LABELS = ['Vanilla', 'SFT', '+MT', '+RL'];
         const STAGE_LINE_COLOR  = '#1D4ED8';
         const STAGE_POINT_COLOR = '#1E40AF';
         const STAGE_FILL_COLOR  = 'rgba(59, 130, 246, 0.12)';
 
         // RL values are placeholders — fill in real numbers when known.
         const effectDefs = [
-          { id: 'e-browsecomp', vals: [45.1,  45.9,  null], min: 42, max: 48, step: 2 },
-          { id: 'e-m2w2',       vals: [26.5,  29.9,  null], min: 20, max: 32, step: 4 },
-          { id: 'e-hle',        vals: [39.49, 39.74, null], min: 36, max: 42, step: 2 },
-          { id: 'e-drb',        vals: [36.35, 37.9,  null], min: 32, max: 40, step: 2 },
-          { id: 'e-lrb',        vals: [49.53, 49.99, null], min: 46, max: 54, step: 2 },
-          { id: 'e-gaia',       vals: [83.5,  83.17, null], min: 80, max: 86, step: 2 },
-          { id: 'e-bcp',        vals: [54.87, 55.64, null], min: 52, max: 58, step: 2 },
-          { id: 'e-ws',         vals: [61.1,  62.5,  null], min: 58, max: 66, step: 2 },
+          { id: 'e-browsecomp', vals: [38.4, 45.1,  45.9,  null], min: 36, max: 48, step: 3 },
+          { id: 'e-m2w2',       vals: [22.3, 26.5,  29.9,  null], min: 20, max: 32, step: 4 },
+          { id: 'e-hle',        vals: [29.3, 39.49, 39.74, null], min: 28, max: 42, step: 4 },
+          { id: 'e-drb',        vals: [null, 36.35, 37.9,  null], min: 32, max: 40, step: 2 },
+          { id: 'e-lrb',        vals: [null, 49.53, 49.99, null], min: 46, max: 54, step: 2 },
+          { id: 'e-gaia',       vals: [null, 83.5,  83.17, null], min: 80, max: 86, step: 2 },
+          { id: 'e-bcp',        vals: [null, 54.87, 55.64, null], min: 52, max: 58, step: 2 },
+          { id: 'e-ws',         vals: [null, 61.1,  62.5,  null], min: 58, max: 66, step: 2 },
         ];
 
         const pointValueLabelPlugin = {
