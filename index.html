@@ -492,6 +492,29 @@
               </table>
             </div>
 
+            <div class="subsection system-comparison">
+              <h3>Comparison with Existing Research Agents</h3>
+              <p>
+                We compare Quest-35B against leading closed and open research
+                agents across objective, citation-grounded, and open-ended
+                search benchmarks. Each panel is sorted by the reported score
+                under the primary metric used by that benchmark.
+              </p>
+
+              <div class="benchmark-comparison-panel">
+                <div
+                  class="benchmark-comparison-grid"
+                  id="benchmarkComparisonGrid"
+                  aria-label="Quest-35B benchmark comparison charts"
+                ></div>
+                <div
+                  class="benchmark-comparison-legend"
+                  id="benchmarkComparisonLegend"
+                  aria-label="Research agent comparison legend"
+                ></div>
+              </div>
+            </div>
+
             <div class="subsection smaller-versions">
               <h3>Smaller Versions</h3>
               <p>
@@ -1491,6 +1514,202 @@
             });
           },
         };
+
+        const BENCHMARK_LABEL = 'Quest-35B';
+        const BENCHMARK_COLORS = {
+          quest: '#2563EB',
+          sota:  '#1E293B',
+          s2:    '#475569',
+          match: '#94A3B8',
+          open:  '#059669',
+          open2: '#34D399',
+        };
+
+        const benchmarkCharts = [
+          { title:'BrowseComp', bars:[
+            {role:'sota',  l:'Gemini-3.1-pro', v:85.9},
+            {role:'s2',    l:'Opus-4.6',       v:84.0},
+            {role:'match', l:'GPT-5.4',        v:82.7},
+            {role:'open',  l:'Mirothinker',    v:67.9},
+            {role:'open2', l:'Redsearcher',    v:57.4},
+            {role:'quest', l:BENCHMARK_LABEL,  v:68.5},
+          ]},
+          { title:'HLE', bars:[
+            {role:'sota',  l:'Opus-4.6',       v:53.1},
+            {role:'s2',    l:'GPT-5.4',        v:52.1},
+            {role:'match', l:'Gemini-3.1-pro', v:51.4},
+            {role:'open',  l:'Mirothinker',    v:36.4},
+            {role:'open2', l:'Redsearcher',    v:34.9},
+            {role:'quest', l:BENCHMARK_LABEL,  v:42.0},
+          ]},
+          { title:'GAIA', bars:[
+            {role:'quest', l:BENCHMARK_LABEL,  v:83.8},
+            {role:'open',  l:'Mirothinker',    v:80.3},
+            {role:'open2', l:'Redsearcher',    v:80.1},
+            {role:'sota',  l:'GPT-5',          v:76.4},
+            {role:'s2',    l:'Tongyi-DR',      v:70.9},
+            {role:'match', l:'OpenAI-DR',      v:67.4},
+          ]},
+          { title:'Mind2Web 2', bars:[
+            {role:'sota',  l:'OpenAI-DR',      v:28.0},
+            {role:'s2',    l:'Grok',           v:27.0},
+            {role:'match', l:'Tencent',        v:27.0},
+            {role:'open',  l:'Tongyi-DR',      v:16.7},
+            {role:'open2', l:'Openresearcher', v:14.8},
+            {role:'quest', l:BENCHMARK_LABEL,  v:31.2},
+          ]},
+          { title:'LiveResearch', bars:[
+            {role:'sota',  l:'GPT-5',          v:73.1},
+            {role:'s2',    l:'Grok',           v:65.6},
+            {role:'match', l:'Gemini-DR',      v:63.3},
+            {role:'open',  l:'Openresearcher', v:61.3},
+            {role:'open2', l:'Tongyi-DR',      v:56.3},
+            {role:'quest', l:BENCHMARK_LABEL,  v:69.1},
+          ]},
+          { title:'DeepResearch', bars:[
+            {role:'sota',  l:'Gemini-DR',      v:49.7},
+            {role:'s2',    l:'OpenAI-DR',      v:46.5},
+            {role:'match', l:'Dr.Tulu',        v:45.5},
+            {role:'open',  l:'Tongyi-DR',      v:40.5},
+            {role:'open2', l:'Openresearcher', v:35.4},
+            {role:'quest', l:BENCHMARK_LABEL,  v:48.2},
+          ]},
+          { title:'WideSearch', bars:[
+            {role:'sota',  l:'Kimi-k2.5',      v:72.7},
+            {role:'s2',    l:'Qwen3.5-122B',   v:60.5},
+            {role:'match', l:'OpenAI-o3',      v:52.6},
+            {role:'open',  l:'Gemini-2.5-pro', v:51.0},
+            {role:'open2', l:'GPT-OSS-120B',   v:40.4},
+            {role:'quest', l:BENCHMARK_LABEL,  v:63.5},
+          ]},
+          { title:'BrowseComp Plus', bars:[
+            {role:'sota',  l:'Opus-4.6',       v:83.0},
+            {role:'s2',    l:'Opus-4.5',       v:67.6},
+            {role:'match', l:'GLM-4.6',        v:48.2},
+            {role:'open',  l:'GPT-OSS-120B',   v:44.1},
+            {role:'open2', l:'Tongyi-DR',      v:44.5},
+            {role:'quest', l:BENCHMARK_LABEL,  v:67.0},
+          ]},
+        ];
+
+        const benchmarkValueLabels = {
+          id: 'benchmarkValueLabels',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            const labels = chart.data.labels;
+            chart.getDatasetMeta(0).data.forEach((bar, i) => {
+              const v = chart.data.datasets[0].data[i];
+              const isQuest = labels[i] === BENCHMARK_LABEL;
+              ctx.save();
+              ctx.font = `${isQuest ? 700 : 600} ${isQuest ? 10.8 : 10.2}px "Manrope", sans-serif`;
+              ctx.fillStyle = isQuest ? BENCHMARK_COLORS.quest : '#94A3B8';
+              ctx.textAlign = 'left';
+              ctx.textBaseline = 'middle';
+              ctx.fillText(Number.isInteger(v) ? String(v) : v.toFixed(1), bar.x + 5, bar.y);
+              ctx.restore();
+            });
+          },
+        };
+
+        const benchmarkGrid = document.getElementById('benchmarkComparisonGrid');
+        if (benchmarkGrid) {
+          benchmarkCharts.forEach((bm) => {
+            const sorted = [...bm.bars].sort((a, b) => b.v - a.v);
+            const labels = sorted.map((b) => b.l);
+            const values = sorted.map((b) => b.v);
+            const colors = sorted.map((b) => {
+              if (b.role === 'quest') return BENCHMARK_COLORS.quest;
+              if (b.role === 'sota') return BENCHMARK_COLORS.sota + 'EE';
+              if (b.role === 's2') return BENCHMARK_COLORS.s2 + 'CC';
+              if (b.role === 'match') return BENCHMARK_COLORS.match + 'BB';
+              if (b.role === 'open') return BENCHMARK_COLORS.open + 'DD';
+              if (b.role === 'open2') return BENCHMARK_COLORS.open2 + 'BB';
+              return '#94A3B8';
+            });
+
+            const card = document.createElement('div');
+            card.className = 'benchmark-comparison-card';
+
+            const title = document.createElement('h4');
+            title.textContent = bm.title;
+            card.appendChild(title);
+
+            const chartWrap = document.createElement('div');
+            chartWrap.className = 'benchmark-comparison-chart';
+
+            const canvas = document.createElement('canvas');
+            canvas.id = 'benchmark-' + bm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            canvas.setAttribute('role', 'img');
+            canvas.setAttribute('aria-label', bm.title + ' benchmark comparison');
+            chartWrap.appendChild(canvas);
+            card.appendChild(chartWrap);
+            benchmarkGrid.appendChild(card);
+
+            new Chart(canvas, {
+              type: 'bar',
+              plugins: [benchmarkValueLabels],
+              data: {
+                labels,
+                datasets: [{
+                  data: values,
+                  backgroundColor: colors,
+                  borderRadius: 4,
+                  borderSkipped: false,
+                }],
+              },
+              options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 500, easing: 'easeOutQuart' },
+                plugins: {
+                  legend: { display: false },
+                  tooltip: { enabled: false },
+                },
+                events: [],
+                layout: { padding: { right: 38 } },
+                scales: {
+                  x: {
+                    display: false,
+                    min: 0,
+                    max: Math.max(...values) * 1.22,
+                  },
+                  y: {
+                    ticks: {
+                      color: (ctx) => labels[ctx.index] === BENCHMARK_LABEL ? BENCHMARK_COLORS.quest : '#64748B',
+                      font: (ctx) => ({
+                        family: "'Manrope', sans-serif",
+                        size: 10.3,
+                        weight: labels[ctx.index] === BENCHMARK_LABEL ? '800' : '600',
+                      }),
+                      padding: 4,
+                    },
+                    grid: { display: false },
+                    border: { display: false },
+                  },
+                },
+              },
+            });
+          });
+
+          const benchmarkLegend = document.getElementById('benchmarkComparisonLegend');
+          const legendItems = [
+            { label: 'Quest-35B', color: BENCHMARK_COLORS.quest },
+            { label: 'Best closed SOTA', color: BENCHMARK_COLORS.sota },
+            { label: '2nd closed', color: BENCHMARK_COLORS.s2 },
+            { label: 'Comparable closed', color: BENCHMARK_COLORS.match },
+            { label: 'Best open agent', color: BENCHMARK_COLORS.open },
+            { label: '2nd open agent', color: BENCHMARK_COLORS.open2 },
+          ];
+          legendItems.forEach((item) => {
+            const el = document.createElement('span');
+            const swatch = document.createElement('i');
+            swatch.style.backgroundColor = item.color;
+            el.appendChild(swatch);
+            el.appendChild(document.createTextNode(item.label));
+            benchmarkLegend.appendChild(el);
+          });
+        }
 
         defs.forEach(({ id, vals, min, max, step }) => {
           const el = document.getElementById(id);

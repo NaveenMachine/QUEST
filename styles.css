@@ -514,6 +514,70 @@ a { color: inherit; text-decoration: none; }
   height: 155px;
 }
 
+.benchmark-comparison-panel {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-alt);
+}
+
+.benchmark-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.benchmark-comparison-card {
+  min-width: 0;
+  padding: 14px 14px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.benchmark-comparison-card h4 {
+  margin: 0 0 8px;
+  min-height: 2em;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.benchmark-comparison-chart {
+  position: relative;
+  height: 210px;
+}
+
+.benchmark-comparison-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.benchmark-comparison-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.benchmark-comparison-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
 /* ─── Essay Grid ─────────────────────────────────────── */
 .essay-grid {
   display: grid;
@@ -1988,7 +2052,8 @@ sup.val-dagger {
   .vision-grid,
   .evaluation-overview-grid { grid-template-columns: 1fr; }
 
-  .small-model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .small-model-grid,
+  .benchmark-comparison-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .pipeline { grid-template-columns: 1fr; }
 
@@ -2026,7 +2091,8 @@ sup.val-dagger {
   .article > .comparison-figure { padding: 22px 22px 30px; }
 
   .benchmark-board { padding: 8px; border-radius: 14px; gap: 8px; }
-  .small-model-grid { grid-template-columns: 1fr; gap: 10px; }
+  .small-model-grid,
+  .benchmark-comparison-grid { grid-template-columns: 1fr; gap: 10px; }
   .mini-chart { gap: 5px; min-height: 170px; }
   .mini-bar span { font-size: 0.56rem; }
 
