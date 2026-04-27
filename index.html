@@ -114,17 +114,6 @@
             </p>
           </section>
 
-          <figure class="figure-block comparison-figure">
-            <img
-              class="figure-media"
-              src="./figures/Comparison.png"
-              alt="Search Agent Training Recipe Comparison"
-            />
-            <figcaption class="figure-caption">
-              Search Agent Training Recipe Comparison.
-            </figcaption>
-          </figure>
-
           <section id="tasks" class="section">
             <div class="section-head">
               <h2>Search Tasks</h2>
@@ -148,71 +137,271 @@
               </p>
             </div>
 
-            <div class="table-block capability-block">
-              <div class="table-label">Benchmark capability coverage</div>
-              <div class="table-scroll">
-                <table class="content-table capability-table">
-                  <thead>
-                    <tr>
-                      <th>Benchmark</th>
-                      <th>Fact-seeking</th>
-                      <th>Citation grounding</th>
-                      <th>Report synthesis</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>BrowseComp</td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                    </tr>
-                    <tr>
-                      <td>Mind2Web 2</td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                    </tr>
-                    <tr>
-                      <td>HLE</td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                    </tr>
-                    <tr>
-                      <td>DeepResearch Bench</td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                    </tr>
-                    <tr>
-                      <td>LiveResearchBench</td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                    </tr>
-                    <tr>
-                      <td>GAIA</td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                    </tr>
-                    <tr>
-                      <td>BrowseComp-Plus</td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                    </tr>
-                    <tr>
-                      <td>WideSearch</td>
-                      <td><span class="support-mark support-yes" aria-label="Yes">&#10003;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                      <td><span class="support-mark support-no" aria-label="No">&#215;</span></td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="evaluation-overview-grid">
+              <div class="cap-panel">
+                <div class="table-label">Benchmark Coverage</div>
+
+                <div class="cap-legend" aria-label="Capability legend">
+                  <span><i class="cap-dot cap-dot-fact"></i>Fact-seeking</span>
+                  <span><i class="cap-dot cap-dot-report"></i>Report synthesis</span>
+                  <span><i class="cap-dot cap-dot-cite"></i>Citation grounding</span>
+                </div>
+
+                <div class="cap-list-head" aria-label="Capability columns">
+                  <span>Benchmark</span>
+                  <span class="cap-head-dots">
+                    <i class="cap-dot cap-dot-fact" title="Fact-seeking"></i>
+                    <i class="cap-dot cap-dot-report" title="Report synthesis"></i>
+                    <i class="cap-dot cap-dot-cite" title="Citation grounding"></i>
+                  </span>
+                </div>
+
+                <div class="cap-section cap-section-objective">
+                  <div class="cap-section-header">
+                    <span class="cap-section-badge cap-section-obj">Objective</span>
+                  </div>
+                  <div class="cap-rows">
+                    <div class="cap-row">
+                      <span class="cap-name">BrowseComp</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-yes cap-ind-fact" title="Fact-seeking"></span>
+                        <span class="cap-ind cap-ind-na" title="Report synthesis N/A"></span>
+                        <span class="cap-ind cap-ind-no" title="Citation not covered"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">Mind2Web 2</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-yes cap-ind-fact" title="Fact-seeking"></span>
+                        <span class="cap-ind cap-ind-na" title="Report synthesis N/A"></span>
+                        <span class="cap-ind cap-ind-yes cap-ind-cite" title="Citation grounding"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">HLE</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
+                        <span class="cap-ind cap-ind-na"></span>
+                        <span class="cap-ind cap-ind-no"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">GAIA</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
+                        <span class="cap-ind cap-ind-na"></span>
+                        <span class="cap-ind cap-ind-no"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">BrowseComp-Plus</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
+                        <span class="cap-ind cap-ind-na"></span>
+                        <span class="cap-ind cap-ind-no"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">WideSearch</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
+                        <span class="cap-ind cap-ind-na"></span>
+                        <span class="cap-ind cap-ind-no"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cap-section cap-section-open-group">
+                  <div class="cap-section-header">
+                    <span class="cap-section-badge cap-section-open">Open-ended</span>
+                  </div>
+                  <div class="cap-rows">
+                    <div class="cap-row">
+                      <span class="cap-name">DeepResearch Bench</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-na" title="Fact-seeking N/A"></span>
+                        <span class="cap-ind cap-ind-yes cap-ind-report" title="Report synthesis"></span>
+                        <span class="cap-ind cap-ind-yes cap-ind-cite" title="Citation grounding"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">LiveResearchBench</span>
+                      <span class="cap-indicators">
+                        <span class="cap-ind cap-ind-na"></span>
+                        <span class="cap-ind cap-ind-yes cap-ind-report"></span>
+                        <span class="cap-ind cap-ind-yes cap-ind-cite"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cap-footer">
+                  <span><i class="cap-status cap-status-covered"></i>covered</span>
+                  <span><i class="cap-status cap-status-no"></i>not covered</span>
+                  <span><i class="cap-status cap-status-na"></i>N/A</span>
+                </div>
+              </div>
+
+              <div class="comparison-col">
+                <div class="comparison-inline">
+                  <div class="table-label">Deep Search Agent Training Recipe Comparison</div>
+                  <div class="table-scroll">
+                    <table class="content-table comparison-table">
+                      <colgroup>
+                        <col class="comparison-col-model" />
+                        <col class="comparison-col-coverage" />
+                        <col class="comparison-col-dataset" />
+                        <col class="comparison-col-synth" />
+                        <col class="comparison-col-memory" />
+                        <col class="comparison-col-pipeline" />
+                        <col class="comparison-col-release" />
+                      </colgroup>
+                      <thead>
+                        <tr class="comparison-group-row">
+                          <th class="comparison-model-head"></th>
+                          <th>Capability</th>
+                          <th colspan="2" class="comparison-divider-left">Data Release</th>
+                          <th class="comparison-divider-left">Context Management</th>
+                          <th colspan="2" class="comparison-divider-left">Training Script</th>
+                        </tr>
+                        <tr class="comparison-column-row">
+                          <th class="comparison-model-head">Model</th>
+                          <th>Coverage</th>
+                          <th class="comparison-divider-left">Dataset</th>
+                          <th>Synth Script</th>
+                          <th class="comparison-divider-left">Memory</th>
+                          <th class="comparison-divider-left">Pipeline</th>
+                          <th>Release</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="comparison-model-cell">
+                            <span class="comparison-model-label">Tongyi DeepResearch</span>
+                          </td>
+                          <td>
+                            <div class="scenario-stack">
+                              <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
+                              <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
+                            </div>
+                          </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left">
+                            <div class="pipeline-track">
+                              <span class="pipeline-pill pipeline-mt">MT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-sft">SFT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-rl">RL</span>
+                            </div>
+                          </td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                        </tr>
+                        <tr>
+                          <td class="comparison-model-cell">
+                            <span class="comparison-model-label">Dr.TULU</span>
+                          </td>
+                          <td>
+                            <div class="scenario-stack">
+                              <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
+                            </div>
+                          </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left">
+                            <div class="pipeline-track">
+                              <span class="pipeline-pill pipeline-sft">SFT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-rl">RL</span>
+                            </div>
+                          </td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                          <td class="comparison-model-cell">
+                            <span class="comparison-model-label">OpenResearcher</span>
+                          </td>
+                          <td>
+                            <div class="scenario-stack">
+                              <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
+                            </div>
+                          </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left">
+                            <div class="pipeline-track">
+                              <span class="pipeline-pill pipeline-sft">SFT</span>
+                            </div>
+                          </td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                          <td class="comparison-model-cell">
+                            <span class="comparison-model-label">REDSearcher</span>
+                          </td>
+                          <td>
+                            <div class="scenario-stack">
+                              <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
+                            </div>
+                          </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left">
+                            <div class="pipeline-track">
+                              <span class="pipeline-pill pipeline-mt">MT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-sft">SFT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-rl">RL</span>
+                            </div>
+                          </td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                        </tr>
+                        <tr class="comparison-quest-row">
+                          <td class="comparison-model-cell">
+                            <span class="comparison-model-label">Quest</span>
+                          </td>
+                          <td>
+                            <div class="scenario-stack">
+                              <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
+                              <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
+                              <span class="scenario-pill scenario-citation"><i class="scenario-dot"></i>Citation Grounding</span>
+                            </div>
+                          </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-divider-left">
+                            <div class="pipeline-track">
+                              <span class="pipeline-pill pipeline-mt">MT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-sft">SFT</span>
+                              <span class="pipeline-arrow-inline">&#8594;</span>
+                              <span class="pipeline-pill pipeline-rl">RL</span>
+                            </div>
+                          </td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="comparison-legend">
+                    <span class="comparison-legend-item"><span class="support-mark support-yes">&#10003;</span>Supported</span>
+                    <span class="comparison-legend-item"><span class="support-mark support-no">&#215;</span>Not supported</span>
+                    <span class="comparison-legend-item"><span class="pipeline-pill pipeline-mt">MT</span>Mid-Training</span>
+                    <span class="comparison-legend-item"><span class="pipeline-pill pipeline-sft">SFT</span>Supervised Fine-Tuning</span>
+                    <span class="comparison-legend-item"><span class="pipeline-pill pipeline-rl">RL</span>Reinforcement Learning</span>
+                  </div>
+                </div>
               </div>
             </div>
+            <p class="figure-caption comparison-caption">Deep Search Agent Training Recipe Comparison.</p>
 
             <div class="body-copy task-copy">
               <div class="subsection">
