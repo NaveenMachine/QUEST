@@ -503,11 +503,6 @@
                   id="benchmarkComparisonGrid"
                   aria-label="Quest-35B benchmark comparison charts"
                 ></div>
-                <div
-                  class="benchmark-comparison-legend"
-                  id="benchmarkComparisonLegend"
-                  aria-label="Research agent comparison legend"
-                ></div>
               </div>
             </div>
 
@@ -1521,6 +1516,30 @@
           open2: '#34D399',
         };
 
+        const MODEL_ICONS = {
+          'Quest-35B':       'figures/osu_nlp.png',
+          'Gemini-3.1-pro':  'figures/gemini.png',
+          'Gemini-DR':       'figures/gemini.png',
+          'Gemini-2.5-pro':  'figures/gemini.png',
+          'Opus-4.6':        'figures/claude.svg',
+          'Opus-4.5':        'figures/claude.svg',
+          'GPT-5.4':         'figures/openai.png',
+          'GPT-5':           'figures/openai.png',
+          'GPT-OSS-120B':    'figures/openai.png',
+          'OpenAI-DR':       'figures/openai.png',
+          'OpenAI-o3':       'figures/openai.png',
+          'Tongyi-DR':       'figures/tongyi.png',
+          'Qwen3.5-122B':    'figures/tongyi.png',
+          'Grok':            'figures/grok.png',
+          'Tencent Youtu':   'figures/hunyuan.png',
+          'Kimi-k2.5':       'figures/kimi.webp',
+          'GLM-4.6':         'figures/glm.svg',
+          'Dr.Tulu':         'figures/tulu.png',
+          'Mirothinker':     'figures/mirothinker.png',
+          'Redsearcher':     'figures/redsearcher.png',
+          'Openresearcher':  'figures/openresearcher.png',
+        };
+
         const benchmarkCharts = [
           { title:'BrowseComp', bars:[
             {role:'sota',  l:'Gemini-3.1-pro', v:85.9},
@@ -1549,7 +1568,7 @@
           { title:'Mind2Web 2', bars:[
             {role:'sota',  l:'OpenAI-DR',      v:28.0},
             {role:'s2',    l:'Grok',           v:27.0},
-            {role:'match', l:'Tencent',        v:27.0},
+            {role:'match', l:'Tencent Youtu',  v:27.0},
             {role:'open',  l:'Tongyi-DR',      v:16.7},
             {role:'open2', l:'Openresearcher', v:14.8},
             {role:'quest', l:BENCHMARK_LABEL,  v:31.2},
@@ -1588,104 +1607,21 @@
           ]},
         ];
 
-        const benchmarkValueLabels = {
-          id: 'benchmarkValueLabels',
-          afterDatasetsDraw(chart) {
-            const { ctx } = chart;
-            const labels = chart.data.labels;
-            chart.getDatasetMeta(0).data.forEach((bar, i) => {
-              const v = chart.data.datasets[0].data[i];
-              const isQuest = labels[i] === BENCHMARK_LABEL;
-              ctx.save();
-              ctx.font = `${isQuest ? 700 : 600} ${isQuest ? 10.8 : 10.2}px "Manrope", sans-serif`;
-              ctx.fillStyle = isQuest ? BENCHMARK_COLORS.quest : '#94A3B8';
-              ctx.textAlign = 'left';
-              ctx.textBaseline = 'middle';
-              ctx.fillText(Number.isInteger(v) ? String(v) : v.toFixed(1), bar.x + 5, bar.y);
-              ctx.restore();
-            });
-          },
-        };
-
-        // All icons are local files in figures/.
-        const MODEL_ICONS = {
-          'Quest-35B':       'figures/osu_nlp.png',
-          'Gemini-3.1-pro':  'figures/gemini.png',
-          'Gemini-DR':       'figures/gemini.png',
-          'Gemini-2.5-pro':  'figures/gemini.png',
-          'Opus-4.6':        'figures/claude.svg',
-          'Opus-4.5':        'figures/claude.svg',
-          'GPT-5.4':         'figures/openai.png',
-          'GPT-5':           'figures/openai.png',
-          'GPT-OSS-120B':    'figures/openai.png',
-          'OpenAI-DR':       'figures/openai.png',
-          'OpenAI-o3':       'figures/openai.png',
-          'Tongyi-DR':       'figures/tongyi.png',
-          'Qwen3.5-122B':    'figures/tongyi.png',
-          'Grok':            'figures/grok.png',
-          'Tencent':         'figures/hunyuan.png',
-          'Kimi-k2.5':       'figures/kimi.webp',
-          'GLM-4.6':         'figures/glm.svg',
-          'Dr.Tulu':         'figures/tulu.png',
-          'Mirothinker':     'figures/mirothinker.png',
-          'Redsearcher':     'figures/redsearcher.png',
-          'Openresearcher':  'figures/openresearcher.png',
-        };
-
-        const iconCache = new Map();
-        function getIcon(chart, src) {
-          let img = iconCache.get(src);
-          if (img) return img;
-          img = new Image();
-          if (src.startsWith('http')) img.crossOrigin = 'anonymous';
-          img.onload  = () => chart.update('none');
-          img.onerror = () => { /* swallow — fall back to no icon */ };
-          img.src = src;
-          iconCache.set(src, img);
-          return img;
-        }
-
-        const benchmarkIconPlugin = {
-          id: 'benchmarkIcons',
-          afterDatasetsDraw(chart) {
-            const { ctx, chartArea } = chart;
-            const labels = chart.data.labels;
-            const meta = chart.getDatasetMeta(0);
-            const BOX = 17;  // bounding box for the icon
-
-            meta.data.forEach((bar, i) => {
-              const src = MODEL_ICONS[labels[i]];
-              if (!src) return;
-              const img = getIcon(chart, src);
-              if (!img.complete || !img.naturalWidth) return;
-
-              const aspect = img.naturalWidth / img.naturalHeight;
-              const w = aspect >= 1 ? BOX : BOX * aspect;
-              const h = aspect >= 1 ? BOX / aspect : BOX;
-              const cx = chartArea.left + BOX / 2 + 3;
-              const cy = bar.y;
-              ctx.save();
-              ctx.drawImage(img, cx - w / 2, cy - h / 2, w, h);
-              ctx.restore();
-            });
-          },
-        };
-
         const benchmarkGrid = document.getElementById('benchmarkComparisonGrid');
         if (benchmarkGrid) {
+          const roleColor = (role) => {
+            if (role === 'quest') return BENCHMARK_COLORS.quest;
+            if (role === 'sota') return BENCHMARK_COLORS.sota + 'EE';
+            if (role === 's2') return BENCHMARK_COLORS.s2 + 'CC';
+            if (role === 'match') return BENCHMARK_COLORS.match + 'BB';
+            if (role === 'open') return BENCHMARK_COLORS.open + 'DD';
+            if (role === 'open2') return BENCHMARK_COLORS.open2 + 'BB';
+            return '#94A3B8';
+          };
+
           benchmarkCharts.forEach((bm) => {
             const sorted = [...bm.bars].sort((a, b) => b.v - a.v);
-            const labels = sorted.map((b) => b.l);
-            const values = sorted.map((b) => b.v);
-            const colors = sorted.map((b) => {
-              if (b.role === 'quest') return BENCHMARK_COLORS.quest;
-              if (b.role === 'sota') return BENCHMARK_COLORS.sota + 'EE';
-              if (b.role === 's2') return BENCHMARK_COLORS.s2 + 'CC';
-              if (b.role === 'match') return BENCHMARK_COLORS.match + 'BB';
-              if (b.role === 'open') return BENCHMARK_COLORS.open + 'DD';
-              if (b.role === 'open2') return BENCHMARK_COLORS.open2 + 'BB';
-              return '#94A3B8';
-            });
+            const maxValue = Math.max(...sorted.map((b) => b.v));
 
             const card = document.createElement('div');
             card.className = 'benchmark-comparison-card';
@@ -1696,79 +1632,52 @@
 
             const chartWrap = document.createElement('div');
             chartWrap.className = 'benchmark-comparison-chart';
+            chartWrap.setAttribute('role', 'img');
+            chartWrap.setAttribute('aria-label', bm.title + ' benchmark comparison');
 
-            const canvas = document.createElement('canvas');
-            canvas.id = 'benchmark-' + bm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            canvas.setAttribute('role', 'img');
-            canvas.setAttribute('aria-label', bm.title + ' benchmark comparison');
-            chartWrap.appendChild(canvas);
+            sorted.forEach((bar) => {
+              const row = document.createElement('div');
+              row.className = 'benchmark-bar-row' + (bar.l === BENCHMARK_LABEL ? ' is-quest' : '');
+
+              const label = document.createElement('span');
+              label.className = 'benchmark-bar-label';
+              const iconSrc = MODEL_ICONS[bar.l];
+              if (iconSrc) {
+                const icon = document.createElement('img');
+                icon.className = 'benchmark-bar-icon';
+                icon.src = iconSrc;
+                icon.alt = '';
+                icon.loading = 'lazy';
+                label.appendChild(icon);
+              }
+              const name = document.createElement('span');
+              name.className = 'benchmark-bar-name';
+              name.textContent = bar.l;
+              label.appendChild(name);
+              row.appendChild(label);
+
+              const track = document.createElement('span');
+              track.className = 'benchmark-bar-track';
+
+              const fill = document.createElement('span');
+              fill.className = 'benchmark-bar-fill';
+              fill.style.setProperty('--bar-width', `${(bar.v / maxValue) * 100}%`);
+              fill.style.setProperty('--bar-color', roleColor(bar.role));
+              track.appendChild(fill);
+              row.appendChild(track);
+
+              const value = document.createElement('span');
+              value.className = 'benchmark-bar-value';
+              value.textContent = Number.isInteger(bar.v) ? String(bar.v) : bar.v.toFixed(1);
+              row.appendChild(value);
+
+              chartWrap.appendChild(row);
+            });
+
             card.appendChild(chartWrap);
             benchmarkGrid.appendChild(card);
-
-            new Chart(canvas, {
-              type: 'bar',
-              plugins: [benchmarkValueLabels, benchmarkIconPlugin],
-              data: {
-                labels,
-                datasets: [{
-                  data: values,
-                  backgroundColor: colors,
-                  borderRadius: 4,
-                  borderSkipped: false,
-                }],
-              },
-              options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 500, easing: 'easeOutQuart' },
-                plugins: {
-                  legend: { display: false },
-                  tooltip: { enabled: false },
-                },
-                events: [],
-                layout: { padding: { right: 38 } },
-                scales: {
-                  x: {
-                    display: false,
-                    min: 0,
-                    max: Math.max(...values) * 1.22,
-                  },
-                  y: {
-                    ticks: {
-                      color: (ctx) => labels[ctx.index] === BENCHMARK_LABEL ? BENCHMARK_COLORS.quest : '#64748B',
-                      font: (ctx) => ({
-                        family: "'Manrope', sans-serif",
-                        size: 10.3,
-                        weight: labels[ctx.index] === BENCHMARK_LABEL ? '800' : '600',
-                      }),
-                      padding: 4,
-                    },
-                    grid: { display: false },
-                    border: { display: false },
-                  },
-                },
-              },
-            });
           });
 
-          const benchmarkLegend = document.getElementById('benchmarkComparisonLegend');
-          const legendItems = [
-            { label: 'Quest-35B', color: BENCHMARK_COLORS.quest },
-            { label: 'Best closed SOTA', color: BENCHMARK_COLORS.sota },
-            { label: '2nd closed', color: BENCHMARK_COLORS.s2 },
-            { label: 'Comparable closed', color: BENCHMARK_COLORS.match },
-            { label: 'Best open agent', color: BENCHMARK_COLORS.open },
-            { label: '2nd open agent', color: BENCHMARK_COLORS.open2 },
-          ];
-          legendItems.forEach((item) => {
-            const el = document.createElement('span');
-            const swatch = document.createElement('i');
-            swatch.style.backgroundColor = item.color;
-            el.appendChild(swatch);
-            el.appendChild(document.createTextNode(item.label));
-            benchmarkLegend.appendChild(el);
-          });
         }
 
         defs.forEach(({ id, vals, min, max, step }) => {

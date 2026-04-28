@@ -548,34 +548,78 @@ a { color: inherit; text-decoration: none; }
 }
 
 .benchmark-comparison-chart {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
   height: 210px;
 }
 
-.benchmark-comparison-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
+.benchmark-bar-row {
+  display: grid;
+  grid-template-columns: minmax(88px, 42%) minmax(0, 1fr) 34px;
+  gap: 6px;
   align-items: center;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+  min-height: 24px;
 }
 
-.benchmark-comparison-legend span {
+.benchmark-bar-label {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 600;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+  color: #64748B;
+  font-size: 0.64rem;
+  font-weight: 650;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.benchmark-comparison-legend i {
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  flex-shrink: 0;
+.benchmark-bar-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.benchmark-bar-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.benchmark-bar-row.is-quest .benchmark-bar-label,
+.benchmark-bar-row.is-quest .benchmark-bar-value {
+  color: #2563EB;
+  font-weight: 800;
+}
+
+.benchmark-bar-track {
+  position: relative;
+  height: 13px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #EEF2F7;
+}
+
+.benchmark-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--bar-width);
+  min-width: 2px;
+  border-radius: inherit;
+  background: var(--bar-color);
+}
+
+.benchmark-bar-value {
+  color: #94A3B8;
+  font-size: 0.64rem;
+  font-weight: 650;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
 }
 
 /* ─── Essay Grid ─────────────────────────────────────── */
