@@ -142,13 +142,19 @@
                 <div class="table-label">Benchmark Coverage</div>
 
                 <div class="cap-legend" aria-label="Capability legend">
-                  <span><i class="cap-dot cap-dot-fact"></i>Fact-seeking</span>
-                  <span><i class="cap-dot cap-dot-report"></i>Report synthesis</span>
-                  <span><i class="cap-dot cap-dot-cite"></i>Citation grounding</span>
+                  <div class="cap-legend-row">
+                    <span><i class="cap-dot cap-dot-fact"></i>Fact-seeking</span>
+                    <span><i class="cap-dot cap-dot-report"></i>Report synthesis</span>
+                    <span><i class="cap-dot cap-dot-cite"></i>Citation grounding</span>
+                  </div>
+                  <div class="cap-legend-row">
+                    <span><i class="cap-na"></i>N/A for category</span>
+                    <span><i class="cap-no"></i>Not covered</span>
+                  </div>
                 </div>
 
                 <div class="cap-list-head" aria-label="Capability columns">
-                  <span>Benchmark</span>
+                  <span class="cap-list-head-label">Benchmark</span>
                   <span class="cap-head-dots">
                     <i class="cap-dot cap-dot-fact" title="Fact-seeking"></i>
                     <i class="cap-dot cap-dot-report" title="Report synthesis"></i>
@@ -163,50 +169,50 @@
                   <div class="cap-rows">
                     <div class="cap-row">
                       <span class="cap-name">BrowseComp</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-yes cap-ind-fact" title="Fact-seeking"></span>
-                        <span class="cap-ind cap-ind-na" title="Report synthesis N/A"></span>
-                        <span class="cap-ind cap-ind-no" title="Citation not covered"></span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-no" title="Citation grounding: not covered"></span>
                       </span>
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">Mind2Web 2</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-yes cap-ind-fact" title="Fact-seeking"></span>
-                        <span class="cap-ind cap-ind-na" title="Report synthesis N/A"></span>
-                        <span class="cap-ind cap-ind-yes cap-ind-cite" title="Citation grounding"></span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-dot cap-dot-cite" title="Citation grounding: covered"></span>
                       </span>
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">HLE</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
-                        <span class="cap-ind cap-ind-na"></span>
-                        <span class="cap-ind cap-ind-no"></span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-no" title="Citation grounding: not covered"></span>
                       </span>
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">GAIA</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
-                        <span class="cap-ind cap-ind-na"></span>
-                        <span class="cap-ind cap-ind-no"></span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-no" title="Citation grounding: not covered"></span>
                       </span>
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">BrowseComp-Plus</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
-                        <span class="cap-ind cap-ind-na"></span>
-                        <span class="cap-ind cap-ind-no"></span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-no" title="Citation grounding: not covered"></span>
                       </span>
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">WideSearch</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-yes cap-ind-fact"></span>
-                        <span class="cap-ind cap-ind-na"></span>
-                        <span class="cap-ind cap-ind-no"></span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-no" title="Citation grounding: not covered"></span>
                       </span>
                     </div>
                   </div>
@@ -219,27 +225,21 @@
                   <div class="cap-rows">
                     <div class="cap-row">
                       <span class="cap-name">DeepResearch Bench</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-na" title="Fact-seeking N/A"></span>
-                        <span class="cap-ind cap-ind-yes cap-ind-report" title="Report synthesis"></span>
-                        <span class="cap-ind cap-ind-yes cap-ind-cite" title="Citation grounding"></span>
+                      <span class="cap-pills">
+                        <span class="cap-na" title="Fact-seeking: N/A for open-ended tasks"></span>
+                        <span class="cap-dot cap-dot-report" title="Report synthesis: covered"></span>
+                        <span class="cap-dot cap-dot-cite" title="Citation grounding: covered"></span>
                       </span>
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">LiveResearchBench</span>
-                      <span class="cap-indicators">
-                        <span class="cap-ind cap-ind-na"></span>
-                        <span class="cap-ind cap-ind-yes cap-ind-report"></span>
-                        <span class="cap-ind cap-ind-yes cap-ind-cite"></span>
+                      <span class="cap-pills">
+                        <span class="cap-na" title="Fact-seeking: N/A for open-ended tasks"></span>
+                        <span class="cap-dot cap-dot-report" title="Report synthesis: covered"></span>
+                        <span class="cap-dot cap-dot-cite" title="Citation grounding: covered"></span>
                       </span>
                     </div>
                   </div>
-                </div>
-
-                <div class="cap-footer">
-                  <span><i class="cap-status cap-status-covered"></i>covered</span>
-                  <span><i class="cap-status cap-status-no"></i>not covered</span>
-                  <span><i class="cap-status cap-status-na"></i>N/A</span>
                 </div>
               </div>
 
@@ -251,28 +251,24 @@
                       <colgroup>
                         <col class="comparison-col-model" />
                         <col class="comparison-col-coverage" />
-                        <col class="comparison-col-dataset" />
-                        <col class="comparison-col-synth" />
-                        <col class="comparison-col-memory" />
                         <col class="comparison-col-pipeline" />
-                        <col class="comparison-col-release" />
+                        <col class="comparison-col-memory" />
+                        <col class="comparison-col-data" />
+                        <col class="comparison-col-synth" />
+                        <col class="comparison-col-train" />
                       </colgroup>
                       <thead>
                         <tr class="comparison-group-row">
-                          <th class="comparison-model-head"></th>
-                          <th>Capability</th>
-                          <th colspan="2" class="comparison-divider-left">Data Release</th>
-                          <th class="comparison-divider-left">Context Management</th>
-                          <th colspan="2" class="comparison-divider-left">Training Script</th>
+                          <th rowspan="2" class="comparison-model-head th-spanned">Model</th>
+                          <th rowspan="2" class="th-spanned">Capability</th>
+                          <th rowspan="2" class="comparison-divider-left th-spanned">Training Pipeline</th>
+                          <th rowspan="2" class="comparison-divider-left th-spanned">Memory Management</th>
+                          <th colspan="3" class="comparison-divider-left">Open-Sourced</th>
                         </tr>
                         <tr class="comparison-column-row">
-                          <th class="comparison-model-head">Model</th>
-                          <th>Coverage</th>
-                          <th class="comparison-divider-left">Dataset</th>
-                          <th>Synth Script</th>
-                          <th class="comparison-divider-left">Memory</th>
-                          <th class="comparison-divider-left">Pipeline</th>
-                          <th>Release</th>
+                          <th class="comparison-divider-left">Data</th>
+                          <th>Synth Code</th>
+                          <th>Train Code</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -286,9 +282,6 @@
                               <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-divider-left">
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-mt">MT</span>
@@ -298,6 +291,9 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                         </tr>
                         <tr>
@@ -309,9 +305,6 @@
                               <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
-                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-divider-left">
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-sft">SFT</span>
@@ -319,6 +312,9 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
                         <tr>
@@ -330,14 +326,14 @@
                               <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
-                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-divider-left">
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-sft">SFT</span>
                             </div>
                           </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
                         <tr>
@@ -349,9 +345,6 @@
                               <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
-                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-divider-left">
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-mt">MT</span>
@@ -361,6 +354,9 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
                         <tr class="comparison-quest-row">
@@ -374,9 +370,6 @@
                               <span class="scenario-pill scenario-citation"><i class="scenario-dot"></i>Citation Grounding</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
-                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-divider-left">
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-mt">MT</span>
@@ -386,6 +379,9 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
                       </tbody>
@@ -1611,6 +1607,70 @@
           },
         };
 
+        // All icons are local files in figures/.
+        const MODEL_ICONS = {
+          'Quest-35B':       'figures/osu_nlp.png',
+          'Gemini-3.1-pro':  'figures/gemini.png',
+          'Gemini-DR':       'figures/gemini.png',
+          'Gemini-2.5-pro':  'figures/gemini.png',
+          'Opus-4.6':        'figures/claude.svg',
+          'Opus-4.5':        'figures/claude.svg',
+          'GPT-5.4':         'figures/openai.png',
+          'GPT-5':           'figures/openai.png',
+          'GPT-OSS-120B':    'figures/openai.png',
+          'OpenAI-DR':       'figures/openai.png',
+          'OpenAI-o3':       'figures/openai.png',
+          'Tongyi-DR':       'figures/tongyi.png',
+          'Qwen3.5-122B':    'figures/tongyi.png',
+          'Grok':            'figures/grok.png',
+          'Tencent':         'figures/hunyuan.png',
+          'Kimi-k2.5':       'figures/kimi.webp',
+          'GLM-4.6':         'figures/glm.svg',
+          'Dr.Tulu':         'figures/tulu.png',
+          'Mirothinker':     'figures/mirothinker.png',
+          'Redsearcher':     'figures/redsearcher.png',
+          'Openresearcher':  'figures/openresearcher.png',
+        };
+
+        const iconCache = new Map();
+        function getIcon(chart, src) {
+          let img = iconCache.get(src);
+          if (img) return img;
+          img = new Image();
+          if (src.startsWith('http')) img.crossOrigin = 'anonymous';
+          img.onload  = () => chart.update('none');
+          img.onerror = () => { /* swallow — fall back to no icon */ };
+          img.src = src;
+          iconCache.set(src, img);
+          return img;
+        }
+
+        const benchmarkIconPlugin = {
+          id: 'benchmarkIcons',
+          afterDatasetsDraw(chart) {
+            const { ctx, chartArea } = chart;
+            const labels = chart.data.labels;
+            const meta = chart.getDatasetMeta(0);
+            const BOX = 17;  // bounding box for the icon
+
+            meta.data.forEach((bar, i) => {
+              const src = MODEL_ICONS[labels[i]];
+              if (!src) return;
+              const img = getIcon(chart, src);
+              if (!img.complete || !img.naturalWidth) return;
+
+              const aspect = img.naturalWidth / img.naturalHeight;
+              const w = aspect >= 1 ? BOX : BOX * aspect;
+              const h = aspect >= 1 ? BOX / aspect : BOX;
+              const cx = chartArea.left + BOX / 2 + 3;
+              const cy = bar.y;
+              ctx.save();
+              ctx.drawImage(img, cx - w / 2, cy - h / 2, w, h);
+              ctx.restore();
+            });
+          },
+        };
+
         const benchmarkGrid = document.getElementById('benchmarkComparisonGrid');
         if (benchmarkGrid) {
           benchmarkCharts.forEach((bm) => {
@@ -1647,7 +1707,7 @@
 
             new Chart(canvas, {
               type: 'bar',
-              plugins: [benchmarkValueLabels],
+              plugins: [benchmarkValueLabels, benchmarkIconPlugin],
               data: {
                 labels,
                 datasets: [{
