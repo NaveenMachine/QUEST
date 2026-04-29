@@ -425,7 +425,7 @@
                 <p>
                   Open-ended tasks require a further capability,
                   <strong>report synthesis</strong>, as exemplified by
-                  DeepResearchBench. Given an open-ended task, the agent must
+                  DeepResearch Bench. Given an open-ended task, the agent must
                   synthesize information from diverse sources into a coherent,
                   well-structured, and reader-friendly report.
                 </p>
@@ -506,6 +506,65 @@
               </div>
             </div>
 
+            <div class="subsection system-comparison">
+              <h3>30B-Scale Research Agent Comparison</h3>
+              <p>
+                We further compare 30B-scale research agents across the same
+                benchmark suite. The reported metric follows the primary metric
+                used by each benchmark.
+              </p>
+
+              <div class="small-model-panel">
+                <div class="small-model-legend" aria-label="30B research agent legend">
+                  <span><i class="legend-tongyi"></i>Tongyi-DeepResearch</span>
+                  <span><i class="legend-openresearcher"></i>OpenResearcher</span>
+                  <span><i class="legend-quest-model"></i>Quest-30B</span>
+                </div>
+                <div class="small-model-grid" aria-label="30B-scale research agent benchmark results">
+                  <div class="small-model-card">
+                    <h4>BrowseComp</h4>
+                    <p class="chart-metric">Accuracy</p>
+                    <div class="chart-wrap"><canvas id="p-browsecomp"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>HLE</h4>
+                    <p class="chart-metric">Accuracy</p>
+                    <div class="chart-wrap"><canvas id="p-hle"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>GAIA</h4>
+                    <p class="chart-metric">Accuracy</p>
+                    <div class="chart-wrap"><canvas id="p-gaia"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>Mind2Web 2</h4>
+                    <p class="chart-metric">Success Rate</p>
+                    <div class="chart-wrap"><canvas id="p-m2w2"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>LiveResearchBench</h4>
+                    <p class="chart-metric">Avg Quality</p>
+                    <div class="chart-wrap"><canvas id="p-liveresearch"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>DeepResearch Bench</h4>
+                    <p class="chart-metric">RACE Overall</p>
+                    <div class="chart-wrap"><canvas id="p-deepresearch"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>WideSearch</h4>
+                    <p class="chart-metric">Item F1</p>
+                    <div class="chart-wrap"><canvas id="p-widesearch"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>BrowseComp Plus</h4>
+                    <p class="chart-metric">Accuracy</p>
+                    <div class="chart-wrap"><canvas id="p-bcp"></canvas></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="subsection smaller-versions">
               <h3>Smaller Versions</h3>
               <p>
@@ -547,7 +606,7 @@
                     <div class="chart-wrap"><canvas id="c-hle"></canvas></div>
                   </div>
                   <div class="small-model-card">
-                    <h4>DeepResearchBench</h4>
+                    <h4>DeepResearch Bench</h4>
                     <p class="chart-metric">avg@3</p>
                     <div class="chart-wrap"><canvas id="c-drb"></canvas></div>
                   </div>
@@ -613,7 +672,7 @@
                     <div class="chart-wrap"><canvas id="e-hle"></canvas></div>
                   </div>
                   <div class="small-model-card">
-                    <h4>DeepResearchBench</h4>
+                    <h4>DeepResearch Bench</h4>
                     <p class="chart-metric">avg@3</p>
                     <div class="chart-wrap"><canvas id="e-drb"></canvas></div>
                   </div>
@@ -763,7 +822,7 @@
               <p>
                 To produce stable rubric weights, we run the weight generation
                 three times and average across runs. For evaluation, we adopt a
-                pairwise comparison strategy motivated by DeepResearchBench.
+                pairwise comparison strategy motivated by DeepResearch Bench.
                 For each task, a teacher model executes a full pass over the
                 web, producing a <strong>reference report</strong>. A judge
                 model then receives both the candidate report and the reference
@@ -1506,6 +1565,73 @@
           },
         };
 
+        const PERF_FILL = ['#CBD5E1', '#C4B5FD', '#2563EB'];
+        const PERF_EDGE = ['#94A3B8', '#A78BFA', '#1D4ED8'];
+        const PERF_LABELS = ['Tongyi', 'OpenR.', 'Quest-30B'];
+        const perfDefs = [
+          { id: 'p-browsecomp',   vals: [43.4, 26.3, 37.0], min: 20, max: 50 },
+          { id: 'p-hle',          vals: [32.9, 20.4, 26.0], min: 15, max: 36 },
+          { id: 'p-gaia',         vals: [70.9, 64.1, 69.0], min: 60, max: 74 },
+          { id: 'p-m2w2',         vals: [16.7, 14.8, 28.6], min: 10, max: 32 },
+          { id: 'p-liveresearch', vals: [56.3, 61.3, 66.7], min: 50, max: 70 },
+          { id: 'p-deepresearch', vals: [40.5, 39.8, 44.3], min: 38, max: 46 },
+          { id: 'p-widesearch',   vals: [37.3, 19.2, 57.2], min: 15, max: 60 },
+          { id: 'p-bcp',          vals: [44.5, 54.8, 48.2], min: 40, max: 58 },
+        ];
+
+        perfDefs.forEach(({ id, vals, min, max }) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          new Chart(el, {
+            type: 'bar',
+            plugins: [valueLabelPlugin],
+            data: {
+              labels: PERF_LABELS,
+              datasets: [{
+                data: vals,
+                backgroundColor: PERF_FILL,
+                borderColor: PERF_EDGE,
+                borderWidth: 1.5,
+                borderRadius: 5,
+              }],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: { duration: 500, easing: 'easeOutQuart' },
+              plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false },
+              },
+              events: [],
+              scales: {
+                x: {
+                  grid:   { display: false },
+                  border: { display: false },
+                  ticks:  {
+                    color: '#94A3B8',
+                    font:  { size: 10, weight: '700' },
+                    padding: 2,
+                  },
+                },
+                y: {
+                  min,
+                  max,
+                  grid:   { color: 'rgba(10,15,40,0.055)', lineWidth: 1 },
+                  border: { display: false },
+                  ticks:  {
+                    color: '#B8C4D0',
+                    font:  { size: 9.5 },
+                    maxTicksLimit: 4,
+                    padding: 4,
+                  },
+                },
+              },
+              layout: { padding: { top: 18 } },
+            },
+          });
+        });
+
         const BENCHMARK_LABEL = 'Quest-35B';
         const BENCHMARK_COLORS = {
           quest: '#2563EB',
@@ -1573,7 +1699,7 @@
             {role:'open2', l:'Openresearcher', v:14.8},
             {role:'quest', l:BENCHMARK_LABEL,  v:31.2},
           ]},
-          { title:'LiveResearch', bars:[
+          { title:'LiveResearchBench', bars:[
             {role:'sota',  l:'GPT-5',          v:73.1},
             {role:'s2',    l:'Grok',           v:65.6},
             {role:'match', l:'Gemini-DR',      v:63.3},
@@ -1581,7 +1707,7 @@
             {role:'open2', l:'Tongyi-DR',      v:56.3},
             {role:'quest', l:BENCHMARK_LABEL,  v:69.1},
           ]},
-          { title:'DeepResearch', bars:[
+          { title:'DeepResearch Bench', bars:[
             {role:'sota',  l:'Gemini-DR',      v:49.7},
             {role:'s2',    l:'OpenAI-DR',      v:46.5},
             {role:'match', l:'Dr.Tulu',        v:45.5},
@@ -1743,12 +1869,12 @@
         const effectDefs = [
           { id: 'e-browsecomp', vals: [38.4, 45.1,  45.9,  null], min: 36, max: 48, step: 3 },
           { id: 'e-m2w2',       vals: [22.3, 26.5,  29.9,  null], min: 20, max: 32, step: 4 },
-          { id: 'e-hle',        vals: [29.3, 39.49, 39.74, null], min: 28, max: 42, step: 4 },
-          { id: 'e-drb',        vals: [null, 36.35, 37.9,  null], min: 32, max: 40, step: 2 },
-          { id: 'e-lrb',        vals: [null, 49.53, 49.99, null], min: 46, max: 54, step: 2 },
-          { id: 'e-gaia',       vals: [null, 83.5,  83.17, null], min: 80, max: 86, step: 2 },
-          { id: 'e-bcp',        vals: [null, 54.87, 55.64, null], min: 52, max: 58, step: 2 },
-          { id: 'e-ws',         vals: [null, 61.1,  62.5,  null], min: 58, max: 66, step: 2 },
+          { id: 'e-hle',        vals: [32.3, 39.49, 39.74, null], min: 28, max: 42, step: 4 },
+          { id: 'e-drb',        vals: [42.8, 36.35, 37.9,  null], min: 32, max: 44, step: 3 },
+          { id: 'e-lrb',        vals: [57.15, 49.53, 49.99, null], min: 46, max: 60, step: 4 },
+          { id: 'e-gaia',       vals: [72.8, 83.5,  83.17, null], min: 70, max: 86, step: 4 },
+          { id: 'e-bcp',        vals: [60.51, 54.87, 55.64, null], min: 52, max: 62, step: 2 },
+          { id: 'e-ws',         vals: [43.8, 61.1,  62.5,  null], min: 40, max: 66, step: 6 },
         ];
 
         const pointValueLabelPlugin = {
