@@ -1024,20 +1024,20 @@ img.figure-media {
 .cap-dot-cite   { background: var(--positive); }
 
 .cap-na {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 1.5px dashed #CBD5E1;
-  background: rgba(10, 15, 40, 0.035);
+  width: 8px;
+  height: 2px;
+  background: #CBD5E1;
+  border-radius: 1px;
   display: inline-block;
   flex-shrink: 0;
 }
 
 .cap-no {
-  width: 8px;
-  height: 2px;
-  background: #CBD5E1;
-  border-radius: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1.5px dashed #CBD5E1;
+  background: rgba(10, 15, 40, 0.035);
   display: inline-block;
   flex-shrink: 0;
 }
