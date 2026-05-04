@@ -519,29 +519,28 @@ a { color: inherit; text-decoration: none; }
 
 .benchmark-comparison-panel {
   margin-top: 22px;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--surface-alt);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .benchmark-comparison-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 8px;
 }
 
 .benchmark-comparison-card {
   min-width: 0;
-  padding: 14px 14px 10px;
+  padding: 12px 12px 8px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--paper);
+  background: #F4F6FA;
 }
 
 .benchmark-comparison-card h4 {
-  margin: 0 0 8px;
-  min-height: 2em;
+  margin: 0 0 2px;
   color: var(--muted);
   font-size: 0.76rem;
   font-weight: 800;
@@ -560,10 +559,10 @@ a { color: inherit; text-decoration: none; }
 
 .benchmark-bar-row {
   display: grid;
-  grid-template-columns: minmax(96px, 44%) minmax(0, 1fr) 34px;
+  grid-template-columns: 116px minmax(0, 1fr) 36px;
   gap: 6px;
   align-items: center;
-  min-height: 24px;
+  min-height: 26px;
 }
 
 .benchmark-bar-label {
