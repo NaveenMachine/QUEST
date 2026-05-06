@@ -1661,7 +1661,7 @@
           'Kimi K2.5':       'figures/kimi.webp',
           'GLM-4.6':         'figures/glm.svg',
           'DR Tulu':         'figures/tulu.png',
-          'Mirothinker':     'figures/mirothinker.png',
+          'MiroThinker-1.7-mini': 'figures/mirothinker.png',
           'Redsearcher':     'figures/redsearcher.png',
           'OpenResearcher':  'figures/openresearcher.webp',
         };
@@ -1671,7 +1671,7 @@
             {role:'sota',  l:'Gemini 3.1 Pro', v:85.9},
             {role:'s2',    l:'Opus 4.6',       v:84.0},
             {role:'match', l:'GPT-5.4',        v:82.7},
-            {role:'open',  l:'Mirothinker',    v:67.9},
+            {role:'open',  l:'MiroThinker-1.7-mini', v:67.9},
             {role:'open2', l:'Redsearcher',    v:57.4},
             {role:'quest', l:BENCHMARK_LABEL,  v:64.6, base:45.5},
           ]},
@@ -1687,7 +1687,7 @@
             {role:'sota',  l:'Opus 4.6',       v:53.1},
             {role:'s2',    l:'GPT-5.4',        v:52.1},
             {role:'match', l:'Gemini 3.1 Pro', v:51.4},
-            {role:'open',  l:'Mirothinker',    v:36.4},
+            {role:'open',  l:'MiroThinker-1.7-mini', v:36.4},
             {role:'open2', l:'Redsearcher',    v:34.9},
             {role:'quest', l:BENCHMARK_LABEL,  v:37.2},
           ]},
@@ -1717,7 +1717,7 @@
           ]},
           { title:'GAIA', bars:[
             {role:'quest', l:BENCHMARK_LABEL,  v:80.8},
-            {role:'open',  l:'Mirothinker',    v:80.3},
+            {role:'open',  l:'MiroThinker-1.7-mini', v:80.3},
             {role:'open2', l:'Redsearcher',    v:80.1},
             {role:'sota',  l:'GPT-5',          v:76.4},
             {role:'s2',    l:'Tongyi-DR',      v:70.9},
@@ -1788,7 +1788,13 @@
               }
               const name = document.createElement('span');
               name.className = 'benchmark-bar-name';
-              name.textContent = bar.l;
+              if (bar.l === 'MiroThinker-1.7-mini') {
+                name.textContent = 'MiroThinker';
+                name.title = bar.l;
+                label.setAttribute('aria-label', bar.l);
+              } else {
+                name.textContent = bar.l;
+              }
               label.appendChild(name);
               row.appendChild(label);
 
