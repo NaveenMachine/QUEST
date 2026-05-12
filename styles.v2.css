@@ -958,7 +958,7 @@ a { color: inherit; text-decoration: none; }
 
 .benchmark-bar-row {
   display: grid;
-  grid-template-columns: 130px minmax(0, 1fr) 36px;
+  grid-template-columns: 100px minmax(0, 1fr) 30px;
   gap: 6px;
   align-items: center;
   min-height: 26px;
@@ -971,7 +971,7 @@ a { color: inherit; text-decoration: none; }
   min-width: 0;
   overflow: hidden;
   color: #64748B;
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   font-weight: 650;
   line-height: 1.15;
   text-overflow: ellipsis;
@@ -979,8 +979,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .benchmark-bar-icon {
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   object-fit: contain;
   flex: 0 0 auto;
 }
@@ -1044,7 +1044,7 @@ a { color: inherit; text-decoration: none; }
 
 .benchmark-bar-value {
   color: #94A3B8;
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   font-weight: 650;
   line-height: 1;
   text-align: right;
@@ -2568,7 +2568,7 @@ sup.val-dagger {
   }
 
   .benchmark-comparison-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .benchmark-comparison-chart {
@@ -2617,11 +2617,11 @@ sup.val-dagger {
   }
 
   .small-model-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .benchmark-comparison-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .benchmark-panel-head {
@@ -2730,7 +2730,7 @@ sup.val-dagger {
   .small-model-grid,
   .benchmark-comparison-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
   .benchmark-comparison-chart { height: 210px; }
-  .benchmark-bar-row { grid-template-columns: 118px minmax(0, 1fr) 34px; }
+  .benchmark-bar-row { grid-template-columns: 100px minmax(0, 1fr) 30px; }
   .mini-chart { gap: 5px; min-height: 170px; }
   .mini-bar span { font-size: 0.56rem; }
 
