@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Previous title: Quest: A Fully Open Recipe for Training Search Agents -->
-    <title>Quest: Training Frontier Deep Research Agents with Fully Synthetic Tasks</title>
+    <!-- Previous title: QUEST: A Fully Open Recipe for Training Search Agents -->
+    <title>QUEST: Training Frontier Deep Research Agents with Fully Synthetic Tasks</title>
     <meta
       name="description"
-      content="Quest is an open family of 2B to 35B deep research agents trained with fully synthetic rubric-tree tasks, structured context management, and a mid-training, SFT, and RL pipeline."
+      content="QUEST is an open family of 2B to 35B deep research agents trained with fully synthetic rubric-tree tasks, structured context management, and a mid-training, SFT, and RL pipeline."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,69 +36,142 @@
     <div class="site-shell">
       <header class="site-header">
         <div class="logo">
-          <a class="logo-link" href="#top"><strong>Quest</strong></a>
+          <a class="logo-link" href="#top"><strong>QUEST</strong></a>
         </div>
 
         <nav class="site-nav">
-          <a href="#tasks">Tasks</a>
-          <a href="#data">Data</a>
-          <a href="#memory">Memory</a>
-          <a href="#training">Training</a>
+          <a href="#tasks">Overview</a>
+          <a href="#quest">Analysis</a>
+          <a href="#data">Recipe</a>
           <a href="#demo">Demo</a>
         </nav>
 
-        <div class="site-links">
-          <a href="#data">Data</a>
-          <a href="#training">Training</a>
-        </div>
       </header>
 
       <main id="top" class="article-shell">
         <nav class="toc-sidebar" aria-label="Table of contents">
           <div class="toc-label">Contents</div>
           <ol class="toc-list">
-            <li><a href="#tasks">Search Tasks</a></li>
-            <li><a href="#quest">Quest</a></li>
-            <li><a href="#data">Data Synthesis</a></li>
-            <li><a href="#memory">Memory Management</a></li>
-            <li><a href="#infrastructure">Infrastructure</a></li>
-            <li><a href="#training">Training</a></li>
-            <li><a href="#attempts">Unsuccessful Attempts</a></li>
-            <li><a href="#closing">Closing Remarks</a></li>
-            <li><a href="#contribution">Contribution Statement</a></li>
+            <li><a href="#snapshot">Snapshot</a></li>
+            <li><a href="#tasks">Overview</a></li>
+            <li><a href="#quest">Analysis</a></li>
+            <li><a href="#data">Training Recipe</a></li>
+            <li><a href="#demo">Try QUEST</a></li>
           </ol>
         </nav>
         <article class="article">
-          <div class="article-meta-row">
-            <span class="meta-pill">Quest Blog</span>
-            <time datetime="2026-04-11">Apr 11, 2026</time>
-          </div>
-
           <section class="cover">
-            <div class="cover-visual" aria-hidden="true">
-              <div class="cover-panel cover-panel-wide">
-                <span>Fully open recipe</span>
-                <!-- Previous cover text: Training search agents from scratch -->
-                <strong>Training deep research agents with synthetic tasks</strong>
-              </div>
-              <div class="cover-panel">
-                <span>Data synthesis</span>
-                <strong>Objective and open-ended tasks</strong>
-              </div>
-              <div class="cover-panel">
-                <span>Memory management</span>
-                <strong>Structured long-horizon reasoning</strong>
-              </div>
-              <div class="cover-panel">
-                <span>Training recipe</span>
-                <strong>Mid-training, SFT, and RL</strong>
-              </div>
-            </div>
-
             <div class="article-head">
-              <!-- Previous headline: <span class="brand">Quest</span>: A Fully Open Recipe for Training Search Agents -->
-              <h1><span class="brand">Quest</span>: Training Frontier Deep Research Agents with Fully Synthetic Tasks</h1>
-              <p class="subtitle"><a href="https://x.com/osunlp" target="_blank" rel="noopener" class="subtitle-link">OSU NLP Group</a></p>
+              <div class="article-meta-row">
+                <time datetime="2026-05-11">May 11, 2026</time>
+              </div>
+              <!-- Previous headline: <span class="brand">QUEST</span>: A Fully Open Recipe for Training Search Agents -->
+              <h1>
+                <span class="title-line"><span class="brand">QUEST</span>: Training Frontier Deep Research Agents</span>
+                <span class="title-line">with Fully Synthetic Tasks</span>
+              </h1>
+              <div class="author-block" aria-label="Authors">
+                <p class="author-row author-row-core">
+                  <span><a href="https://hsaest.github.io" target="_blank" rel="noopener">Jian Xie</a><sup>1*‡</sup></span>
+                  <span><a href="https://tianhel.github.io/" target="_blank" rel="noopener">Tianhe Lin</a><sup>1*</sup></span>
+                  <span><a href="https://wzlulip.github.io/" target="_blank" rel="noopener">Zilu Wang</a><sup>1*</sup></span>
+                </p>
+                <p class="author-row">
+                  <span><a href="https://nnnyt.github.io" target="_blank" rel="noopener">Yuting Ning</a><sup>1</sup></span>
+                  <span><a href="https://ykyaol7.github.io/" target="_blank" rel="noopener">Yuekun Yao</a><sup>1</sup></span>
+                  <span><a href="https://xuetianci.github.io" target="_blank" rel="noopener">Tianci Xue</a><sup>1</sup></span>
+                  <span><a href="https://zhehaozhang123.github.io/" target="_blank" rel="noopener">Zhehao Zhang</a><sup>1</sup></span>
+                  <span><a href="https://zhongyangli0124.github.io/" target="_blank" rel="noopener">Zhongyang Li</a><sup>1</sup></span>
+                </p>
+                <p class="author-row">
+                  <span><a href="https://drogozhang.github.io" target="_blank" rel="noopener">Kai Zhang</a><sup>1</sup></span>
+                  <span><a href="https://www.linkedin.com/in/yufan-wu-a27b6b24b" target="_blank" rel="noopener">Yufan Wu</a><sup>1</sup></span>
+                  <span><a href="https://chensj98.github.io" target="_blank" rel="noopener">Shijie Chen</a><sup>1</sup></span>
+                  <span><a href="https://boyugou.github.io" target="_blank" rel="noopener">Boyu Gou</a><sup>1</sup></span>
+                  <span><a href="https://scholar.google.com/citations?user=0JlaO58AAAAJ&amp;hl=en" target="_blank" rel="noopener">Mingzhe Han</a><sup>1</sup></span>
+                </p>
+                <p class="author-row author-row-amazon">
+                  <span><a href="https://yifeiwang77.com/" target="_blank" rel="noopener">Yifei Wang</a><sup>2</sup></span>
+                  <span><a href="https://vint-1.github.io/" target="_blank" rel="noopener">Vint Lee</a><sup>2</sup></span>
+                  <span><a href="https://www.linkedin.com/in/william-xp-wei" target="_blank" rel="noopener">Xinpeng Wei</a><sup>2</sup></span>
+                  <span><a href="https://www.linkedin.com/in/xjwang" target="_blank" rel="noopener">Xiangjun Wang</a><sup>2</sup></span>
+                </p>
+                <p class="author-row author-row-last">
+                  <span><a href="https://ysu1989.github.io" target="_blank" rel="noopener">Yu Su</a><sup>1†</sup></span>
+                  <span><a href="https://u.osu.edu" target="_blank" rel="noopener">Huan Sun</a><sup>1†</sup></span>
+                </p>
+                <p class="affiliation-row">
+                  <span><sup>1</sup>The Ohio State University</span>
+                  <span><sup>2</sup>Amazon AGI SF Lab</span>
+                </p>
+                <p class="contribution-row">
+                  <span>*Equal contribution.</span>
+                  <span>‡Project lead.</span>
+                  <span>†Joint last author.</span>
+                </p>
+              </div>
+              <div class="resource-links" aria-label="QUEST resources">
+                <a class="resource-link" href="../latex/quest-blog/main.pdf" target="_blank" rel="noopener">
+                  <span class="resource-icon resource-icon-paper" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                      <path d="M6 2.5h8.2L19 7.3v14.2H6V2.5Zm8 1.9v3.2h3.2L14 4.4ZM8.1 9.8h8.8V8.4H8.1v1.4Zm0 3.3h8.8v-1.4H8.1v1.4Zm0 3.3h6.4V15H8.1v1.4Z" />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong>Paper</strong>
+                    <small>PDF</small>
+                  </span>
+                </a>
+                <a class="resource-link" href="https://huggingface.co/spaces/osunlp/QUEST" target="_blank" rel="noopener">
+                  <span class="resource-icon resource-icon-hf" aria-hidden="true">
+                    <img src="./figures/hf-logo.png" alt="" loading="lazy" />
+                  </span>
+                  <span>
+                    <strong>Demo</strong>
+                    <small>Hugging Face Space</small>
+                  </span>
+                </a>
+                <a class="resource-link" href="https://huggingface.co/datasets/osunlp/QUEST" target="_blank" rel="noopener">
+                  <span class="resource-icon resource-icon-hf" aria-hidden="true">
+                    <img src="./figures/hf-logo.png" alt="" loading="lazy" />
+                  </span>
+                  <span>
+                    <strong>Data</strong>
+                    <small>Hugging Face Dataset</small>
+                  </span>
+                </a>
+                <a class="resource-link" href="https://huggingface.co/osunlp/QUEST-35B-RL" target="_blank" rel="noopener">
+                  <span class="resource-icon resource-icon-hf" aria-hidden="true">
+                    <img src="./figures/hf-logo.png" alt="" loading="lazy" />
+                  </span>
+                  <span>
+                    <strong>Model Weights</strong>
+                    <small>QUEST-35B-RL</small>
+                  </span>
+                </a>
+                <a class="resource-link" href="https://github.com/OSU-NLP-Group/QUEST" target="_blank" rel="noopener">
+                  <span class="resource-icon resource-icon-github" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                      <path d="M12 1.8c-5.7 0-10.3 4.6-10.3 10.3 0 4.6 3 8.5 7.1 9.8.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.7-1.3-2.3-.3-4.7-1.2-4.7-5.1 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 2.9 1.1.8-.2 1.7-.3 2.6-.3s1.8.1 2.6.3c2-1.4 2.9-1.1 2.9-1.1.6 1.4.2 2.5.1 2.8.7.8 1.1 1.7 1.1 2.8 0 4-2.4 4.8-4.7 5.1.4.3.7 1 .7 2v2.9c0 .3.2.6.7.5 4.1-1.4 7.1-5.2 7.1-9.8C22.3 6.4 17.7 1.8 12 1.8Z" />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong>GitHub</strong>
+                    <small>Code and release</small>
+                  </span>
+                </a>
+                <a class="resource-link" href="https://x.com/osunlp" target="_blank" rel="noopener">
+                  <span class="resource-icon resource-icon-x" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                      <path d="M14.2 10.2 22.1 1h-1.9l-6.9 8L7.8 1H1.5l8.3 12.1L1.5 23h1.9l7.2-8.4 5.8 8.4h6.3l-8.5-12.8Zm-2.6 3-0.8-1.2L4.1 2.4h2.8l5.4 7.7 0.8 1.2 7 10.1h-2.8l-5.7-8.2Z" />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong>X Post</strong>
+                    <small>Tweet</small>
+                  </span>
+                </a>
+              </div>
             </div>
           </section>
 
@@ -106,51 +179,70 @@
             <p>
               <!--
               Previous lede:
-              Quest is a general-purpose agent designed to handle a wide range
+              QUEST is a general-purpose agent designed to handle a wide range
               of search tasks, with strong capabilities in fact-seeking, claim
               grounding, and report synthesis. It covers the full recipe:
               synthetic data generation across diverse research scenarios,
-              memory management for long-horizon reasoning, infrastructure for
+              context management for long-horizon reasoning, infrastructure for
               efficient and stable training, and a multi-stage pipeline spanning
               mid-training, SFT, and RL.
               -->
-              Quest is a family of open deep research agents, ranging from 2B
-              to 35B parameters, designed to search, verify, remember, and
-              synthesize information over long horizons. Using only 8K
-              fully synthesized training tasks, Quest learns three core
-              capabilities required by general-purpose deep research:
-              fact seeking, citation grounding, and report synthesis.
+              <strong>We release QUEST, a family of open models ranging from
+              2B to 35B that serve as <em>general-purpose</em> deep research
+              agents designed to handle a wide range of search tasks, with
+              strong capabilities in <em>fact seeking</em>,
+              <em>citation grounding</em>, and <em>report synthesis</em>.</strong>
             </p>
             <p>
               <!-- Previous release note: We release everything: model, data, and training scripts. -->
               The recipe combines a rubric-tree-based data synthesis pipeline,
               structured context management, and a three-stage training process
               spanning mid-training, supervised fine-tuning, and reinforcement
-              learning. We plan to release the models, data, synthesis pipeline,
-              and training code to support further research.
+              learning. We released everything: models, data, and training
+              scripts.
             </p>
+          </section>
+
+          <section id="snapshot" class="top-benchmark-showcase" aria-label="Eight-benchmark QUEST leaderboard snapshot">
+              <div class="benchmark-comparison-panel benchmark-hero-panel">
+                <div
+                  class="benchmark-comparison-grid"
+                  id="benchmarkComparisonGrid"
+                  aria-label="QUEST-35B benchmark comparison charts"
+                ></div>
+              </div>
+
+              <div class="body-copy showcase-copy">
+                <p>
+                  Comprehensive comparison across eight benchmarks that
+                  evaluate different capabilities: fact seeking, citation
+                  grounding, and report synthesis. For BrowseComp and
+                  BrowseComp-Plus, following prior work, we adopt the
+                  discard-all strategy.
+                </p>
+              </div>
+
           </section>
 
           <section id="tasks" class="section">
             <div class="section-head">
-              <h2>Search Tasks</h2>
+              <h2>Overview</h2>
             </div>
 
             <div class="body-copy">
               <p>
-                Search is used across a wide range of real-world scenarios, and
-                different scenarios impose fundamentally different expectations
-                on what constitutes a good response. Search tasks span two
-                regimes of correctness: those whose outputs can be grounded in
-                externally verifiable evidence, and those whose outputs must be
-                assessed through subjective judgment.
+                QUEST's performance comes from three components: a data synthesis
+                pipeline that constructs tasks with tree-structured rubrics, a
+                context management strategy for long-horizon trajectories, and
+                a training pipeline that optimizes the model with rubric-based
+                signals.
               </p>
               <p>
-                In objective settings, answers may be fixed or time-varying,
-                and multiple responses can be valid as long as they are
-                supported by verifiable sources. In contrast, open-ended tasks
-                admit no ground truth; quality is evaluated along qualitative
-                dimensions such as comprehensiveness, insight, and clarity.
+                We evaluate QUEST on eight benchmarks spanning both objective
+                and open-ended research settings. The overview below summarizes
+                which capabilities these benchmarks test and how QUEST compares
+                with existing deep research agents in training recipe and
+                released assets.
               </p>
             </div>
 
@@ -209,14 +301,6 @@
                       </span>
                     </div>
                     <div class="cap-row">
-                      <span class="cap-name">GAIA</span>
-                      <span class="cap-pills">
-                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
-                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
-                        <span class="cap-no" title="Citation grounding: not covered"></span>
-                      </span>
-                    </div>
-                    <div class="cap-row">
                       <span class="cap-name">BrowseComp-Plus</span>
                       <span class="cap-pills">
                         <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
@@ -226,6 +310,14 @@
                     </div>
                     <div class="cap-row">
                       <span class="cap-name">WideSearch</span>
+                      <span class="cap-pills">
+                        <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
+                        <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
+                        <span class="cap-no" title="Citation grounding: not covered"></span>
+                      </span>
+                    </div>
+                    <div class="cap-row">
+                      <span class="cap-name">GAIA</span>
                       <span class="cap-pills">
                         <span class="cap-dot cap-dot-fact" title="Fact-seeking: covered"></span>
                         <span class="cap-na" title="Report synthesis: N/A for objective tasks"></span>
@@ -268,39 +360,49 @@
                     <table class="content-table comparison-table">
                       <colgroup>
                         <col class="comparison-col-model" />
+                        <col class="comparison-col-scale" />
                         <col class="comparison-col-coverage" />
-                        <col class="comparison-col-pipeline" />
-                        <col class="comparison-col-memory" />
-                        <col class="comparison-col-data" />
                         <col class="comparison-col-synth" />
-                        <col class="comparison-col-train" />
+                        <col class="comparison-col-verification" />
+                        <col class="comparison-col-context" />
+                        <col class="comparison-col-pipeline" />
+                        <col class="comparison-col-data" />
+                        <col class="comparison-col-synth-code" />
+                        <col class="comparison-col-train-code" />
                       </colgroup>
                       <thead>
                         <tr class="comparison-group-row">
                           <th rowspan="2" class="comparison-model-head th-spanned">Model</th>
+                          <th rowspan="2" class="th-spanned">Scale</th>
                           <th rowspan="2" class="th-spanned">Capability</th>
-                          <th rowspan="2" class="comparison-divider-left th-spanned">Training Pipeline</th>
-                          <th rowspan="2" class="comparison-divider-left th-spanned">Memory Management</th>
-                          <th colspan="3" class="comparison-divider-left">Open-Sourced</th>
+                          <th rowspan="2" class="th-spanned">Task Synthesis</th>
+                          <th rowspan="2" class="th-spanned">Verification</th>
+                          <th rowspan="2" class="th-spanned">Context Management</th>
+                          <th rowspan="2" class="th-spanned">Training Pipeline</th>
+                          <th colspan="3" class="comparison-open-source-head">Open-Sourced</th>
                         </tr>
                         <tr class="comparison-column-row">
-                          <th class="comparison-divider-left">Data</th>
-                          <th>Synth Code</th>
-                          <th>Train Code</th>
+                          <th>Data</th>
+                          <th>Synthesis<br />Script</th>
+                          <th>Training<br />Code</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td class="comparison-model-cell">
-                            <span class="comparison-model-label">Tongyi DeepResearch</span>
+                            <span class="comparison-model-label">Tongyi-DR</span>
                           </td>
+                          <td>30B</td>
                           <td>
                             <div class="scenario-stack">
                               <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
                               <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left">
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td>Exact Match</td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td>
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-mt">MT</span>
                               <span class="pipeline-arrow-inline">&#8594;</span>
@@ -309,8 +411,7 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                         </tr>
@@ -318,20 +419,24 @@
                           <td class="comparison-model-cell">
                             <span class="comparison-model-label">DR Tulu</span>
                           </td>
+                          <td>8B</td>
                           <td>
                             <div class="scenario-stack">
                               <span class="scenario-pill scenario-report"><i class="scenario-dot"></i>Report Synthesis</span>
+                              <span class="scenario-pill scenario-citation"><i class="scenario-dot"></i>Citation Grounding</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left">
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td>Rubric</td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td>
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-sft">SFT</span>
                               <span class="pipeline-arrow-inline">&#8594;</span>
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
@@ -339,18 +444,21 @@
                           <td class="comparison-model-cell">
                             <span class="comparison-model-label">OpenResearcher</span>
                           </td>
+                          <td>30B</td>
                           <td>
                             <div class="scenario-stack">
                               <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left">
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td>Exact Match</td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td>
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-sft">SFT</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
@@ -358,12 +466,16 @@
                           <td class="comparison-model-cell">
                             <span class="comparison-model-label">REDSearcher</span>
                           </td>
+                          <td>30B</td>
                           <td>
                             <div class="scenario-stack">
                               <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left">
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td>Exact Match</td>
+                          <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
+                          <td>
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-mt">MT</span>
                               <span class="pipeline-arrow-inline">&#8594;</span>
@@ -372,15 +484,15 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-no">&#215;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-center"><span class="support-mark support-no">&#215;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
                         <tr class="comparison-quest-row">
                           <td class="comparison-model-cell">
-                            <span class="comparison-model-label">Quest</span>
+                            <span class="comparison-model-label">QUEST (ours)</span>
                           </td>
+                          <td>2B&ndash;35B</td>
                           <td>
                             <div class="scenario-stack">
                               <span class="scenario-pill scenario-fact"><i class="scenario-dot"></i>Fact Seeking</span>
@@ -388,7 +500,10 @@
                               <span class="scenario-pill scenario-citation"><i class="scenario-dot"></i>Citation Grounding</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left">
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td>Rubric Tree</td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td>
                             <div class="pipeline-track">
                               <span class="pipeline-pill pipeline-mt">MT</span>
                               <span class="pipeline-arrow-inline">&#8594;</span>
@@ -397,8 +512,7 @@
                               <span class="pipeline-pill pipeline-rl">RL</span>
                             </div>
                           </td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
-                          <td class="comparison-divider-left comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
+                          <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                           <td class="comparison-center"><span class="support-mark support-yes">&#10003;</span></td>
                         </tr>
@@ -406,8 +520,8 @@
                     </table>
                   </div>
                   <div class="comparison-legend">
-                    <span class="comparison-legend-item"><span class="support-mark support-yes">&#10003;</span>Supported</span>
-                    <span class="comparison-legend-item"><span class="support-mark support-no">&#215;</span>Not supported</span>
+                    <span class="comparison-legend-item"><span class="support-mark support-yes">&#10003;</span>supported</span>
+                    <span class="comparison-legend-item"><span class="support-mark support-no">&#215;</span>not supported</span>
                     <span class="comparison-legend-item"><span class="pipeline-pill pipeline-mt">MT</span>Mid-Training</span>
                     <span class="comparison-legend-item"><span class="pipeline-pill pipeline-sft">SFT</span>Supervised Fine-Tuning</span>
                     <span class="comparison-legend-item"><span class="pipeline-pill pipeline-rl">RL</span>Reinforcement Learning</span>
@@ -415,133 +529,23 @@
                 </div>
               </div>
             </div>
-            <!-- Previous caption: Deep Search Agent Training Recipe Comparison. -->
-            <p class="figure-caption comparison-caption">Deep Research Agent Training Recipe Comparison.</p>
-
-            <div class="body-copy task-copy">
-              <div class="subsection">
-                <h3>Objective tasks</h3>
-                <p>
-                  Within objective tasks, correctness often depends on multiple
-                  complementary capabilities rather than a single skill. One
-                  common requirement is
-                  <strong>fact-seeking</strong>, exemplified by BrowseComp,
-                  where the agent must locate a specific and often obscure
-                  piece of information through multi-hop web navigation.
-                </p>
-                <p>
-                  Another important capability is
-                  <strong>citation-grounding</strong>, as seen in Mind2Web2,
-                  where the agent must support its claims with reliable,
-                  up-to-date, and verifiable citations. In practice, objective
-                  tasks often require both capabilities: an agent may need to
-                  retrieve precise information and support each claim with
-                  trustworthy cited evidence.
-                </p>
-              </div>
-              <div class="subsection">
-                <h3>Open-ended tasks</h3>
-                <p>
-                  Open-ended tasks require a further capability,
-                  <strong>report synthesis</strong>, as exemplified by
-                  DeepResearch Bench. Given an open-ended task, the agent must
-                  synthesize information from diverse sources into a coherent,
-                  well-structured, and reader-friendly report.
-                </p>
-                <p>
-                  Evaluation relies on rubric-based judgment rather than
-                  a single externally verifiable answer. Together, these
-                  capabilities define a broad profile for search agents:
-                  retrieving precise information, providing verifiable
-                  citations, and synthesizing knowledge into coherent,
-                  well-structured reports.
-                </p>
-                <p>
-                  <!-- Previous closing sentence: <strong>Quest is designed to handle all three.</strong> -->
-                  <strong>Quest is trained to handle all three under one synthetic-data recipe.</strong>
-                </p>
-              </div>
+            <div class="body-copy">
+              <p>
+                These three capabilities define a broad capability profile for
+                deep research agents: retrieving precise information,
+                synthesizing knowledge into coherent, well-structured reports,
+                and providing verifiable citations to support the claims in
+                their responses. Despite their complementary nature, existing
+                benchmarks and agent systems typically evaluate or support them
+                only in isolation. QUEST addresses them jointly within a unified
+                framework.
+              </p>
             </div>
           </section>
 
           <section id="quest" class="section">
             <div class="section-head">
-              <h2><span class="brand">Quest</span></h2>
-            </div>
-
-            <div class="body-copy">
-              <p>
-                <!--
-                Previous Quest description:
-                Quest is equipped with a practical tool-use system that allows
-                it to gather external information, browse webpages, perform
-                precise computation, and access academic evidence during
-                inference.
-                -->
-                Quest starts from open Qwen models and equips them with a
-                practical tool-use system for deep research. During training and
-                inference, the agent can search the web, visit pages, run
-                computation, and query scholarly evidence, while a structured
-                context state keeps long-horizon research coherent.
-              </p>
-            </div>
-
-            <div class="table-block">
-              <div class="table-label">Available tools</div>
-              <table class="content-table">
-                <thead>
-                  <tr>
-                    <th>Tool</th>
-                    <th>Purpose</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Search</td>
-                    <td>Retrieves relevant online results for a query.</td>
-                  </tr>
-                  <tr>
-                    <td>Visit</td>
-                    <td>Reads a URL and returns content relevant to the current goal.</td>
-                  </tr>
-                  <tr>
-                    <td>Python Interpreter</td>
-                    <td>Runs sandboxed code for computation, data processing, and verification.</td>
-                  </tr>
-                  <tr>
-                    <td>Google Scholar</td>
-                    <td>Retrieves scholarly papers and publication metadata for research-oriented evidence.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="subsection system-comparison">
-              <h3>Comparison with Existing Research Agents</h3>
-              <p>
-                <!--
-                Previous benchmark description:
-                We compare Quest-35B against leading closed and open research
-                agents across objective, citation-grounded, and open-ended
-                search benchmarks. Each panel is sorted by the reported score
-                under the primary metric used by that benchmark.
-                -->
-                We evaluate Quest-35B on eight deep research benchmarks spanning
-                fact seeking, citation grounding, and report synthesis. Quest
-                establishes the best overall performance among open-weight
-                agents and is competitive with frontier proprietary systems:
-                it reaches 64.6 on BrowseComp under discard-all evaluation,
-                30.7 on Mind2Web 2, 80.8 on GAIA, and 48.2 on DeepResearch
-                Bench.
-              </p>
-
-              <div class="benchmark-comparison-panel">
-                <div
-                  class="benchmark-comparison-grid"
-                  id="benchmarkComparisonGrid"
-                  aria-label="Quest-35B benchmark comparison charts"
-                ></div>
-              </div>
+              <h2>Additional Analysis</h2>
             </div>
 
             <div class="subsection system-comparison">
@@ -553,17 +557,25 @@
                 benchmark suite. The reported metric follows the primary metric
                 used by each benchmark.
                 -->
-                To control for scale, we also train Quest-30B from
+                To control for scale, we also train QUEST-30B from
                 Qwen3-30B-A3B and compare it with Tongyi-DR and OpenResearcher.
-                Quest-30B performs best on four of the eight benchmarks,
+                QUEST-30B performs best on four of the eight benchmarks,
                 including Mind2Web 2 and DeepResearch Bench, suggesting that
                 broad benchmark coverage comes from the training recipe rather
                 than parameter count alone.
               </p>
+              <p>
+                The pattern is capability-specific. Tongyi-DR remains strong
+                on fact-seeking benchmarks such as BrowseComp, HLE, and GAIA,
+                which align with single-answer synthetic data. OpenResearcher
+                is strongest on BrowseComp-Plus. QUEST-30B is more evenly
+                balanced across fact seeking, citation grounding, and report
+                synthesis.
+              </p>
 
               <div class="small-model-panel">
                 <div class="small-model-legend" aria-label="30B research agent legend">
-                  <span><i class="legend-quest-model"></i>Quest-30B</span>
+                  <span><i class="legend-quest-model"></i>QUEST-30B</span>
                   <span><i class="legend-tongyi"></i>Tongyi-DR</span>
                   <span><i class="legend-openresearcher"></i>OpenResearcher</span>
                 </div>
@@ -623,7 +635,7 @@
                 format, allowing us to study how search capability scales under
                 a fixed recipe.
                 -->
-                We also train smaller SFT-only variants at 2B, 4B, and 9B
+                We also train SFT-only variants from 2B through 35B
                 scales. These models use the same data and inference
                 configuration, letting us isolate how much deep research
                 capability can be transferred into deployable, lower-cost
@@ -633,14 +645,14 @@
                 <!--
                 Previous smaller-model result summary:
                 Across objective, citation-grounded, and open-ended benchmarks,
-                the smaller variants preserve the core behavior of Quest while
+                the smaller variants preserve the core behavior of QUEST while
                 exposing the expected tradeoff between model size and task
                 performance. The results below report the average score for
                 each benchmark, using a per-benchmark y-axis range to make close
                 differences visible.
                 -->
                 The result is unexpectedly strong on fact-seeking benchmarks:
-                even Quest-2B-SFT reaches 30.3 on HLE and 72.8 on GAIA.
+                even QUEST-2B-SFT reaches 30.3 on HLE and 72.8 on GAIA.
                 Open-ended report synthesis remains harder for small models,
                 which points to a useful next target for lightweight private or
                 local deep research agents.
@@ -648,9 +660,10 @@
 
               <div class="small-model-panel">
                 <div class="small-model-legend" aria-label="Model size legend">
-                  <span><i class="legend-2b"></i>Quest-2B-SFT</span>
-                  <span><i class="legend-4b"></i>Quest-4B-SFT</span>
-                  <span><i class="legend-9b"></i>Quest-9B-SFT</span>
+                  <span><i class="legend-2b"></i>QUEST-2B-SFT</span>
+                  <span><i class="legend-4b"></i>QUEST-4B-SFT</span>
+                  <span><i class="legend-9b"></i>QUEST-9B-SFT</span>
+                  <span><i class="legend-35b"></i>QUEST-35B-SFT</span>
                 </div>
                 <div class="small-model-grid" aria-label="Smaller model benchmark results">
                   <div class="small-model-card">
@@ -674,16 +687,6 @@
                     <div class="chart-wrap"><canvas id="c-drb"></canvas></div>
                   </div>
                   <div class="small-model-card">
-                    <h4>LiveResearchBench</h4>
-                    <p class="chart-metric">avg@3</p>
-                    <div class="chart-wrap"><canvas id="c-lrb"></canvas></div>
-                  </div>
-                  <div class="small-model-card">
-                    <h4>GAIA</h4>
-                    <p class="chart-metric">avg@3</p>
-                    <div class="chart-wrap"><canvas id="c-gaia"></canvas></div>
-                  </div>
-                  <div class="small-model-card">
                     <h4>BrowseComp-Plus</h4>
                     <p class="chart-metric">avg@3</p>
                     <div class="chart-wrap"><canvas id="c-bcp"></canvas></div>
@@ -692,6 +695,16 @@
                     <h4>WideSearch</h4>
                     <p class="chart-metric">Item F1 avg@4</p>
                     <div class="chart-wrap"><canvas id="c-ws"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>GAIA</h4>
+                    <p class="chart-metric">avg@3</p>
+                    <div class="chart-wrap"><canvas id="c-gaia"></canvas></div>
+                  </div>
+                  <div class="small-model-card">
+                    <h4>LiveResearchBench</h4>
+                    <p class="chart-metric">avg@3</p>
+                    <div class="chart-wrap"><canvas id="c-lrb"></canvas></div>
                   </div>
                 </div>
               </div>
@@ -732,7 +745,7 @@
 
               <div class="small-model-panel">
                 <div class="small-model-legend" aria-label="Training stage legend">
-                  <span><i class="legend-stage-line"></i>Quest-35B-A3B across training stages</span>
+                  <span><i class="legend-stage-line"></i>QUEST-35B-A3B across training stages</span>
                 </div>
                 <div class="small-model-grid" aria-label="Training-stage progression benchmark results">
                   <div class="small-model-card">
@@ -779,245 +792,78 @@
               </div>
             </div>
 
-            <div class="subsection" id="demo">
-              <h3>Try <span class="brand">Quest</span></h3>
-              <p>
-                Send a question to
-                <a href="https://huggingface.co/spaces/osunlp/Quest" target="_blank" rel="noopener" style="text-decoration: underline;">Quest HuggingFace Space</a>.
-                The first request may take 30–60 seconds while the Space wakes up.
-              </p>
-
-              <div class="quest-chat" aria-label="Quest demo chat">
-                <div class="quest-chat-stream" id="quest-chat-stream" aria-live="polite"></div>
-
-                <form class="quest-chat-input" id="quest-chat-form">
-                  <textarea
-                    id="qc-question"
-                    rows="2"
-                    placeholder="Ask Quest a research question…"
-                    required>Who was the first person to walk on the Moon, and which U.S. President set that goal in his famous 1962 “Moon speech”?</textarea>
-                  <button type="submit" id="qc-send">Run Research</button>
-                </form>
-
-                <details class="quest-chat-advanced">
-                  <summary>Advanced settings</summary>
-                  <div class="quest-chat-controls">
-                    <label>
-                      Max turns
-                      <input type="number" id="qc-max-turns" value="16" min="1" max="100" step="1">
-                    </label>
-                    <label>
-                      Memory strategy
-                      <select id="qc-memory">
-                        <option value="vanilla">vanilla</option>
-                        <option value="condenser" selected>condenser</option>
-                        <option value="discard-all">discard-all</option>
-                        <option value="hide-tool-results">hide-tool-results</option>
-                      </select>
-                    </label>
-                    <label>
-                      Temperature
-                      <input type="number" id="qc-temperature" value="0.4" min="0" max="1.5" step="0.1">
-                    </label>
-                  </div>
-                </details>
-
-                <p class="quest-chat-status" id="qc-status"></p>
-              </div>
-            </div>
-
           </section>
 
           <section id="data" class="section">
             <div class="section-head">
-              <h2>Data Synthesis</h2>
+              <h2>Training Recipe</h2>
+            </div>
+
+            <div class="body-copy">
+              <p>
+                Training a deep research agent requires data that goes beyond
+                standard question-answer pairs. Single-answer supervision is
+                useful for fact-seeking tasks with short final answers, but it
+                does not cover many research tasks that require aggregating
+                information across multiple sources, satisfying several
+                constraints, or producing source-supported long-form outputs.
+              </p>
+              <p>
+                QUEST builds its training data around synthetic queries paired
+                with rubric trees. A rubric tree decomposes each task into
+                verifiable criteria, allowing the same framework to handle
+                unique-answer tasks, tasks with multiple valid solutions, and
+                open-ended report-style questions. Its score also provides a
+                fine-grained training signal beyond binary correctness, which
+                is used later for filtering SFT trajectories and defining
+                rubric-based rewards in RL.
+              </p>
             </div>
 
             <figure class="figure-block">
               <img
                 class="figure-media"
                 src="./figures/Task.pdf.png"
-                alt="Quest task overview"
+                alt="QUEST task synthesis overview"
               />
-              <figcaption class="figure-caption">Quest task overview.</figcaption>
             </figure>
 
-            <div class="body-copy">
+            <div class="subsection">
+              <h3>Synthetic Rubric Trees</h3>
               <p>
-                <!--
-                Previous data-synthesis opening:
-                Training a Search Agent requires data that goes far beyond
-                standard QA pairs. A question-answer pair alone does not tell
-                the model what makes an answer correct, what evidence should
-                support it, or how to distinguish between responses of varying
-                quality. Quest builds such data from scratch through a
-                structured synthesis pipeline tailored to both objective and
-                open-ended tasks.
-                -->
-                Training a general-purpose deep research agent requires data
-                beyond single-answer QA pairs. A short answer can teach
-                fact-seeking, but it does not cover multi-source synthesis,
-                source attribution, multiple valid solutions, or partial credit
-                for complex task completion. Quest therefore synthesizes each
-                training instance as a query paired with a task-specific rubric
-                tree and an evaluation protocol.
+                Each training task is paired with a rubric tree: a structured
+                set of criteria that can score fact correctness, constraints,
+                citations, completeness, readability, and insight. Objective
+                tasks are translated into executable checks, while open-ended
+                tasks are judged against reference reports with rubric-level
+                scoring.
               </p>
               <p>
-                <!--
-                Previous rubric-tree description:
-                Central to our synthesis pipeline is the <em>rubric tree</em>:
-                a hierarchical decomposition of the constraints an answer must
-                satisfy. The rubric tree serves three roles simultaneously
-                across both objective and open-ended tasks: it provides a
-                unified evaluation framework, enables scalable data synthesis
-                through composable constraints, and provides fine-grained
-                reward signals for RL training.
-                -->
-                A <em>rubric tree</em> decomposes a task into verifiable
-                criteria. Leaf nodes check facts, constraints, or citation
-                support; internal nodes aggregate those checks into higher-level
-                scores. This lets the same data format cover unique-answer
-                tasks, multi-constraint tasks, and open-ended research prompts
-                while providing dense rewards for RL.
+                This lets one framework cover unique-answer tasks, tasks with
+                multiple valid solutions, and open-ended research questions.
+                The root score gives a fine-grained reward beyond binary
+                correctness, while the leaves expose which factual or
+                citation-level requirements were actually satisfied.
               </p>
             </div>
 
             <div class="subsection">
-              <h3>Objective Tasks</h3>
+              <h3>Structured Context Management</h3>
               <p>
-                <!--
-                Previous objective-task synthesis:
-                For objective tasks, we construct training data through a
-                scalable synthesis pipeline grounded in external web evidence.
-                We first sample trending keywords from a pool crawled from
-                Google Trends as topical seeds, ensuring that the resulting
-                tasks remain both topically relevant and temporally diverse.
-                For each keyword combination, a model browses the web, collects
-                relevant information, and derives verifiable constraints from
-                the retrieved content, which are then organized into a rubric
-                tree following Mind2Web2.
-                -->
-                For objective tasks, we sample trending keywords from Google
-                Trends, ask a capable generator to browse the web, collect
-                evidence, and derive verifiable constraints from retrieved
-                content. Those constraints are organized into a rubric tree and
-                later translated into both a natural-language query and an
-                executable evaluation script.
+                Deep research requires many search and visit steps, so QUEST
+                does not keep every raw observation forever. When the context
+                grows long, a condenser turns the interaction history into a
+                structured context state containing trusted facts, uncertain leads, and
+                untrusted claims. The agent then resumes from that compact
+                context and continues researching.
               </p>
               <p>
-                All rubric trees undergo iterative refinement to ensure a
-                correct tree structure and valid node definitions. Tasks whose
-                rubric trees still cannot be resolved into a consistent,
-                reliably evaluable structure are discarded. Once finalized,
-                each rubric tree is translated into a dedicated Python
-                evaluation script and a natural-language question.
-              </p>
-            </div>
-
-            <div class="subsection">
-              <h3>Open-ended Tasks</h3>
-              <p>
-                <!--
-                Previous open-ended-task synthesis:
-                For open-ended tasks, we sample keywords directly from Google
-                Trends to produce open-ended research prompts. Each task is
-                again paired with a rubric tree, though the structure here is
-                partially fixed and partially adaptive. The second layer
-                consists of four fixed dimensions shared across all tasks -
-                instruction following, comprehensiveness, readability, and
-                insight - while the third layer contains adaptive nodes
-                tailored to the specific prompt.
-                -->
-                Open-ended tasks follow the same keyword sampling and web
-                exploration process, but use a partially shared rubric
-                structure. The top-level criteria follow DeepResearch Bench:
-                instruction following, comprehensiveness, readability, and
-                insight. Under each criterion, Quest synthesizes task-specific
-                child nodes conditioned on the generated research question.
-              </p>
-              <p>
-                To produce stable rubric weights, we run the weight generation
-                three times and average across runs. For evaluation, we adopt a
-                pairwise comparison strategy motivated by DeepResearch Bench.
-                For each task, a teacher model executes a full pass over the
-                web, producing a <strong>reference report</strong>. A judge
-                model then receives both the candidate report and the reference
-                report simultaneously, allowing it to make finer-grained
-                distinctions than independent scoring permits.
-              </p>
-              <p>
-                Node-level scores are aggregated into a weighted total for each
-                report via the rubric tree, and the final score is defined as
-                follows.
-              </p>
-            </div>
-
-            <div class="equation-block">
-              \[
-                \mathrm{Score} =
-                \frac{J(r_{\mathrm{cand}})}
-                {J(r_{\mathrm{cand}}) + J(r_{\mathrm{ref}})}
-              \]
-            </div>
-
-            <div class="body-copy">
-              <p>
-                Here, \(r_{\mathrm{cand}}\) and \(r_{\mathrm{ref}}\) denote the
-                candidate and reference reports, respectively, and \(J(\cdot)\)
-                denotes the judge model's weighted rubric scoring function. The
-                resulting score in \((0, 1)\) reflects the candidate report's
-                share of total assessed quality, with scores above 0.5
-                indicating that the candidate has surpassed the
-                teacher-generated reference.
-              </p>
-              <p>
-                The result is a dataset of task instructions paired with
-                reference reports and structured rubrics, providing the
-                supervision signal for SFT and the reward scaffold for RL.
-              </p>
-            </div>
-          </section>
-
-          <section id="memory" class="section">
-            <div class="section-head">
-              <h2>Memory Management</h2>
-            </div>
-
-            <div class="body-copy">
-              <p>
-                <!--
-                Previous memory opening:
-                A Search Agent does not complete a task in a single
-                pass. It searches, reads, revisits, and revises - accumulating
-                information across dozens of tool calls before arriving at a
-                final answer. This creates a fundamental challenge: as the
-                context window fills with raw search results, visited pages, and
-                intermediate reasoning traces, the agent's ability to attend to
-                what matters most begins to degrade.
-                -->
-                A deep research agent searches, reads, and revises through
-                multi-turn tool use before producing a final answer. As the
-                context window fills with raw search results, visited pages, and
-                intermediate reasoning traces, the agent's ability to attend to
-                what matters most begins to degrade.
-              </p>
-              <p>
-                <!--
-                Previous memory contrast:
-                Most existing open-source agents sidestep this problem by
-                either capping the number of turns or relying on a sufficiently
-                large context window to hold everything at once. Quest takes a
-                different approach. Rather than expanding the context
-                indefinitely, it adopts a structured memory management system
-                that compresses history into a compact state, enabling the agent
-                to reason over arbitrarily long horizons without context
-                overflow.
-                -->
-                Existing open-weight agents often sidestep this problem by
-                capping the number of turns or relying on a large context window
-                to hold everything. Quest instead uses a structured context
-                management module that compresses history into a compact state,
-                enabling long-horizon research without unbounded context growth.
+                The context state is deliberately structured rather than a loose
+                summary. Trusted entries can be reused without redundant
+                searches, uncertain entries become follow-up actions, and
+                untrusted entries are deprioritized. This keeps long-horizon
+                research coherent even when the raw interaction history no
+                longer fits in the active context window.
               </p>
             </div>
 
@@ -1025,688 +871,237 @@
               <img
                 class="figure-media"
                 src="./figures/Memory.pdf.png"
-                alt="Memory management overview"
+                alt="QUEST context management overview"
               />
-              <figcaption class="figure-caption">Memory management overview.</figcaption>
             </figure>
 
             <div class="subsection">
-              <h3>Memory Condenser</h3>
-              <p>
-                <!--
-                Previous condenser description:
-                When the agent's context usage approaches a threshold, a
-                <em>Memory Condenser</em> is triggered. The condenser takes as
-                input the full raw history - search queries and their results,
-                visited URLs and extracted content, reasoning traces, and any
-                previous summarized memory - and produces a structured JSON
-                object we call the <strong>Memory State</strong>.
-                -->
-                When context usage crosses a threshold, a
-                <em>Context Condenser</em> based on GPT-5-mini is triggered.
-                The condenser reads the full raw history - search queries,
-                search results, visited URLs, extracted page content, reasoning
-                traces, and any previous memory - and produces a structured
-                JSON object we call the <strong>Memory State</strong>.
-              </p>
-              <p>
-                The Memory State organizes accumulated knowledge into three
-                buckets. <em>Trusted</em> entries are verified facts paired with
-                their source URLs. <em>Untrusted</em> entries are claims that
-                have been contradicted by other sources, flagged with the reason
-                for distrust. <em>Uncertain</em> entries represent partial
-                evidence - claims the agent has encountered but not yet
-                confirmed, each annotated with a specific follow-up action.
-              </p>
-              <p>
-                This three-bucket structure is not merely organizational. It
-                encodes the agent's epistemic state at each point in the
-                research trajectory, allowing the resumed agent to distinguish
-                between what it knows, what it doubts, and what it still needs
-                to find.
-              </p>
-            </div>
+              <h3>MT, SFT, and RL</h3>
+              <div class="table-block training-data-table">
+                <div class="table-label">Data distribution in three stages</div>
+                <table class="content-table">
+                  <thead>
+                    <tr>
+                      <th>Stage</th>
+                      <th>Type</th>
+                      <th>#Task</th>
+                      <th>#Trajectory</th>
+                      <th>#Session</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>MT</td>
+                      <td>Context Summarization</td>
+                      <td>309,346</td>
+                      <td>-</td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>MT</td>
+                      <td>Relevant Info Extraction</td>
+                      <td>1,052,663</td>
+                      <td>-</td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>SFT</td>
+                      <td>Objective</td>
+                      <td>5,070</td>
+                      <td>19,435</td>
+                      <td>39,861</td>
+                    </tr>
+                    <tr>
+                      <td>SFT</td>
+                      <td>Open-ended</td>
+                      <td>1,958</td>
+                      <td>4,485</td>
+                      <td>11,903</td>
+                    </tr>
+                    <tr>
+                      <td>RL</td>
+                      <td>Objective</td>
+                      <td>864</td>
+                      <td>-</td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>RL</td>
+                      <td>Open-ended</td>
+                      <td>269</td>
+                      <td>-</td>
+                      <td>-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-            <div class="subsection">
-              <h3>Resume Agent</h3>
-              <p>
-                Once memory has been condensed and the context cleared, a
-                <em>Resume Agent</em> is initialized with a fresh context
-                window. The Memory State is injected directly, giving the
-                resumed agent immediate access to all verified knowledge without
-                re-reading raw sources. Uncertain entries drive the next wave of
-                search and verification actions, while untrusted entries are
-                deprioritized.
-              </p>
-              <p>
-                Critically, the resumed agent never re-searches claims already
-                marked as trusted, which avoids the redundant tool calls that
-                inflate latency and cost in systems without structured memory.
-                The result is an agent with effectively unbounded context: one
-                that can sustain coherent, citation-grounded research across as
-                many turns as a task requires.
-              </p>
-            </div>
+              <div class="stage-stack">
+                <article class="stage-card">
+                  <div class="stage-kicker">Stage 1</div>
+                  <h4>MT: Context Management and Evidence Extraction</h4>
+                  <p>
+                    MT equips the base model with long-context understanding
+                    and awareness of the structured context state used by the
+                    agent. It contains two auxiliary tasks. In
+                    <strong>context summarization</strong>, the model receives
+                    a long interaction history and learns to produce a
+                    structured context-state JSON generated by the context
+                    condenser. In <strong>relevant information extraction</strong>,
+                    the model receives a raw HTML page and an extraction goal,
+                    then filters out navigation elements, advertisements, and
+                    off-topic content.
+                  </p>
+                  <p>
+                    Both MT targets are reused from the agent pipeline rather
+                    than separately annotated: context-state targets come from
+                    the condenser, while extraction targets are derived from
+                    visit-tool outputs in collected trajectories. They teach
+                    the model to work with the same intermediate artifacts it
+                    will see during inference: condensed context states and
+                    extracted evidence from webpages.
+                  </p>
+                  <p>
+                    The goal is not to teach the model a final-answer format,
+                    but to adapt it to the intermediate artifacts that deep
+                    research depends on: noisy webpage content, extracted
+                    evidence, and compact context states that can be reused after
+                    long histories are compressed.
+                  </p>
+                </article>
 
-            <div class="subsection">
-              <h3>Why Summary Instead of Discard-All or Keep-Last-N</h3>
-              <p>
-                A natural alternative to structured memory summarization is to
-                simply discard old context once the window fills - either by
-                clearing everything (<em>discard-all</em>) or by retaining only
-                the most recent N turns (<em>keep-last-N</em>). While simple to
-                implement, both strategies suffer from a fundamental
-                limitation: they treat all historical information as equally
-                disposable, with no mechanism to distinguish verified facts from
-                speculative claims, or completed sub-goals from pending ones.
-              </p>
-              <p>
-                Discard-all resets the agent's epistemic state entirely, forcing
-                it to re-discover facts it has already verified and re-visit
-                sources it has already read. Keep-last-N mitigates this somewhat
-                by preserving recent context, but remains blind to information
-                that fell outside the retention window - even if that
-                information is critical to the task.
-              </p>
-              <p>
-                While discard-all and keep-last-N may suffice at inference time
-                for short-horizon benchmarks, they are inadequate as a training
-                paradigm. The Memory State addresses this by compressing
-                history into a structured epistemic snapshot rather than raw truncation:
-                verified facts are carried forward explicitly, pending actions
-                are preserved as concrete follow-up directives, and contradicted
-                claims are flagged rather than silently dropped. This ensures
-                that no verified knowledge is lost across compression
-                boundaries, and that both training trajectories and inference
-                rollouts remain coherent regardless of task length.
-              </p>
+                <article class="stage-card">
+                  <div class="stage-kicker">Stage 2</div>
+                  <h4>Supervised Fine-Tuning: Tool-Use Trajectories</h4>
+                  <p>
+                    SFT trains the model on full tool-use trajectories collected
+                    from synthetic tasks and scored by their rubric trees. For
+                    each synthesized query, a teacher agent attempts the task
+                    and the output is evaluated against the query-specific
+                    protocol. Successful trajectories are retained as SFT
+                    targets; for objective tasks that fail initially, the
+                    fine-grained evaluation result is injected as feedback and
+                    the teacher retries the task.
+                  </p>
+                  <p>
+                    Outputs are standardized into an inline citation format,
+                    where factual claims are paired with supporting URLs. Long
+                    trajectories are then decomposed into session-level examples
+                    between context condensation events, aligning the training
+                    unit with the agent's effective working context during
+                    inference.
+                  </p>
+                  <p>
+                    This session-level formulation is important for long
+                    trajectories: the model does not need the entire trajectory
+                    in context at once, but it still learns to continue from the
+                    same structured state that will be available at inference
+                    time.
+                  </p>
+                </article>
+
+                <article class="stage-card">
+                  <div class="stage-kicker">Stage 3</div>
+                  <h4>Reinforcement Learning: Rubric and Fact Rewards</h4>
+                  <p>
+                    RL applies GRPO-style outcome-based reinforcement tuning
+                    with two reward signals. The first is the
+                    <strong>rubric-tree reward</strong>, computed by the
+                    task-specific evaluation protocol. Objective tasks use the
+                    rubric score directly, while open-ended tasks map pairwise
+                    rubric judgments against a reference response into ordered
+                    reward levels.
+                  </p>
+                  <p>
+                    The second is the <strong>fact-checking reward</strong> for
+                    citation faithfulness. QUEST extracts cited fact-URL pairs,
+                    retrieves the referenced webpages, and uses an evaluator
+                    model to label each citation as supported, unsupported, or
+                    unknown. The fact-checking score is the fraction of
+                    supported citations among determinate labels.
+                  </p>
+                  <p>
+                    The final reward is \(R = 0.75 \cdot s_{\mathrm{rubric}} +
+                    0.25 \cdot \min(s_{\mathrm{fact}},
+                    s_{\mathrm{rubric}})\), so citation credit is upper-bounded
+                    by task completion. For each prompt, rewards are computed
+                    from full rollout responses and assigned to all
+                    session-level examples derived from the same rollout, with
+                    advantages normalized within the rollout group.
+                  </p>
+                  <p>
+                    This design keeps the optimization target tied to the
+                    complete research outcome while still allowing training to
+                    scale over condensed sessions. The rubric reward pushes the
+                    agent toward task completion; the fact-checking reward
+                    discourages unsupported citations and hallucinated evidence.
+                  </p>
+                </article>
+              </div>
             </div>
           </section>
 
-          <section id="infrastructure" class="section">
+          <section id="demo" class="section">
             <div class="section-head">
-              <h2>Infrastructure</h2>
+              <h2>Try <span class="brand">QUEST</span></h2>
             </div>
 
             <div class="body-copy">
               <p>
-                <!--
-                Previous infrastructure opening:
-                Training a Search Agent at scale introduces
-                infrastructure challenges that go beyond standard LLM
-                fine-tuning. The agent must interact with live web content
-                throughout data synthesis, SFT trajectory collection, and RL
-                rollout - each of which involves hundreds of search queries and
-                URL visits executed in parallel. Without careful infrastructure
-                design, these external calls become the dominant bottleneck:
-                expensive and difficult to reproduce.
-                -->
-                Training a deep research agent at scale introduces
-                infrastructure challenges beyond standard LLM fine-tuning. The
-                agent interacts with live web content during task synthesis,
-                trajectory collection, and RL rollout, where parallel searches
-                and URL visits can become the dominant cost and reproducibility
-                bottleneck.
-              </p>
-              <p>
-                Quest addresses this through a dual-cache system that intercepts
-                all search and visit operations before they reach the live API.
+                Send a question to
+                <a href="https://huggingface.co/spaces/osunlp/QUEST" target="_blank" rel="noopener" style="text-decoration: underline;">QUEST HuggingFace Space</a>.
+                The first request may take 30–60 seconds while the Space wakes up.
               </p>
             </div>
 
-            <div class="subsection">
-              <h3>Search Cache</h3>
-              <p>
-                Every search query first undergoes exact-match lookup against a
-                persistent query cache. On a cache hit, results are returned
-                immediately without an API call. On a miss, the query is passed
-                to FAISS for semantic similarity search: if a sufficiently
-                similar query already exists in the cache, its results are
-                returned as a proxy. Only when both exact and semantic lookup
-                fail does the system fall through to the live search API, at
-                which point the result is written back to the cache for future
-                use.
-              </p>
-            </div>
+            <div class="quest-chat" aria-label="QUEST demo chat">
+              <div class="quest-chat-stream" id="quest-chat-stream" aria-live="polite"></div>
 
-            <div class="subsection">
-              <h3>Visit Cache</h3>
-              <p>
-                URL visits follow a simpler exact-match policy. Each URL is
-                checked against a persistent cache keyed by the full URL string.
-                On a hit, the stored page content is returned directly. On a
-                miss, the live page is fetched and cached. This eliminates
-                redundant fetches of the same page across different training
-                runs - a common source of waste in systems that regenerate
-                trajectories from scratch.
-              </p>
-            </div>
+              <form class="quest-chat-input" id="quest-chat-form">
+                <textarea
+                  id="qc-question"
+                  rows="2"
+                  placeholder="Ask QUEST a research question…"
+                  required>Who was the first person to walk on the Moon, and which U.S. President set that goal in his famous 1962 “Moon speech”?</textarea>
+                <button type="submit" id="qc-send">Run Research</button>
+              </form>
 
-            <div class="subsection">
-              <h3>What the dual-cache buys us</h3>
-              <ol class="ordered-blocks compact">
-                <li>
-                  <strong>Cost reduction.</strong> Repeated queries and URL
-                  visits across distillation, SFT, and RL rollout are served
-                  from cache rather than billed API calls.
-                </li>
-                <li>
-                  <strong>Scalability.</strong> Both caches support
-                  high-concurrency reads and writes, handling the parallel
-                  rollout scenarios that arise during RL training without
-                  contention.
-                </li>
-                <li>
-                  <strong>Reproducibility.</strong> Both cache databases are
-                  released alongside all other project resources, ensuring that
-                  training runs can be replicated exactly without dependence on
-                  live web state at reproduction time.
-                </li>
-              </ol>
-            </div>
-
-            <div class="subsection">
-              <h3>Fully Asynchronous RL Pipeline</h3>
-              <p>
-                Built on top of VERL's fully asynchronous policy optimization
-                framework, Quest further extends the pipeline by making
-                evaluation asynchronous as well. Beyond overlapping rollout and
-                training, time-consuming task-specific evaluation is offloaded
-                to reward-loop workers.
-              </p>
-              <p>
-                This matters for rubric-tree evaluation, which can require
-                structured assessment across many criteria nodes. Once a
-                trajectory is generated, the rollouter dispatches it for
-                evaluation while the trainer continues consuming already scored
-                samples from the queue. Evaluator timeout control and
-                interruption-aware reward handling keep the pipeline stable
-                during parameter synchronization.
-              </p>
-            </div>
-          </section>
-
-          <section id="training" class="section">
-            <div class="section-head">
-              <h2>Training</h2>
-            </div>
-
-            <div class="body-copy">
-              <p>
-                <!--
-                Previous training opening:
-                Quest trains the Search Agent through a three-stage
-                pipeline: mid-training, supervised fine-tuning, and
-                reinforcement learning. We apply this pipeline across two model
-                scales, Qwen3.5-35B-A3B and Qwen3-30B-A3B, where the latter is
-                included for fair comparison with prior work. We also train
-                smaller SFT-only variants, including Qwen3.5-9B, Qwen3.5-4B,
-                and Qwen3.5-2B, for compute-constrained deployment settings.
-                -->
-                Quest trains deep research agents through a three-stage
-                pipeline: mid-training, supervised fine-tuning, and
-                reinforcement learning. The full recipe is applied to
-                Qwen3.5-35B-A3B to obtain Quest-35B and to Qwen3-30B-A3B for
-                scale-controlled comparison. Smaller 2B, 4B, and 9B SFT-only
-                variants study how far the synthetic recipe transfers to
-                lightweight agents.
-              </p>
-            </div>
-
-            <div class="subsection">
-              <h3>Mid-Training</h3>
-
-              <!-- Previous order: Relevant Information Extraction first, then Memory Summarization. -->
-              <h4 class="subhead">Context Summarization</h4>
-              <p>
-                Given a long interaction history, the model is trained to
-                produce the structured Memory State JSON used by the context
-                management module. These summaries are produced by GPT-5-mini
-                during data synthesis and reused directly, aligning the model's
-                training target with the format consumed during inference.
-              </p>
-
-              <h4 class="subhead">Relevant Information Extraction</h4>
-              <p>
-                Given a raw HTML page and a research goal, the model is
-                required to produce a goal-relevant summary that filters out
-                navigation elements, advertisements, and off-topic content.
-                This trains the model to attend selectively within long, noisy
-                contexts - a prerequisite for effective web-based research.
-              </p>
-
-              <!--
-              Previous memory summarization block:
-              <h4 class="subhead">Memory Summarization</h4>
-              <p>
-                Given a long history context, the model is required to produce a
-                structured Memory State JSON. The summaries used as supervision
-                targets are produced by a teacher model during data synthesis
-                and reused here directly, ensuring that the model's output
-                format remains consistent with what the Resume Agent expects to
-                consume.
-              </p>
-              -->
-
-              <p>
-                <!--
-                Previous MT data note:
-                Both tasks require no additional data collection or human
-                annotation: the relevant information extraction targets are
-                derived directly from the Visit Tool, and the memory
-                summarization targets are produced by the Memory Condenser
-                throughout the pipeline.
-                -->
-                Both tasks require no additional data collection: relevant
-                information extraction targets come from visit-tool outputs in
-                collected trajectories, and context summarization targets are
-                produced by the context condenser throughout the pipeline.
-              </p>
-            </div>
-
-            <div class="subsection">
-              <h3>Supervised Fine-Tuning</h3>
-
-              <h4 class="subhead">Rejection Sampling</h4>
-              <p>
-                For trajectories that succeed on the first attempt, we apply
-                rejection sampling and retain only those with a perfect rubric
-                score of 1 on objective tasks. For open-ended questions, we
-                retain trajectories with a score of at least 0.475, indicating
-                that the generated report is close to the quality of reference
-                reports.
-              </p>
-
-              <h4 class="subhead">Reflection-based Retry</h4>
-              <p>
-                For trajectories that fail, rather than discarding them, we
-                adopt a reflection-based retry strategy. The error cause
-                <!-- Previous wording: identified by rubric evaluation is injected into the context as a hidden hint. -->
-                identified by the query-specific evaluation protocol is injected
-                into the context as a hint. The teacher model is then re-run on
-                the augmented context, and the retried trajectory is retained if
-                it exceeds the same threshold.
-              </p>
-
-              <h4 class="subhead">Inline Citation Format</h4>
-              <p>
-                To improve the readability and verifiability of generated
-                reports, we standardize all outputs into an inline citation
-                format, where each factual claim is directly annotated with the
-                URL of its supporting source. For each trajectory, GPT-5-Mini is
-                used to retrospectively insert inline citations into the
-                original response, drawing on both the reasoning trace and the
-                Memory State.
-              </p>
-            </div>
-
-            <div class="subsection">
-              <h3>Session-level Training</h3>
-              <p>
-                After constructing full training trajectories in the SFT stage,
-                we transform them into session-level training instances. A
-                session is a contiguous segment of interaction between two
-                consecutive memory condensation events, containing the current
-                working context after the previous memory condenser up to, but
-                not including, the next condensation step.
-              </p>
-              <p>
-                This aligns the training unit with the agent's effective
-                working memory during inference and lets long trajectories be
-                optimized without requiring the entire trajectory to reside in
-                GPU memory at once.
-              </p>
-
-              <h4 class="subhead">Memory Efficiency</h4>
-              <p>
-                Decomposing trajectories into shorter sessions substantially
-                reduces peak memory usage. In practice, this allows us to train
-                on trajectories exceeding 200K tokens using only 16 H100 GPUs,
-                which would be infeasible under standard trajectory-level
-                training.
-              </p>
-
-              <h4 class="subhead">Unbounded Context Extrapolation at Inference Time</h4>
-              <p>
-                Session-level training decouples per-session training context
-                length from overall trajectory length. Combined with memory
-                management, this enables the agent to generalize to research
-                sessions longer than those seen during training.
-              </p>
-            </div>
-
-            <div class="subsection">
-              <h3>Reinforcement Learning</h3>
-
-              <h4 class="subhead">Rubric-tree Rewards</h4>
-              <p>
-                <!--
-                Previous rubric reward description:
-                Each trajectory is evaluated against a hierarchical rubric
-                associated with its task, producing a fine-grained measure of
-                completion quality beyond binary correctness. For objective
-                tasks, we use the original rubric-tree score. For open-ended
-                tasks, we map the pairwise score into discrete reward levels to
-                sharpen distinctions near the ambiguous middle region and
-                stabilize optimization.
-                -->
-                Each trajectory is evaluated by the query-specific protocol
-                derived from its rubric tree. For objective tasks, the
-                evaluation score is used directly as \(s_{\mathrm{rubric}}\).
-                For open-ended tasks, the pairwise score against the reference
-                report is calibrated into ordered reward levels, making the
-                reward more separable and less sensitive to small judge-score
-                fluctuations.
-              </p>
-
-              <h4 class="subhead">Fact-checking Rewards</h4>
-              <p>
-                We further incorporate a citation-level reward that verifies
-                whether each inline citation is faithfully grounded in its
-                referenced source. The raw citation score is computed as the
-                fraction of supported citations among all non-unknown citations.
-              </p>
-
-              <div class="equation-block">
-                \[
-                  s_{\mathrm{cite}} =
-                  \frac{\#\mathrm{supported}}
-                  {\#\mathrm{supported} + \#\mathrm{unsupported}}
-                \]
-              </div>
-
-              <p>
-                <!-- Previous reward wording: The two signals are combined into a single composite reward. -->
-                The rubric and fact-checking signals are combined into a single
-                composite reward.
-              </p>
-
-              <div class="equation-block">
-                \[
-                  R =
-                  0.75 \cdot s_{\mathrm{rubric}}
-                  + 0.25 \cdot
-                  \min(s_{\mathrm{fact}}, s_{\mathrm{rubric}})
-                \]
-              </div>
-
-              <p>
-                The minimum operator ensures that the citation reward is
-                upper-bounded by the base score, preventing a response with
-                high citation coverage but poor content from receiving an
-                inflated reward.
-              </p>
-
-              <h4 class="subhead">Reward and Advantage Propagation</h4>
-              <p>
-                For each rollout, a scalar reward is computed from the final
-                full response and propagated across all derived sessions. We
-                adopt GRPO-style outcome-based advantage estimation without a
-                learned critic, normalizing advantages within each rollout
-                group.
-              </p>
-
-              <div class="equation-block">
-                \[
-                  A_i =
-                  \frac{R_i - \mu_g}
-                  {\sigma_g + \epsilon}
-                \]
-              </div>
-
-              <p>
-                When the memory condenser produces multiple sessions per
-                rollout, these sessions are deduplicated during normalization so
-                that all sessions derived from the same rollout share a single
-                advantage value. For policy optimization, we use the standard
-                GRPO objective.
-              </p>
-            </div>
-
-            <div class="table-block">
-              <div class="table-label">Data distribution in three stages</div>
-              <table class="content-table">
-                <thead>
-                  <tr>
-                    <th>Stage</th>
-                    <th>Type</th>
-                    <th>#Task</th>
-                    <th>#Trajectory</th>
-                    <th>#Session</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mid-training</td>
-                    <td>Memory Summarization</td>
-                    <td colspan="3">309,346</td>
-                  </tr>
-                  <tr>
-                    <td>Mid-training</td>
-                    <td>Relevant Info Extraction</td>
-                    <td colspan="3">1,052,663</td>
-                  </tr>
-                  <tr>
-                    <td>SFT</td>
-                    <td>Objective</td>
-                    <td>5,070</td>
-                    <td>19,435</td>
-                    <td>39,861</td>
-                  </tr>
-                  <tr>
-                    <td>SFT</td>
-                    <td>Open-ended</td>
-                    <td>1,958</td>
-                    <td>4,485</td>
-                    <td>11,903</td>
-                  </tr>
-                  <tr>
-                    <td>RL</td>
-                    <td>Objective</td>
-                    <td>864</td>
-                    <td>---</td>
-                    <td>---</td>
-                  </tr>
-                  <tr>
-                    <td>RL</td>
-                    <td>Open-ended</td>
-                    <td>269</td>
-                    <td>---</td>
-                    <td>---</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="attempts" class="section">
-            <div class="section-head">
-              <h2>Unsuccessful Attempts</h2>
-            </div>
-
-            <ol class="ordered-blocks">
-              <li>
-                <h3>Search Result Prediction in Mid-training</h3>
-                <p>
-                  Prior work has shown that search result prediction can be
-                  beneficial for search scenarios. In our experiments,
-                  this objective helps when used in isolation, especially on
-                  search-heavy tasks such as BrowseComp, but consistently
-                  degrades overall performance when combined with our other
-                  mid-training tasks. We suspect redundancy with memory-related
-                  objectives is the main cause.
-                </p>
-              </li>
-              <li>
-                <h3>Rubric-Based Error Identification in Mid-training</h3>
-                <p>
-                  We introduced a mid-training task where the model is asked to
-                  predict potential issues in a given answer. In preliminary
-                  experiments, this objective yielded only marginal
-                  improvements. We hypothesize that the limitation stems from
-                  the lack of access to external evidence during this stage.
-                </p>
-              </li>
-              <li>
-                <h3>Direct Policy Optimization for Report Comparison</h3>
-                <p>
-                  To improve long-form report generation, we explored a DPO
-                  objective based on pairwise report comparison. In practice,
-                  this did not yield improvements over SFT. Constructing
-                  reliable preference pairs incurs additional overhead, and
-                  training tends to be unstable and prone to overfitting,
-                  resulting in limited gains in final report quality.
-                </p>
-              </li>
-              <li>
-                <h3>Evaluation for Long-form Questions</h3>
-                <p>
-                  Before arriving at our final scoring design, we tested two
-                  alternatives. Pointwise scoring suffered from severe score
-                  inflation and poor discrimination. Pairwise win-tie-lose
-                  scoring collapsed toward zero because our early models were
-                  consistently weaker than the teacher. These failure modes
-                  motivated the final pairwise scoring scheme used in Quest.
-                </p>
-              </li>
-            </ol>
-          </section>
-
-          <section id="closing" class="section">
-            <div class="section-head">
-              <h2>Closing Remarks</h2>
-            </div>
-
-            <div class="body-copy">
-              <p>
-                <!--
-                Previous closing opening:
-                In this project, we explored the full pipeline for training a
-                search agent from scratch, including data synthesis,
-                training, infrastructure, and system design. We hope this work
-                can serve as a strong starting point for future efforts to
-                advance search agents. At the same time, our study
-                reveals several promising directions that warrant further
-                investigation.
-                -->
-                Quest is an open family of general-purpose deep research agents
-                capable of solving tasks that require fact seeking, citation
-                grounding, and report synthesis. Beyond the models themselves,
-                the main contribution is a reproducible recipe: synthetic
-                rubric-tree data, structured context management, and a training
-                pipeline that combines MT, SFT, and RL.
-              </p>
-            </div>
-
-            <ol class="ordered-blocks">
-              <li>
-                <h3>Off-line Training</h3>
-                <p>
-                  Our framework already maintains a large-scale cache of search
-                  results and website content. This raises the possibility of
-                  fully offline training, where agents learn from a fixed corpus
-                  of interactions without relying on expensive online API calls.
-                </p>
-              </li>
-              <li>
-                <h3>Integrated Rubric Tree</h3>
-                <p>
-                  A promising direction is to develop an integrated rubric tree
-                  that can jointly capture both objective correctness and
-                  open-ended quality dimensions, providing hierarchical and
-                  compositional supervision within a single structured schema.
-                </p>
-              </li>
-              <li>
-                <h3>Multimodal Extension</h3>
-                <p>
-                  Many real-world search scenarios involve webpages,
-                  tables, figures, and interactive GUIs rather than pure text. A
-                  natural next step is to extend search agents beyond
-                  text-only interaction and integrate them into GUI-based
-                  environments.
-                </p>
-              </li>
-              <li>
-                <h3>Self-integrated Memory Module</h3>
-                <p>
-                  In our current framework, memory condensing is handled by an
-                  external model invoked at fixed context thresholds. A more
-                  principled direction is to integrate this capability directly
-                  into the agent itself so it can autonomously decide when and
-                  how to condense memory.
-                </p>
-              </li>
-              <li>
-                <h3>Curriculum Learning</h3>
-                <p>
-                  Our current pipeline applies random shuffling during both SFT
-                  and RL training, treating all tasks uniformly regardless of
-                  difficulty. A difficulty-aware curriculum could accelerate
-                  convergence, improve sample efficiency, and help the agent
-                  develop stronger reasoning strategies.
-                </p>
-              </li>
-            </ol>
-
-            <div class="body-copy closing-note">
-              <p>
-                <!--
-                Previous final note:
-                We will continue to develop Quest to pave the way for truly
-                autonomous intellectual agents. This is, after all, our Quest.
-                -->
-                We hope Quest provides a strong open foundation for advancing
-                deep research agents.
-              </p>
-            </div>
-          </section>
-
-          <section id="contribution" class="section">
-            <div class="section-head">
-              <h2>Contribution Statement</h2>
-            </div>
-
-            <div class="contribution-block">
-              <dl class="contribution-list">
-                <div>
-                  <dt>Core Contributors</dt>
-                  <dd>Jian Xie, Tianhe Lin, Zilu Wang</dd>
+              <details class="quest-chat-advanced">
+                <summary>Advanced settings</summary>
+                <div class="quest-chat-controls">
+                  <label>
+                    Max turns
+                    <input type="number" id="qc-max-turns" value="16" min="1" max="100" step="1">
+                  </label>
+                  <label>
+                    Context strategy
+                    <select id="qc-context">
+                      <option value="vanilla">vanilla</option>
+                      <option value="condenser" selected>condenser</option>
+                      <option value="discard-all">discard-all</option>
+                      <option value="hide-tool-results">hide-tool-results</option>
+                    </select>
+                  </label>
+                  <label>
+                    Temperature
+                    <input type="number" id="qc-temperature" value="0.4" min="0" max="1.5" step="0.1">
+                  </label>
                 </div>
-                <div>
-                  <dt>Contributors</dt>
-                  <dd>
-                    Yuting Ning, Zhehao Zhang, Yuekun Yao, Tianci Xue, Kai Zhang,
-                    Zhongyang Li, Yufan Wu, Shijie Chen, Boyu Gou, Mingzhe Han
-                  </dd>
-                </div>
-                <div>
-                  <dt>Advisors</dt>
-                  <dd>Yu Su, Huan Sun</dd>
-                </div>
-              </dl>
+              </details>
+
+              <p class="quest-chat-status" id="qc-status"></p>
             </div>
           </section>
         </article>
       </main>
 
       <footer class="site-footer">
-        <p>
-          <!--
-          Previous footer:
-          Quest is a fully open recipe for training search agents, covering
-          data synthesis, memory management, infrastructure, and long-horizon
-          training.
-          -->
-          Quest is an open recipe for training deep research agents with fully
-          synthetic rubric-tree tasks, structured context management, and
-          long-horizon training.
-        </p>
+        <p>QUEST · OSU NLP</p>
         <div class="footer-links">
-          <a href="#tasks">Tasks</a>
-          <a href="#data">Data</a>
-          <a href="#memory">Memory</a>
-          <a href="#training">Training</a>
+          <a href="#tasks">Overview</a>
+          <a href="#quest">Analysis</a>
+          <a href="#data">Recipe</a>
+          <a href="#demo">Demo</a>
         </div>
       </footer>
     </div>
@@ -1742,9 +1137,10 @@
           '#BFDBFE',
           '#93C5FD',
           '#60A5FA',
+          '#3A55E3',
         ];
-        const EDGE  = ['#93C5FD', '#60A5FA', '#3B82F6'];
-        const SIZES = ['2B', '4B', '9B'];
+        const EDGE  = ['#93C5FD', '#60A5FA', '#3B82F6', '#273DB5'];
+        const SIZES = ['2B', '4B', '9B', '35B'];
 
         /*
         Previous smaller-model chart data:
@@ -1760,14 +1156,14 @@
         ];
         */
         const defs = [
-          { id: 'c-browsecomp', vals: [28,    40,    45.4],  min: 0, max: 50, step: 10 },
-          { id: 'c-m2w2',       vals: [8.8,   24.3,  24.4],  min: 0, max: 30, step: 10 },
-          { id: 'c-hle',        vals: [30.3,  36.2,  36.9],  min: 0, max: 42, step: 10 },
-          { id: 'c-drb',        vals: [21.0,  22.0,  32.6],  min: 0, max: 40, step: 10 },
-          { id: 'c-lrb',        vals: [57.4,  62.1,  63.5],  min: 0, max: 68, step: 17 },
-          { id: 'c-gaia',       vals: [72.8,  77.7,  78.6],  min: 0, max: 86, step: 20 },
-          { id: 'c-bcp',        vals: [52.6,  52.1,  55.6],  min: 0, max: 60, step: 15 },
-          { id: 'c-ws',         vals: [40.9,  55.0,  58.5],  min: 0, max: 64, step: 16 },
+          { id: 'c-browsecomp', vals: [28,    40,    45.4, 45.1], min: 20, max: 52, step: 10 },
+          { id: 'c-m2w2',       vals: [8.8,   24.3,  24.4, 26.5], min: 0,  max: 32, step: 10 },
+          { id: 'c-hle',        vals: [30.3,  36.2,  36.9, 39.5], min: 25, max: 42, step: 5 },
+          { id: 'c-drb',        vals: [21.0,  22.0,  32.6, 36.4], min: 15, max: 42, step: 5 },
+          { id: 'c-bcp',        vals: [52.6,  52.1,  55.6, 57.9], min: 45, max: 62, step: 5 },
+          { id: 'c-ws',         vals: [40.9,  55.0,  58.5, 61.1], min: 35, max: 67, step: 10 },
+          { id: 'c-gaia',       vals: [72.8,  77.7,  78.6, 83.5], min: 70, max: 87, step: 5 },
+          { id: 'c-lrb',        vals: [57.4,  62.1,  63.5, 64.7], min: 55, max: 67, step: 5 },
         ];
 
         const valueLabelPlugin = {
@@ -1793,7 +1189,7 @@
 
         const PERF_FILL = ['#4360E8', '#C63F00', '#008B5F'];
         const PERF_EDGE = ['#344BC7', '#A63400', '#00754F'];
-        const PERF_LABELS = ['Quest-30B', 'Tongyi-DR', 'OpenResearcher'];
+        const PERF_LABELS = ['QUEST-30B', 'Tongyi-DR', 'OpenResearcher'];
         /*
         Previous 30B-scale chart data:
         const perfDefs = [
@@ -1871,7 +1267,7 @@
           });
         });
 
-        const BENCHMARK_LABEL = 'Quest-35B';
+        const BENCHMARK_LABEL = 'QUEST-35B';
         const BENCHMARK_COLORS = {
           quest: '#2563EB',
           sota:  '#1E293B',
@@ -1904,11 +1300,12 @@
           'MiroThinker-1.7-mini': 'figures/mirothinker.png',
           'Redsearcher':     'figures/redsearcher.png',
           'OpenResearcher':  'figures/openresearcher.webp',
-          'Quest-30B':       'figures/osu_nlp.png',
+          'QUEST-30B':       'figures/osu_nlp.png',
+          'QUEST-35B':       'figures/osu_nlp.png',
         };
 
         /*
-        Previous Quest-35B benchmark comparison data:
+        Previous QUEST-35B benchmark comparison data:
         const benchmarkCharts = [
           { title:'BrowseComp', bars:[
             {role:'sota',  l:'Gemini 3.1 Pro', v:85.9},
@@ -2078,22 +1475,14 @@
 
               const label = document.createElement('span');
               label.className = 'benchmark-bar-label';
-              if (bar.l === BENCHMARK_LABEL) {
-                const badge = document.createElement('span');
-                badge.className = 'benchmark-bar-icon benchmark-bar-icon--letter';
-                badge.setAttribute('aria-hidden', 'true');
-                badge.textContent = 'Q';
-                label.appendChild(badge);
-              } else {
-                const iconSrc = MODEL_ICONS[bar.l];
-                if (iconSrc) {
-                  const icon = document.createElement('img');
-                  icon.className = 'benchmark-bar-icon';
-                  icon.src = iconSrc;
-                  icon.alt = '';
-                  icon.loading = 'lazy';
-                  label.appendChild(icon);
-                }
+              const iconSrc = MODEL_ICONS[bar.l];
+              if (iconSrc) {
+                const icon = document.createElement('img');
+                icon.className = 'benchmark-bar-icon';
+                icon.src = iconSrc;
+                icon.alt = '';
+                icon.loading = 'lazy';
+                label.appendChild(icon);
               }
               const name = document.createElement('span');
               name.className = 'benchmark-bar-name';
@@ -2341,12 +1730,12 @@
     </script>
 
     <script type="module">
-      // ── Quest demo chat ──────────────────────────────────────
+      // ── QUEST demo chat ──────────────────────────────────────
       import { Client } from "https://esm.sh/@gradio/client";
 
-      const SPACE_ID = "osunlp/Quest";
+      const SPACE_ID = "osunlp/QUEST";
       const API_NAME = "/run_ui";
-      const DEFAULTS = { maxTurns: 16, memory: "condenser", temperature: 0.4 };
+      const DEFAULTS = { maxTurns: 16, contextStrategy: "condenser", temperature: 0.4 };
 
       const form     = document.getElementById('quest-chat-form');
       const textarea = document.getElementById('qc-question');
@@ -2354,17 +1743,17 @@
       const statusEl = document.getElementById('qc-status');
       const sendBtn  = document.getElementById('qc-send');
       const maxTurnsInput    = document.getElementById('qc-max-turns');
-      const memoryInput      = document.getElementById('qc-memory');
+      const contextInput     = document.getElementById('qc-context');
       const temperatureInput = document.getElementById('qc-temperature');
       if (!form) { /* demo section absent */ } else {
 
       function readSettings() {
         const n  = parseInt(maxTurnsInput?.value, 10);
         const t  = parseFloat(temperatureInput?.value);
-        const mem = (memoryInput?.value || '').trim();
+        const contextStrategy = (contextInput?.value || '').trim();
         return {
           maxTurns:    Number.isFinite(n) && n > 0 ? n : DEFAULTS.maxTurns,
-          memory:      mem || DEFAULTS.memory,
+          contextStrategy: contextStrategy || DEFAULTS.contextStrategy,
           temperature: Number.isFinite(t) && t >= 0 ? t : DEFAULTS.temperature,
         };
       }
@@ -2427,7 +1816,7 @@
           const job = app.submit(API_NAME, [
             question,
             cfg.maxTurns,
-            cfg.memory,
+            cfg.contextStrategy,
             cfg.temperature,
           ]);
 
