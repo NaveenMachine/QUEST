@@ -251,10 +251,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .article-head h1 {
-  max-width: 1120px;
+  max-width: min(100%, 1320px);
   margin: 0 auto;
   font-family: "Manrope", sans-serif;
-  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+  font-size: clamp(2.25rem, 3.7vw, 3.65rem);
   line-height: 1.06;
   letter-spacing: -0.055em;
   color: #333333;
@@ -2563,6 +2563,10 @@ sup.val-dagger {
     width: min(calc(100vw - 32px), var(--content-width));
   }
 
+  .article-head h1 {
+    font-size: clamp(2.1rem, 3.2vw, 3.15rem);
+  }
+
   .benchmark-comparison-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2604,6 +2608,10 @@ sup.val-dagger {
     display: block;
   }
 
+  .article-head h1 {
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+  }
+
   .toc-sidebar {
     display: none;
   }
@@ -2635,6 +2643,14 @@ sup.val-dagger {
 @media (max-width: 980px) {
   .site-header,
   .site-footer { flex-direction: column; align-items: center; }
+
+  .article-head h1 {
+    font-size: clamp(2rem, 6vw, 2.65rem);
+  }
+
+  .article-head .title-line {
+    white-space: normal;
+  }
 
   .benchmark-board,
   .essay-grid,
