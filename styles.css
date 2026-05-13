@@ -432,7 +432,7 @@ a { color: inherit; text-decoration: none; }
 /* ─── Sections ───────────────────────────────────────── */
 .section {
   margin-top: 0;
-  padding: 52px 76px;
+  padding: 52px 24px;
   border-top: 1px solid var(--line);
   background: transparent;
 }
@@ -536,7 +536,7 @@ a { color: inherit; text-decoration: none; }
 /* ─── Smaller Model Charts ───────────────────────────── */
 .small-model-panel {
   margin-top: 22px;
-  padding: 20px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--surface-alt);
@@ -588,7 +588,7 @@ a { color: inherit; text-decoration: none; }
 
 .small-model-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -2730,7 +2730,7 @@ sup.val-dagger {
   .small-model-grid,
   .benchmark-comparison-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
   .benchmark-comparison-chart { height: 210px; }
-  .benchmark-bar-row { grid-template-columns: 100px minmax(0, 1fr) 30px; }
+  .benchmark-bar-row { grid-template-columns: 88px minmax(0, 1fr) 28px; }
   .mini-chart { gap: 5px; min-height: 170px; }
   .mini-bar span { font-size: 0.56rem; }
 
