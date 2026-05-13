@@ -45,6 +45,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--text);
   font-family: "Manrope", sans-serif;
   background: var(--bg);
@@ -2689,8 +2690,9 @@ sup.val-dagger {
 
 /* ─── Responsive: 760px ──────────────────────────────── */
 @media (max-width: 760px) {
+  :root { --content-width: 100vw; }
   .site-shell {
-    width: min(calc(100vw - 16px), var(--content-width));
+    width: calc(100vw - 16px);
     padding-top: 12px;
   }
 
