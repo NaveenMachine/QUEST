@@ -2583,25 +2583,9 @@ sup.val-dagger {
 }
 
 @media (max-width: 1500px) {
-  html {
-    font-size: 16.5px;
-  }
-
   .article-shell {
     grid-template-columns: 168px minmax(0, 1fr);
     gap: 20px;
-  }
-
-  .section {
-    padding-left: 56px;
-    padding-right: 56px;
-  }
-
-  .article-head,
-  .lede,
-  .top-benchmark-showcase {
-    padding-left: 56px;
-    padding-right: 56px;
   }
 
   .benchmark-bar-row {
