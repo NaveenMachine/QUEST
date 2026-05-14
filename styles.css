@@ -334,12 +334,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 .correspondence-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   margin: 8px 0 0;
-  color: #555555;
+  color: var(--text);
   font-size: 0.92rem;
   font-weight: 500;
   line-height: 1.35;
   text-align: center;
+}
+
+.correspondence-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+  fill: currentColor;
 }
 
 .contribution-row {
