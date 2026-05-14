@@ -247,15 +247,15 @@
                 <div class="quest-chat-controls">
                   <label>
                     Max turns
-                    <input type="number" id="qc-max-turns" value="16" min="1" max="100" step="1">
+                    <input type="number" id="qc-max-turns" value="16" min="1" max="50" step="1">
                   </label>
                   <label>
                     Context strategy
                     <select id="qc-context">
-                      <option value="vanilla">vanilla</option>
-                      <option value="condenser" selected>condenser</option>
-                      <option value="discard-all">discard-all</option>
-                      <option value="hide-tool-results">hide-tool-results</option>
+                      <option value="condenser" selected>Condenser (default)</option>
+                      <option value="vanilla">Vanilla</option>
+                      <option value="discard_all">Discard-all</option>
+                      <option value="hide_tool_result">Hide-tool-result</option>
                     </select>
                   </label>
                   <label>
