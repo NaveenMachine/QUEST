@@ -13,7 +13,7 @@ We release **QUEST**, a family of open models (ranging from 2B to 35B) that serv
 
 ## 🚀 Updates
 
-- **21/05/2026**: We released QUEST, including model checkpoints, data, and code.
+- **05/21/2026**: We released QUEST, including model checkpoints, data, and code.
 
 ## Table of Contents
 
