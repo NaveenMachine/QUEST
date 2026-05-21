@@ -9,9 +9,7 @@
 
 ## Introduction
 
-QUEST is a general-purpose Deep Search Agent designed to handle a wide range of
-search tasks, with strong capabilities in fact seeking, citation grounding, and
-report synthesis.
+We release **QUEST**, a family of open models (ranging from 2B to 35B) that serve as ***general-purpose*** deep research agents designed to handle a wide range of long-horizon search tasks, with strong capabilities in ***fact seeking***, ***citation grounding***, and ***report synthesis***.
 
 ## 🚀 Updates
 
