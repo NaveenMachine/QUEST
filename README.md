@@ -1,7 +1,7 @@
 # QUEST
 
 <div align="center" style="line-height: 1; margin-top: 16px;">
-  <a href="#"><img src="https://img.shields.io/badge/Paper-B31B1B?style=for-the-badge&logo=arXiv&logoColor=white" alt="Paper"></a>
+  <a href="https://arxiv.org/abs/2605.24218"><img src="https://img.shields.io/badge/Paper-B31B1B?style=for-the-badge&logo=arXiv&logoColor=white" alt="Paper"></a>
   <a href="https://osu-nlp-group.github.io/QUEST/"><img src="https://img.shields.io/badge/Website-0F766E?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website"></a>
   <a href="https://huggingface.co/collections/osunlp/quest"><img src="https://img.shields.io/badge/HF%20Collection-FFB7B2?style=for-the-badge&logo=huggingface&logoColor=ffffff" alt="Hugging Face Collection"></a>
   <a href="https://huggingface.co/osunlp/QUEST-35B-RL"><img src="https://img.shields.io/badge/Model-FFD966?style=for-the-badge&logo=huggingface&logoColor=ffffff" alt="Model"></a>
@@ -13,7 +13,7 @@ We release **QUEST**, a family of open models (ranging from 2B to 35B) that serv
 
 ## 🚀 Updates
 
-- **05/21/2026**: We released QUEST, including model checkpoints, data, and code.
+- **05/26/2026**: We released QUEST, including model checkpoints, data, and code.
 
 ## Table of Contents
 
@@ -348,8 +348,7 @@ for a citation.
 @misc{xie2026quest,
   title={QUEST: Training Frontier Deep Research Agents with Fully Synthetic Tasks},
   author={Xie, Jian and Lin, Tianhe and Wang, Zilu and Ning, Yuting and Yao, Yuekun and Xue, Tianci and Zhang, Zhehao and Li, Zhongyang and Zhang, Kai and Wu, Yufan and Chen, Shijie and Gou, Boyu and Han, Mingzhe and Wang, Yifei and Lee, Vint and Wei, Xinpeng and Wang, Xiangjun and Su, Yu and Sun, Huan},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2605.24218},
   year={2026}
 }
 ```
-
