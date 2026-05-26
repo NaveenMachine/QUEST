@@ -54,7 +54,7 @@ You can also try the hosted [demo](https://huggingface.co/spaces/osunlp/QUEST).
 
 Model selection note: if you only need to evaluate objective tasks and do not
 need open-ended task evaluation, we recommend the MT+SFT checkpoints because
-they perform better on reasoning-heavy objective benchmarks. For more comprehensive evaluation
+they perform better on reasoning-heavy objective benchmarks. For a more comprehensive evaluation
 across both objective and open-ended tasks, we recommend the RL checkpoints.
 
 Release note: cached databases and mid-training data are still under legal
