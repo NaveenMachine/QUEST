@@ -251,7 +251,7 @@
                   id="qc-question"
                   rows="2"
                   placeholder="Ask QUEST a research question…"
-                  required>Who was the first person to walk on the Moon, and which U.S. President set that goal in his famous 1962 "Moon speech"?</textarea>
+                  required>Compare the LLM-safety research approaches of Anthropic, OpenAI, and Google DeepMind over the past 18 months, focusing on alignment techniques and red-teaming methodologies.</textarea>
                 <button type="submit" id="qc-send">Run Research</button>
               </form>
 
@@ -1839,6 +1839,8 @@
 
         textarea.value = '';
         sendBtn.disabled = true;
+        // Single-turn UI: each submit replaces the previous Q&A in the stream.
+        stream.innerHTML = '';
         appendMessage('user', escapeHtml(question));
         const bubble = appendMessage(
           'assistant',
