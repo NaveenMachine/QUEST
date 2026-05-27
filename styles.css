@@ -442,6 +442,25 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.8;
 }
 
+.hero-run-trace {
+  width: min(100%, 980px);
+  margin: 24px auto 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-run-trace img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-alt);
+}
+
 .top-benchmark-showcase {
   padding: 26px 24px 42px;
   border-bottom: 1px solid var(--line);
@@ -2769,8 +2788,24 @@ sup.val-dagger {
   .site-footer { padding-left: 16px; padding-right: 16px; }
 
   .site-header { padding-top: 12px; padding-bottom: 12px; }
+  .site-nav {
+    max-width: 100%;
+    justify-content: center;
+    gap: 8px 14px;
+    font-size: 0.82rem;
+  }
 
   .article-head { padding: 20px 22px 24px; }
+  .article-head h1 {
+    max-width: 100%;
+    font-size: 1.72rem;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+  .article-head .title-line {
+    white-space: normal;
+  }
   .author-row {
     gap: 3px 10px;
     font-size: 0.92rem;
@@ -2782,11 +2817,35 @@ sup.val-dagger {
   .correspondence-row {
     font-size: 0.78rem;
   }
-  .resource-links { gap: 8px; }
+  .resource-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin-top: 20px;
+  }
   .resource-link {
-    width: auto;
+    width: 100%;
     min-width: 0;
-    padding: 10px 16px;
+    padding: 10px 12px;
+    gap: 7px;
+  }
+  .resource-icon {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+  .resource-icon img {
+    width: 23px;
+    height: 23px;
+  }
+  .resource-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+  .resource-link strong {
+    font-size: 0.88rem;
+    white-space: nowrap;
   }
   .article-meta-row {
     justify-content: center;
@@ -2795,6 +2854,14 @@ sup.val-dagger {
     margin-bottom: 20px;
   }
   .lede { padding: 18px 22px 12px; }
+  .hero-run-trace {
+    margin-top: 20px;
+    padding: 6px;
+    border-radius: 14px;
+  }
+  .hero-run-trace img {
+    border-radius: 10px;
+  }
   .top-benchmark-showcase { padding: 18px 22px 26px; }
   .section { padding: 28px 22px; }
   .article > .comparison-figure { padding: 22px 22px 30px; }

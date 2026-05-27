@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>QUEST — research run</title>
+<style>
+  :root{
+    --ink:#0D1117;
+    --muted:#64748B;
+    --line:rgba(10,15,40,.10);
+    --line-strong:rgba(10,15,40,.18);
+    --soft:#EEF1F7;
+    --paper:#FFFFFF;
+    --accent:#BE5B2B;
+    --accent-2:#0B9E8A;
+    --good:#0B9E8A;
+    --warn:#F59E0B;
+    --danger:#DC2626;
+    --tool:#2563EB;
+    --think:#BE5B2B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:675px;background:#F2F4F8;overflow:hidden;
+    font:14px/1.5 Manrope,-apple-system,Segoe UI,Inter,system-ui,sans-serif;color:var(--ink);
+    -webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11";}
+  body{padding:32px 44px;display:flex;flex-direction:column;gap:18px;
+    background:linear-gradient(180deg,#EEF1F7 0%,#FFFFFF 62%,#F8FAFC 100%);}
+
+  /* ───────── header ───────── */
+  .hdr{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:baseline;gap:10px;color:#333}
+  .brand strong{font-family:Georgia,"Source Serif 4",serif;font-size:21px;font-style:italic;letter-spacing:-.01em}
+  .brand span{font-size:12px;color:var(--muted);font-weight:650;letter-spacing:.12em;text-transform:uppercase}
+  .meta{display:flex;gap:18px;align-items:center;font-variant-numeric:tabular-nums}
+  .meta .pill{padding:5px 12px;border:1px solid var(--line);border-radius:999px;
+    font-size:12px;color:var(--muted);background:rgba(255,255,255,.88);display:flex;gap:6px;align-items:center;
+    box-shadow:0 1px 2px rgba(10,15,40,.04)}
+  .meta .pill b{color:var(--ink);font-weight:600;font-size:13px}
+
+  /* ───────── phase ribbon ───────── */
+  .phase-row{display:flex;align-items:center;gap:18px}
+  .phases{display:flex;align-items:center;gap:0;flex:1}
+  .phases .step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}
+  .phases .dot{width:30px;height:30px;border-radius:999px;border:2px solid var(--line);
+    background:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted);
+    transition:all .35s cubic-bezier(.4,0,.2,1)}
+  .phases .step.active .dot{border-color:var(--accent);background:var(--accent);color:#fff;
+    box-shadow:0 0 0 6px rgba(190,91,43,.12)}
+  .phases .step.done .dot{border-color:var(--accent);background:var(--accent);color:#fff;opacity:.55}
+  .phases .label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;
+    transition:color .25s}
+  .phases .step.active .label{color:var(--accent)}
+  .phases .step.done .label{color:var(--ink);opacity:.55}
+  .phases .seg{height:2px;flex:1;background:var(--line);margin:0 8px;align-self:flex-start;margin-top:14px;
+    position:relative;overflow:hidden}
+  .phases .seg::after{content:"";position:absolute;inset:0;width:0;background:var(--accent);
+    transition:width .35s ease}
+  .phases .seg.done::after{width:100%}
+
+  /* ───────── tokens row ───────── */
+  .tokens{display:flex;flex-direction:column;gap:6px}
+  .tokens .info{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);
+    font-variant-numeric:tabular-nums}
+  .tokens .info b{color:var(--ink);font-weight:600}
+  .tokens .info .threshold{color:var(--danger);font-weight:600;opacity:.0;transition:opacity .25s}
+  .tokens .info .threshold.visible{opacity:1}
+  .tbar{height:10px;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;
+    overflow:hidden;position:relative}
+  .tbar .fill{height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,var(--good) 0%,var(--good) 40%,var(--warn) 70%,var(--danger) 100%);
+    transition:width .25s linear,box-shadow .25s}
+  .tbar .threshold-line{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--danger);
+    opacity:.7;left:100%;transform:translateX(-1px)}
+
+  /* ───────── main stage ───────── */
+  .stage{flex:1;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.94);
+    box-shadow:0 1px 3px rgba(10,15,40,.04),0 8px 32px rgba(10,15,40,.08);
+    padding:22px 28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+  .stage::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.9}
+
+  .scene{display:none;flex:1;flex-direction:column;gap:12px}
+  .scene.show{display:flex}
+
+  /* ── Q scene ── */
+  .q-box{display:flex;gap:14px;align-items:flex-start}
+  .q-badge{font-size:11px;font-weight:800;color:#fff;background:#333333;padding:5px 10px;border-radius:999px;
+    letter-spacing:.08em;flex:0 0 auto}
+  .q-text{font-size:16px;line-height:1.55;color:var(--ink)}
+  .q-text .hl{background:linear-gradient(120deg,rgba(190,91,43,.15),rgba(11,158,138,.12));
+    padding:1px 6px;border-radius:4px;font-weight:600}
+
+  /* ── think+tool scene ── */
+  .tt-head{display:flex;gap:10px;align-items:baseline}
+  .tt-head .tt-title{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.02em}
+  .tt-head .tt-cnt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .tt-head .tt-cnt b{color:var(--accent);font-weight:700;font-size:14px}
+
+  .tt-stream{display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center}
+  .tt-row{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(8px);
+    transition:opacity .3s ease,transform .3s ease}
+  .tt-row.in{opacity:1;transform:translateY(0)}
+  .tt-tag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:4px;
+    letter-spacing:.06em;flex:0 0 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    text-transform:uppercase;margin-top:1px}
+  .tt-tag.think{background:rgba(190,91,43,.10);color:#9A4A23}
+  .tt-tag.tool{background:rgba(37,99,235,.10);color:#1D4ED8}
+  .tt-body{flex:1;font-size:13px;line-height:1.5;color:var(--ink);
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    word-break:break-word}
+  .tt-body .str{color:#0A8070}
+
+  /* ── condenser scene ── */
+  .cd-wrap{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center}
+  .cd-title{display:flex;align-items:center;gap:12px}
+  .cd-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#0B9E8A,#BE5B2B);
+    display:grid;place-items:center;color:#fff;font-size:18px}
+  .cd-name{font-size:18px;font-weight:700;color:var(--ink)}
+  .cd-sub{font-size:12px;color:var(--muted)}
+
+  .cd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .cd-stat{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#F8FAFC;
+    display:flex;flex-direction:column;gap:2px;opacity:0;transform:translateY(8px);
+    transition:opacity .35s,transform .35s}
+  .cd-stat.in{opacity:1;transform:none}
+  .cd-stat .num{font-size:22px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;
+    line-height:1}
+  .cd-stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .cd-stat.green .num{color:var(--good)}
+
+  .cd-facts{flex:1;display:flex;flex-direction:column;gap:6px;margin-top:4px}
+  .cd-fact{font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start;
+    opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
+  .cd-fact.in{opacity:1;transform:none}
+  .cd-fact .ck{color:var(--good);font-weight:700;flex:0 0 auto}
+  .cd-fact b{font-weight:600}
+
+  /* ── answer scene ── */
+  .ans-head{display:flex;align-items:center;gap:10px}
+  .ans-check{width:32px;height:32px;border-radius:999px;background:var(--good);color:#fff;
+    display:grid;place-items:center;font-size:18px;font-weight:700;
+    box-shadow:0 0 0 6px rgba(11,158,138,.14);animation:pop .4s ease}
+  @keyframes pop{from{transform:scale(.6)}to{transform:scale(1)}}
+  .ans-title{font-size:15px;font-weight:700;color:var(--ink)}
+  .ans-meta{font-size:12px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+
+  .ans-table{border:1px solid var(--line);border-radius:10px;overflow:hidden;flex:1;
+    display:flex;flex-direction:column}
+  .ans-row{display:grid;grid-template-columns:32px 1.6fr 0.5fr 1.2fr;gap:0;
+    padding:5px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center;line-height:1.35;
+    opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+  .ans-row:last-child{border-bottom:none}
+  .ans-row.in{opacity:1;transform:none}
+  .ans-row.head{background:#F8FAFC;font-size:10.5px;color:var(--muted);font-weight:700;
+    text-transform:uppercase;letter-spacing:.05em;opacity:1;transform:none;padding-top:7px;padding-bottom:7px}
+  .ans-row .nm{font-weight:600;color:var(--ink)}
+  .ans-row .st{color:var(--muted);font-variant-numeric:tabular-nums}
+  .ans-row .pip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#0A8070;
+    background:rgba(11,158,138,.08);padding:2px 6px;border-radius:4px;display:inline-block}
+  .ans-row .pip.no{color:var(--muted);background:#F8FAFC}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="brand"><strong>QUEST</strong><span>research trace</span></div>
+  <div class="meta">
+    <div class="pill">round <b id="round">0</b></div>
+  </div>
+</div>
+
+<div class="phase-row">
+  <div class="phases" id="phases">
+    <div class="step" data-i="0"><div class="dot">Q</div><div class="label">Question</div></div>
+    <div class="seg"></div>
+    <div class="step" data-i="1"><div class="dot">T</div><div class="label">Thinking + Tool Use</div></div>
+    <div class="seg"></div>
+    <div class="step" data-i="2"><div class="dot">C</div><div class="label">Condenser</div></div>
+    <div class="seg"></div>
+    <div class="step" data-i="3"><div class="dot">T</div><div class="label">Thinking + Tool Use</div></div>
+    <div class="seg"></div>
+    <div class="step" data-i="4"><div class="dot">A</div><div class="label">Answer</div></div>
+  </div>
+</div>
+
+<div class="tokens">
+  <div class="info">
+    <span>Context tokens</span>
+    <span><b id="tokTxt">0</b> <span style="color:var(--muted)">/ 80,000 budget</span>
+      <span class="threshold" id="thr">· threshold reached, compressing…</span></span>
+  </div>
+  <div class="tbar"><div class="fill" id="fill"></div><div class="threshold-line"></div></div>
+</div>
+
+<div class="stage">
+
+  <!-- Phase 0: Question -->
+  <div class="scene show" id="sc-q">
+    <div class="q-box">
+      <div class="q-badge">QUESTION</div>
+      <div class="q-text">
+        Identify the <span class="hl">10 most-starred GitHub repositories</span> under the topic
+        <span class="hl">"retrieval-augmented-generation"</span>. For each, indicate whether the README
+        explicitly states it can be installed with a single
+        <span class="hl">pip install &lt;package-name&gt;</span> command — and if so, link to its PyPI page.
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+      <div style="font-size:12px;color:var(--muted);padding:4px 0">Tools available:</div>
+      <span style="font-size:11px;font-family:ui-monospace,monospace;background:rgba(37,99,235,.1);color:#1D4ED8;padding:3px 8px;border-radius:4px;font-weight:600">Search</span>
+      <span style="font-size:11px;font-family:ui-monospace,monospace;background:rgba(37,99,235,.1);color:#1D4ED8;padding:3px 8px;border-radius:4px;font-weight:600">Visit</span>
+      <span style="font-size:11px;font-family:ui-monospace,monospace;background:rgba(37,99,235,.1);color:#1D4ED8;padding:3px 8px;border-radius:4px;font-weight:600">Google_scholar</span>
+      <span style="font-size:11px;font-family:ui-monospace,monospace;background:rgba(37,99,235,.1);color:#1D4ED8;padding:3px 8px;border-radius:4px;font-weight:600">Python</span>
+    </div>
+  </div>
+
+  <!-- Phase 1: Think + Tool (pre-condenser) -->
+  <div class="scene" id="sc-tt1">
+    <div class="tt-head">
+      <div class="tt-title">Thinking + Tool Use</div>
+      <div class="tt-cnt">round <b id="tt1Round">1</b> of pre-condenser exploration</div>
+    </div>
+    <div class="tt-stream" id="tt1Stream"></div>
+  </div>
+
+  <!-- Phase 2: Condenser -->
+  <div class="scene" id="sc-cd">
+    <div class="cd-title">
+      <div class="cd-icon">⚡</div>
+      <div>
+        <div class="cd-name">Context Management — Condenser</div>
+        <div class="cd-sub">Long history distilled into a structured state summary · 80,824 → 2,400 tokens</div>
+      </div>
+    </div>
+    <div class="cd-stats">
+      <div class="cd-stat" id="cdS0"><div class="num">8</div><div class="lbl">search queries</div></div>
+      <div class="cd-stat" id="cdS1"><div class="num">21</div><div class="lbl">visited sources</div></div>
+      <div class="cd-stat green" id="cdS2"><div class="num">11</div><div class="lbl">trusted facts</div></div>
+      <div class="cd-stat" id="cdS3"><div class="num">1</div><div class="lbl">uncertain</div></div>
+    </div>
+    <div class="cd-facts">
+      <div class="cd-fact" id="cdF0"><span class="ck">✓</span><div><b>T1</b> · Langchain-Chatchat README → <code style="font-size:11px;background:var(--soft);padding:1px 5px;border-radius:3px">pip install langchain-chatchat -U</code></div></div>
+      <div class="cd-fact" id="cdF1"><span class="ck">✓</span><div><b>T2</b> · LightRAG README → <code style="font-size:11px;background:var(--soft);padding:1px 5px;border-radius:3px">pip install lightrag-hku</code></div></div>
+      <div class="cd-fact" id="cdF2"><span class="ck">✓</span><div><b>T3</b> · stanford-oval/storm → <code style="font-size:11px;background:var(--soft);padding:1px 5px;border-radius:3px">pip install knowledge-storm</code></div></div>
+      <div class="cd-fact" id="cdF3"><span class="ck">⚠</span><div style="color:var(--warn)"><b>C1</b> · PageIndex PyPI page returned client challenge — needs re-verification</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Think + Tool (post-condenser) -->
+  <div class="scene" id="sc-tt2">
+    <div class="tt-head">
+      <div class="tt-title">Thinking + Tool Use · resumed with compressed memory</div>
+      <div class="tt-cnt">round <b id="tt2Round">63</b> · verifying remaining repos</div>
+    </div>
+    <div class="tt-stream" id="tt2Stream"></div>
+  </div>
+
+  <!-- Phase 4: Answer -->
+  <div class="scene" id="sc-ans">
+    <div class="ans-head">
+      <div class="ans-check">✓</div>
+      <div class="ans-title">Final answer · 10 repositories verified</div>
+      <div class="ans-meta">87 rounds · 41,721 tokens</div>
+    </div>
+    <div class="ans-table" id="ansTable">
+      <div class="ans-row head"><div>#</div><div>Repository</div><div>Stars</div><div>pip install</div></div>
+      <div class="ans-row" id="ar1"><div>1</div><div class="nm">pathwaycom/llm-app</div><div class="st">59.9k</div><div><span class="pip no">— not in README</span></div></div>
+      <div class="ans-row" id="ar2"><div>2</div><div class="nm">infiniflow/ragflow</div><div class="st">50.2k</div><div><span class="pip no">— docker only</span></div></div>
+      <div class="ans-row" id="ar3"><div>3</div><div class="nm">chatchat-space/Langchain-Chatchat</div><div class="st">37.9k</div><div><span class="pip">pip install langchain-chatchat</span></div></div>
+      <div class="ans-row" id="ar4"><div>4</div><div class="nm">HKUDS/LightRAG</div><div class="st">34.7k</div><div><span class="pip">pip install lightrag-hku</span></div></div>
+      <div class="ans-row" id="ar5"><div>5</div><div class="nm">stanford-oval/storm</div><div class="st">29.6k</div><div><span class="pip">pip install knowledge-storm</span></div></div>
+      <div class="ans-row" id="ar6"><div>6</div><div class="nm">deepset-ai/haystack</div><div class="st">22.4k</div><div><span class="pip">pip install haystack-ai</span></div></div>
+      <div class="ans-row" id="ar7"><div>7</div><div class="nm">NirDiamant/RAG_Techniques</div><div class="st">18.1k</div><div><span class="pip no">— tutorial repo</span></div></div>
+      <div class="ans-row" id="ar8"><div>8</div><div class="nm">llmware-ai/llmware</div><div class="st">14.6k</div><div><span class="pip">pip install llmware</span></div></div>
+      <div class="ans-row" id="ar9"><div>9</div><div class="nm">HKUDS/RAGAnything</div><div class="st">5.8k</div><div><span class="pip">pip install raganything</span></div></div>
+      <div class="ans-row" id="ar10"><div>10</div><div class="nm">VectifyAI/PageIndex</div><div class="st">3.2k</div><div><span class="pip">pip install pageindex</span></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const T0 = performance.now();
+
+// Phase windows in ms
+const P = [
+  {name:"q",   start:0,     end:3500  },  // 3.5s
+  {name:"tt1", start:3500,  end:17500 },  // 14.0s — think+tool ×62, tokens 0→80,824 (slowed)
+  {name:"cd",  start:17500, end:25500 },  // 8.0s — condenser (slowed)
+  {name:"tt2", start:25500, end:31500 },  // 6.0s — think+tool ×25 (slowed)
+  {name:"ans", start:31500, end:38500 },  // 7.0s — 10-row answer reveal (slowed)
+];
+const TOTAL = 38500;
+
+// Real first-round reasoning is ~1100 chars; here is a faithful trimmed version
+// so viewers see substantive thinking, not a one-liner.
+const tt1Steps = [
+  {tag:"think", body:'Task: list the 10 most-starred repos under GitHub topic <span class="str">"retrieval-augmented-generation"</span>, and for each say whether the README contains a single <span class="str">pip install &lt;pkg&gt;</span> line (plus PyPI link if so).<br>Standard web search may not surface a GitHub topic page directly — let me fan out with several phrasings so at least one query lands on the topic listing.'},
+  {tag:"tool",  body:'search(<span class="str">["retrieval-augmented-generation github topic", "&hellip; star count", "GitHub topic \'retrieval-augmented-generation\' popular repos", "retrieval-augmented-generation python library"]</span>)'},
+  {tag:"think", body:'Results point to <span class="str">github.com/topics/retrieval-augmented-generation</span>. Visit the page and ask the extractor for repo name + star count.'},
+  {tag:"tool",  body:'visit(<span class="str">"github.com/topics/retrieval-augmented-generation"</span>, goal=<span class="str">"name, owner, star count for each repo"</span>)'},
+  {tag:"think", body:'Got the top-10 ordering. For each repo, fetch README and search for a literal <span class="str">pip install</span> line — fall back to PyPI page if README is ambiguous.'},
+  {tag:"tool",  body:'visit(<span class="str">"pypi.org/project/langchain-chatchat"</span>)'},
+  {tag:"tool",  body:'visit(<span class="str">"pypi.org/project/lightrag-hku"</span>)'},
+  {tag:"tool",  body:'search(<span class="str">"pip install knowledge-storm" site:stanford-oval</span>)'},
+  {tag:"tool",  body:'visit(<span class="str">"github.com/stanford-oval/storm"</span>)'},
+  {tag:"think", body:'Three confirmed — keep probing remaining repos. Context now heavy.'},
+  {tag:"tool",  body:'visit(<span class="str">"pypi.org/project/raganything"</span>)'},
+  {tag:"tool",  body:'search(<span class="str">"pip install haystack-ai" deepset</span>)'},
+  {tag:"tool",  body:'visit(<span class="str">"pypi.org/project/memvid-sdk"</span>)'},
+];
+const tt2Steps = [
+  {tag:"think", body:'Memory compressed to 11 trusted facts — focus on unresolved entries.'},
+  {tag:"tool",  body:'visit(<span class="str">"github.com/VectifyAI/PageIndex"</span>)'},
+  {tag:"tool",  body:'visit(<span class="str">"pypi.org/pypi/pageindex/json"</span>)'},
+  {tag:"tool",  body:'visit(<span class="str">"github.com/deepset-ai/haystack"</span>)'},
+  {tag:"tool",  body:'visit(<span class="str">"github.com/NirDiamant/RAG_Techniques"</span>)'},
+  {tag:"think", body:'All 10 verified — compose the structured answer.'},
+];
+
+function ease(t){return t<.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;}
+function fmt(n){return n.toLocaleString('en-US');}
+
+const tt1Stream = document.getElementById('tt1Stream');
+const tt2Stream = document.getElementById('tt2Stream');
+const VISIBLE = 5;
+
+// Custom non-linear pacing for tt1 so the long first-think lingers
+const tt1Weights = [2.2, 1.0, 1.4, 1.0, 1.4, 1.0, 1.0, 1.0, 1.0, 1.2, 1.0, 1.0, 1.0]; // sums = ~15.2
+const tt2Weights = null;
+
+function indexFromLocal(local, weights, n){
+  if (!weights){
+    return Math.floor(local * (n + VISIBLE - 1));
+  }
+  // total range is sum + (VISIBLE-1) trailing units (constant unit weight)
+  const sum = weights.reduce((a,b)=>a+b,0) + (VISIBLE - 1);
+  const target = local * sum;
+  let acc = 0;
+  for (let i = 0; i < weights.length; i++){
+    acc += weights[i];
+    if (target < acc) return i;
+  }
+  // past last; trailing flush
+  const extra = target - weights.reduce((a,b)=>a+b,0);
+  return Math.min(n - 1 + Math.floor(extra), n + VISIBLE - 1);
+}
+
+function renderStream(streamEl, steps, t, weights){
+  const idx = indexFromLocal(t, weights, steps.length);
+  streamEl.innerHTML = '';
+  for (let i = idx - VISIBLE + 1; i <= idx; i++){
+    const r = document.createElement('div');
+    r.className = 'tt-row';
+    if (i < 0 || i >= steps.length){
+      r.innerHTML = '&nbsp;';
+      r.style.opacity = 0;
+      streamEl.appendChild(r);
+      continue;
+    }
+    const s = steps[i];
+    const tagCls = s.tag === 'think' ? 'think' : 'tool';
+    const tagTxt = s.tag === 'think' ? 'THINK' : 'TOOL';
+    r.innerHTML = `<div class="tt-tag ${tagCls}">${tagTxt}</div><div class="tt-body">${s.body}</div>`;
+    r.classList.add('in');
+    const age = idx - i;
+    if (age > 0) r.style.opacity = String(0.85 - age * 0.18);
+    streamEl.appendChild(r);
+  }
+}
+
+function setActivePhase(phaseIdx){
+  document.querySelectorAll('#phases .step').forEach((el, i) => {
+    el.classList.toggle('active', i === phaseIdx);
+    el.classList.toggle('done', i < phaseIdx);
+  });
+  document.querySelectorAll('#phases .seg').forEach((s, i) => {
+    s.classList.toggle('done', i < phaseIdx);
+  });
+}
+
+function setScene(name){
+  ['q','tt1','cd','tt2','ans'].forEach(n => {
+    document.getElementById('sc-' + n).classList.toggle('show', n === name);
+  });
+}
+
+const fillEl = document.getElementById('fill');
+const roundEl = document.getElementById('round');
+const msgsEl = { set textContent(v){} };  // msgs pill removed; keep stub so existing assignments are no-ops
+const tokTxt = document.getElementById('tokTxt');
+const thrEl = document.getElementById('thr');
+
+window.__renderAt = function(ms){
+  const t = Math.min(ms, TOTAL);
+  let phase = 0;
+  for (let i = 0; i < P.length; i++) if (t >= P[i].start) phase = i;
+  setActivePhase(phase);
+  setScene(P[phase].name);
+
+  if (phase === 0){
+    roundEl.textContent='0';msgsEl.textContent='1';fillEl.style.width='0%';tokTxt.textContent='0';thrEl.classList.remove('visible');
+  }
+  if (phase === 1){
+    const local = (t - P[1].start) / (P[1].end - P[1].start);
+    const e = ease(local);
+    const round = Math.round(1 + e * 61);
+    const msgs = Math.round(2 + e * 120);
+    const tok = Math.round(e * 80824);
+    roundEl.textContent = round; msgsEl.textContent = msgs; tokTxt.textContent = fmt(tok);
+    fillEl.style.width = (tok / 80000 * 100) + '%';
+    thrEl.classList.toggle('visible', tok >= 80000);
+    renderStream(tt1Stream, tt1Steps, local, tt1Weights);
+    document.getElementById('tt1Round').textContent = round;
+  }
+  if (phase === 2){
+    const local = (t - P[2].start) / (P[2].end - P[2].start);
+    const dropProg = Math.min(1, local / 0.55);
+    const tok = Math.round(80824 - dropProg * (80824 - 2400));
+    tokTxt.textContent = fmt(tok);
+    fillEl.style.width = (tok / 80000 * 100) + '%';
+    msgsEl.textContent = Math.round(122 - dropProg * 120);
+    roundEl.textContent = '62';
+    thrEl.classList.toggle('visible', tok >= 80000);
+    const stats = ['cdS0','cdS1','cdS2','cdS3'];
+    const facts = ['cdF0','cdF1','cdF2','cdF3'];
+    for (let i = 0; i < stats.length; i++) document.getElementById(stats[i]).classList.toggle('in', local > 0.18 + i * 0.08);
+    for (let i = 0; i < facts.length; i++) document.getElementById(facts[i]).classList.toggle('in', local > 0.5 + i * 0.10);
+  }
+  if (phase === 3){
+    const local = (t - P[3].start) / (P[3].end - P[3].start);
+    const e = ease(local);
+    const round = Math.round(63 + e * 24);
+    const msgs = Math.round(2 + e * 49);
+    const tok = Math.round(2400 + e * (41721 - 2400));
+    roundEl.textContent = round; msgsEl.textContent = msgs; tokTxt.textContent = fmt(tok);
+    fillEl.style.width = (tok / 80000 * 100) + '%';
+    renderStream(tt2Stream, tt2Steps, local, tt2Weights);
+    document.getElementById('tt2Round').textContent = round;
+    thrEl.classList.remove('visible');
+  }
+  if (phase === 4){
+    const local = (t - P[4].start) / (P[4].end - P[4].start);
+    roundEl.textContent = '87'; msgsEl.textContent = '51';
+    tokTxt.textContent = fmt(41721);
+    fillEl.style.width = (41721 / 80000 * 100) + '%';
+    for (let i = 1; i <= 10; i++) document.getElementById('ar' + i).classList.toggle('in', local > 0.05 + (i-1) * 0.075);
+  }
+};
+window.__TOTAL = TOTAL;
+</script>
+
+</body>
+</html>
