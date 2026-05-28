@@ -205,7 +205,7 @@ The SFT backend is based on LlamaFactory. Use its data configuration and trainin
 entrypoints under `training_scripts/sft/LlamaFactory/` after the datasets are
 prepared.
 
-## 🏃 Run Training
+## 🏃 RL
 
 ### RL Backend
 
