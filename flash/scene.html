@@ -59,6 +59,7 @@
 
   /* ───────── tokens row ───────── */
   .tokens{display:flex;flex-direction:column;gap:6px}
+  .tokens.hidden{opacity:0;visibility:hidden}
   .tokens .info{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);
     font-variant-numeric:tabular-nums}
   .tokens .info b{color:var(--ink);font-weight:600}
@@ -75,12 +76,14 @@
   /* ───────── main stage ───────── */
   .stage{flex:1;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.94);
     box-shadow:0 1px 3px rgba(10,15,40,.04),0 8px 32px rgba(10,15,40,.08);
-    padding:22px 28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+    position:relative;overflow:hidden}
   .stage::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
     background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.9}
 
-  .scene{display:none;flex:1;flex-direction:column;gap:12px}
-  .scene.show{display:flex}
+  .scene{position:absolute;top:22px;right:28px;bottom:22px;left:28px;
+    display:flex;flex-direction:column;gap:12px;
+    opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.4,0,.2,1)}
+  .scene.show{opacity:1;pointer-events:auto}
 
   /* ── Q scene ── */
   .q-box{display:flex;gap:14px;align-items:flex-start}
@@ -188,7 +191,7 @@
   .tree-edge{fill:none;stroke:#9DB3C3;stroke-width:5;stroke-linecap:round;opacity:.42;
     stroke-dasharray:260;stroke-dashoffset:260;transition:stroke-dashoffset .7s ease,opacity .3s}
   .tree-edge.in{stroke-dashoffset:0;opacity:.88}
-  .tree-node{position:absolute;width:112px;min-height:42px;border:2px solid #8EA7BA;border-radius:13px;
+  .tree-node{position:absolute;width:124px;min-height:40px;border:2px solid #8EA7BA;border-radius:13px;
     background:#FFFFFF;box-shadow:0 3px 10px rgba(20,40,70,.10);display:flex;align-items:center;gap:7px;
     padding:7px 9px;font-size:11px;line-height:1.15;font-weight:700;color:#25364A;
     opacity:0;transform:scale(.88);transition:opacity .35s,transform .35s,background .35s,border-color .35s}
@@ -199,10 +202,18 @@
     font-size:12px;font-weight:900;flex:0 0 auto}
   .tree-node.pass .mark{background:var(--good)}
   .tree-node.fail .mark{background:#C75B4F}
-  .tree-node.root{left:50%;top:0;transform:translateX(-50%) scale(.88);width:126px}
+  .tree-node.root{left:50%;top:3%;transform:translateX(-50%) scale(.88);width:132px}
   .tree-node.root.in{transform:translateX(-50%) scale(1)}
-  .tree-node.n1{left:17%;top:29%}.tree-node.n2{left:44%;top:25%}.tree-node.n3{right:16%;top:31%}
-  .tree-node.n4{left:7%;bottom:2%}.tree-node.n5{left:28%;bottom:5%}.tree-node.n6{right:28%;bottom:5%}.tree-node.n7{right:7%;bottom:2%}
+  .tree-node.n1{left:4%;top:34%}.tree-node.n2{left:50%;top:34%;transform:translateX(-50%) scale(.88)}
+  .tree-node.n2.in{transform:translateX(-50%) scale(1)}.tree-node.n3{right:4%;top:34%}
+  .tree-node.leaf{width:87px;min-height:34px;font-size:9.5px;border-width:1.5px;padding:5px 6px;gap:4px}
+  .tree-node.leaf .mark{width:14px;height:14px;font-size:9px}
+  .tree-node.n4{left:0%;bottom:3%}
+  .tree-node.n5{left:17%;bottom:3%}
+  .tree-node.n6{left:34%;bottom:3%}
+  .tree-node.n7{left:51%;bottom:3%}
+  .tree-node.n8{left:68%;bottom:3%}
+  .tree-node.n9{right:0%;bottom:3%}
   .protocol-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
   .protocol-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:11px 12px;
     opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
@@ -214,14 +225,71 @@
   .code-line{opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;color:#D7E0EA}
   .code-line.in{opacity:1;transform:none}
   .code-line .kw{color:#7DD3FC}.code-line .fn{color:#FBBF24}.code-line .cm{color:#94A3B8}
+  .ds-flow{display:grid;grid-template-columns:1fr 58px 1fr 58px 1fr;align-items:center;gap:12px;flex:1}
+  .flow-card{border:1px solid rgba(10,15,40,.11);border-radius:10px;background:#fff;padding:20px 18px 16px;
+    height:214px;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;
+    opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s,box-shadow .35s,border-color .35s}
+  .flow-card.in{opacity:1;transform:none;box-shadow:0 10px 26px rgba(15,23,42,.08);border-color:rgba(10,15,40,.16)}
+  .flow-card.visual{align-items:center;text-align:center;padding:20px 18px 16px}
+  .flow-card .label{font-size:11px;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.08em}
+  .flow-card .name{font-size:24px;font-weight:850;color:var(--ink);line-height:1.1}
+  .flow-card .desc{font-size:13px;color:#475569;line-height:1.45}
+  .flow-arrow{height:2px;background:var(--line-strong);position:relative;opacity:0;transform:scaleX(.35);
+    transform-origin:left;transition:opacity .3s,transform .45s}
+  .flow-arrow.in{opacity:1;transform:scaleX(1)}
+  .flow-arrow::after{content:"";position:absolute;right:-2px;top:50%;width:9px;height:9px;border-top:2px solid var(--line-strong);
+    border-right:2px solid var(--line-strong);transform:translateY(-50%) rotate(45deg)}
+  .mini-tree{height:86px;position:relative;margin-top:2px}
+  .mini-tree .stem,.mini-tree .branch{position:absolute;background:#9DB3C3;opacity:.65;border-radius:999px}
+  .mini-tree .stem{left:50%;top:18px;width:3px;height:36px}
+  .mini-tree .branch{top:53px;height:3px}
+  .mini-tree .branch.b1{left:24%;width:52%}.mini-tree .branch.b2{left:38%;top:36px;width:25%;transform:rotate(-28deg)}
+  .mini-tree .branch.b3{left:38%;top:36px;width:25%;transform:rotate(28deg)}
+  .mini-tree .dot{position:absolute;width:30px;height:30px;border-radius:999px;background:#EAF6F1;border:2px solid #7FA99A;
+    display:grid;place-items:center;font-size:13px;font-weight:900;color:#0A8070}
+  .mini-tree .dot.root{left:50%;top:0;transform:translateX(-50%)}.mini-tree .dot.d1{left:18%;bottom:0}
+  .mini-tree .dot.d2{left:50%;bottom:0;transform:translateX(-50%)}.mini-tree .dot.d3{right:18%;bottom:0}
+  .rubric-thumb{width:100%;height:110px;display:grid;place-items:center;margin:-4px 0 -2px}
+  .rubric-thumb img{max-height:110px;max-width:92%;object-fit:contain;filter:drop-shadow(0 9px 10px rgba(31,44,64,.14))}
+  .cap-list{display:grid;gap:8px;margin-top:8px}
+  .cap-item{border:1px solid var(--line);border-radius:9px;background:#fff;padding:9px 11px;
+    display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;opacity:0;transform:translateX(-8px);
+    transition:opacity .35s,transform .35s}
+  .cap-item.in{opacity:1;transform:none}
+  .cap-item .ico{width:22px;height:22px;border-radius:999px;background:rgba(11,158,138,.10);color:#0A8070;
+    display:grid;place-items:center;font-size:12px;font-weight:900;margin-top:1px}
+  .cap-item b{display:block;font-size:12.5px;color:var(--ink);line-height:1.25}
+  .cap-item span{display:block;font-size:11.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+  .train-flow{display:grid;grid-template-columns:270px 46px 270px 46px 270px;align-items:center;justify-content:center;gap:10px;flex:1}
+  .train-step{border:1px solid var(--line);border-radius:9px;background:#fff;padding:12px 14px;
+    min-height:106px;display:flex;flex-direction:column;justify-content:center;gap:6px;
+    opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s,box-shadow .35s,border-color .35s}
+  .train-step.in{opacity:1;transform:none;box-shadow:0 6px 18px rgba(10,15,40,.07);border-color:rgba(190,91,43,.28)}
+  .train-step .num{font-size:10.5px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .train-step .name{font-size:15px;font-weight:800;line-height:1.2;color:var(--ink)}
+  .train-step .desc{font-size:12px;color:#475569;line-height:1.42}
+
+  /* ── chapter-transition scenes ── */
+  .tr-scene{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+  .tr-badge{width:54px;height:54px;border-radius:999px;background:var(--accent);color:#fff;
+    font-size:26px;font-weight:900;display:grid;place-items:center;margin-bottom:6px;
+    opacity:0;transform:scale(.65);
+    transition:opacity .4s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
+  .tr-badge.in{opacity:1;transform:scale(1)}
+  .tr-heading{font-size:30px;font-weight:850;color:var(--ink);line-height:1.1;
+    opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .35s ease}
+  .tr-heading.in{opacity:1;transform:none}
+  .tr-sub{font-size:13.5px;color:var(--muted);max-width:360px;line-height:1.6;
+    opacity:0;transition:opacity .35s ease}
+  .tr-sub.in{opacity:1}
 </style>
 </head>
 <body>
 
 <div class="hdr">
-  <div class="brand"><strong>QUEST</strong><span>research trace</span></div>
+  <div class="brand"><strong>QUEST</strong><span>general purpose deep research agent</span></div>
   <div class="meta">
-    <div class="pill">round <b id="round">0</b></div>
+    <div class="pill" id="roundPill"><span id="roundLabel">round</span> <b id="round">0</b></div>
   </div>
 </div>
 
@@ -235,7 +303,7 @@
   </div>
 </div>
 
-<div class="tokens">
+<div class="tokens" id="tokens">
   <div class="info">
     <span id="barLabel">Synthesis progress</span>
     <span><b id="tokTxt">0</b> <span id="budgetLabel" style="color:var(--muted)">/ 100 pipeline</span>
@@ -246,31 +314,68 @@
 
 <div class="stage">
 
+  <!-- Chapter 1 -->
+  <div class="scene show" id="sc-tr0">
+    <div class="tr-scene">
+      <div class="tr-badge" id="trb0">①</div>
+      <div class="tr-heading" id="trh0">Synthesize</div>
+      <div class="tr-sub" id="trs0">Build training tasks with fully synthetic rubric trees —<br>scalable, diverse, automatically verifiable.</div>
+    </div>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="scene" id="sc-tr1">
+    <div class="tr-scene">
+      <div class="tr-badge" id="trb1">②</div>
+      <div class="tr-heading" id="trh1">Train</div>
+      <div class="tr-sub" id="trs1">Optimize the model on rubric-tree reward signals<br>across three research capability dimensions.</div>
+    </div>
+  </div>
+
+  <!-- Chapter 3 -->
+  <div class="scene" id="sc-tr2">
+    <div class="tr-scene">
+      <div class="tr-badge" id="trb2">③</div>
+      <div class="tr-heading" id="trh2">Inference</div>
+      <div class="tr-sub" id="trs2">The trained agent at work: search, condense, verify,<br>and synthesize — from question to cited report.</div>
+    </div>
+  </div>
+
   <!-- Phase 0: Keywords -->
-  <div class="scene show" id="sc-seed">
-    <div class="ds-wrap">
-      <div class="ds-panel">
-        <div class="ds-kicker">Synthetic data construction</div>
-        <div class="ds-title">Start from real-world topics, not hand-written QA pairs.</div>
-        <div class="ds-copy">QUEST samples topical seeds, asks a strong synthesizer to browse the web, and turns discovered constraints into training tasks.</div>
-        <div class="seed-grid">
-          <div class="seed" id="seed0"><b>retrieval systems</b><span>trending technical topic</span></div>
-          <div class="seed" id="seed1"><b>GitHub repositories</b><span>multi-entity search space</span></div>
-          <div class="seed" id="seed2"><b>installation claims</b><span>verifiable constraint</span></div>
-          <div class="seed" id="seed3"><b>PyPI evidence</b><span>source-backed check</span></div>
+  <div class="scene" id="sc-seed">
+    <div class="ds-panel" style="height:100%;background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%)">
+      <div class="ds-kicker">Data synthesis</div>
+      <div class="ds-title">Synthesize tasks centered on a rubric tree.</div>
+      <div class="ds-flow">
+        <div class="flow-card" id="flow0">
+          <div class="label">seed</div>
+          <div class="name">Keywords</div>
+          <div class="desc">trending topics · synthesizer random-walks the web to collect verifiable constraints</div>
         </div>
-      </div>
-      <div class="ds-panel">
-        <div class="ds-kicker">Generated task sketch</div>
-        <div class="q-text" style="font-size:15px">
-          Find popular <span class="hl">retrieval-augmented-generation</span> projects,
-          verify whether each README contains a single
-          <span class="hl">pip install &lt;package&gt;</span> command, and ground every claim with source evidence.
+        <div class="flow-arrow" id="fa0"></div>
+        <div class="flow-card visual" id="flow1">
+          <div class="label">structure</div>
+          <div class="name">Rubric Tree</div>
+          <svg viewBox="0 0 120 82" width="108" height="74" style="margin:6px auto 2px;display:block;overflow:visible">
+            <line x1="60" y1="22" x2="18" y2="60" stroke="#9DB3C3" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="60" y1="22" x2="60" y2="60" stroke="#9DB3C3" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="60" y1="22" x2="102" y2="60" stroke="#9DB3C3" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="60" cy="13" r="12" fill="#EAF6F1" stroke="#7FA99A" stroke-width="1.8"/>
+            <text x="60" y="17.5" text-anchor="middle" font-size="13" font-weight="900" fill="#0A8070">✓</text>
+            <circle cx="18" cy="68" r="10" fill="#EAF6F1" stroke="#7FA99A" stroke-width="1.5"/>
+            <text x="18" y="72" text-anchor="middle" font-size="11" font-weight="900" fill="#0A8070">✓</text>
+            <circle cx="60" cy="68" r="10" fill="#F7E7E7" stroke="#B98B92" stroke-width="1.5"/>
+            <text x="60" y="72" text-anchor="middle" font-size="11" font-weight="900" fill="#C75B4F">✗</text>
+            <circle cx="102" cy="68" r="10" fill="#EAF6F1" stroke="#7FA99A" stroke-width="1.5"/>
+            <text x="102" y="72" text-anchor="middle" font-size="11" font-weight="900" fill="#0A8070">✓</text>
+          </svg>
+          <div class="desc">covers whichever capabilities the task demands</div>
         </div>
-        <div class="evidence-stack" style="margin-top:auto">
-          <div class="evidence-row in"><div class="src">topic</div><div class="txt">GitHub topic page gives candidate repositories and star order.</div><div class="tag">searchable</div></div>
-          <div class="evidence-row in"><div class="src">README</div><div class="txt">Installation text can be checked repo by repo.</div><div class="tag">verifiable</div></div>
-          <div class="evidence-row in"><div class="src">PyPI</div><div class="txt">Package pages validate package names when README lines are ambiguous.</div><div class="tag">grounded</div></div>
+        <div class="flow-arrow" id="fa1"></div>
+        <div class="flow-card" id="flow2">
+          <div class="label">output</div>
+          <div class="name">Question</div>
+          <div class="desc">Rubric-tree constraints translated into a natural-language research question.</div>
         </div>
       </div>
     </div>
@@ -282,13 +387,13 @@
       <div class="ds-panel">
         <div class="ds-kicker">Web exploration by synthesizer</div>
         <div class="ds-title">Collect facts that can become rubric leaves.</div>
-        <div class="ds-copy">The generator browses pages and keeps constraints that can later be checked automatically: entity identity, ordering, installation command, package URL, and citation support.</div>
+        <div class="ds-copy">The generator browses pages and keeps constraints that can later be checked automatically: adoption signal, deployment claim, source URL, and synthesis criterion.</div>
       </div>
       <div class="ds-panel evidence-stack" id="evStack">
-        <div class="evidence-row" id="ev0"><div class="src">Search</div><div class="txt">Topic page: top repositories under retrieval-augmented-generation.</div><div class="tag">entity set</div></div>
-        <div class="evidence-row" id="ev1"><div class="src">Visit</div><div class="txt">README: exact command appears as <code>pip install lightrag-hku</code>.</div><div class="tag">leaf</div></div>
-        <div class="evidence-row" id="ev2"><div class="src">Visit</div><div class="txt">README: Docker-only setup, no single pip command.</div><div class="tag">leaf</div></div>
-        <div class="evidence-row" id="ev3"><div class="src">PyPI</div><div class="txt">Package page confirms name and release metadata.</div><div class="tag">support</div></div>
+        <div class="evidence-row" id="ev0"><div class="src">Search</div><div class="txt">Find candidate RAG systems and current adoption signals.</div><div class="tag">fact</div></div>
+        <div class="evidence-row" id="ev1"><div class="src">Visit</div><div class="txt">Project docs describe setup path, target users, and deployment model.</div><div class="tag">claim</div></div>
+        <div class="evidence-row" id="ev2"><div class="src">Visit</div><div class="txt">Primary sources provide URLs for inline citation.</div><div class="tag">ground</div></div>
+        <div class="evidence-row" id="ev3"><div class="src">Judge</div><div class="txt">Rubric checks whether the final brief synthesizes tradeoffs.</div><div class="tag">report</div></div>
         <div class="evidence-row" id="ev4"><div class="src">Judge</div><div class="txt">Drop constraints that cannot be resolved into reliable checks.</div><div class="tag">refine</div></div>
       </div>
     </div>
@@ -299,58 +404,71 @@
     <div class="ds-wrap">
       <div class="ds-panel">
         <div class="ds-kicker">Rubric tree</div>
-        <div class="ds-title">Turn evidence into a hierarchy of checks.</div>
-        <div class="ds-copy">Internal nodes aggregate task-specific criteria. Leaf nodes are directly verifiable and produce binary scores; the root becomes a fine-grained reward instead of a pass/fail label.</div>
-        <div class="protocol-grid">
-          <div class="protocol-card" id="rp0"><div class="num">1.0</div><div class="lbl">root score</div></div>
-          <div class="protocol-card" id="rp1"><div class="num">7</div><div class="lbl">checkable leaves</div></div>
+        <div class="ds-title">Task-specific trees, one unified framework.</div>
+        <div class="ds-copy">Each task gets its own automatically generated rubric tree. Depending on what the task demands, the tree may cover any subset of the three capability dimensions below.</div>
+        <div class="cap-list">
+          <div class="cap-item" id="cap0"><div class="ico">1</div><div><b>Fact seeking</b><span>Locate specific facts through multi-hop web search.</span></div></div>
+          <div class="cap-item" id="cap1"><div class="ico">2</div><div><b>Report synthesis</b><span>Open-ended tasks: organize evidence into structured outputs.</span></div></div>
+          <div class="cap-item" id="cap2"><div class="ico">3</div><div><b>Citation grounding</b><span>Both task types: attribute claims to primary sources.</span></div></div>
         </div>
       </div>
       <div class="tree-stage">
         <svg class="tree-svg" viewBox="0 0 520 300" preserveAspectRatio="none">
-          <path class="tree-edge" id="te0" d="M260 48 C210 78 160 96 128 130" />
-          <path class="tree-edge" id="te1" d="M260 48 C248 86 242 104 236 120" />
-          <path class="tree-edge" id="te2" d="M260 48 C318 78 372 98 404 132" />
-          <path class="tree-edge" id="te3" d="M128 160 C86 190 70 226 64 260" />
-          <path class="tree-edge" id="te4" d="M128 160 C156 200 172 226 184 260" />
-          <path class="tree-edge" id="te5" d="M404 162 C354 198 344 226 336 260" />
-          <path class="tree-edge" id="te6" d="M404 162 C452 198 466 226 470 260" />
+          <!-- root → internal nodes -->
+          <path class="tree-edge" id="te0" d="M260 54 C208 82 136 96 78 118" />
+          <path class="tree-edge" id="te1" d="M260 54 C260 78 260 94 260 118" />
+          <path class="tree-edge" id="te2" d="M260 54 C312 82 384 96 440 118" />
+          <!-- N1 (fact seeking) → leaves -->
+          <path class="tree-edge" id="te3" d="M78 152 C62 195 47 228 42 254" />
+          <path class="tree-edge" id="te4" d="M78 152 C94 195 115 228 130 254" />
+          <!-- N2 (citation grounding) → leaves -->
+          <path class="tree-edge" id="te5" d="M260 152 C244 195 226 228 218 254" />
+          <path class="tree-edge" id="te6" d="M260 152 C276 195 299 228 307 254" />
+          <!-- N3 (report synthesis) → leaves -->
+          <path class="tree-edge" id="te7" d="M440 152 C424 195 403 228 395 254" />
+          <path class="tree-edge" id="te8" d="M440 152 C456 195 473 228 478 254" />
         </svg>
-        <div class="tree-node root pass" id="tn0"><span class="mark">✓</span><span>overall task score</span></div>
-        <div class="tree-node n1 pass" id="tn1"><span class="mark">✓</span><span>repo set + order</span></div>
-        <div class="tree-node n2 pass" id="tn2"><span class="mark">✓</span><span>source citations</span></div>
-        <div class="tree-node n3 fail" id="tn3"><span class="mark">×</span><span>install claims</span></div>
-        <div class="tree-node n4 pass" id="tn4"><span class="mark">✓</span><span>top-10 entities</span></div>
-        <div class="tree-node n5 pass" id="tn5"><span class="mark">✓</span><span>star ranking</span></div>
-        <div class="tree-node n6 pass" id="tn6"><span class="mark">✓</span><span>pip line found</span></div>
-        <div class="tree-node n7 fail" id="tn7"><span class="mark">×</span><span>ambiguous package</span></div>
+        <!-- Root -->
+        <div class="tree-node root fail" id="tn0"><span class="mark">✗</span><span>research brief</span></div>
+        <!-- Internal nodes -->
+        <div class="tree-node n1 pass" id="tn1"><span class="mark">✓</span><span>fact seeking</span></div>
+        <div class="tree-node n2 pass" id="tn2"><span class="mark">✓</span><span>report synthesis</span></div>
+        <div class="tree-node n3 fail" id="tn3"><span class="mark">✗</span><span>citation grounding</span></div>
+        <!-- Leaves under fact seeking -->
+        <div class="tree-node leaf n4 pass" id="tn4"><span class="mark">✓</span><span>factual accuracy</span></div>
+        <div class="tree-node leaf n5 pass" id="tn5"><span class="mark">✓</span><span>coverage</span></div>
+        <!-- Leaves under report synthesis -->
+        <div class="tree-node leaf n6 pass" id="tn6"><span class="mark">✓</span><span>complete</span></div>
+        <div class="tree-node leaf n7 pass" id="tn7"><span class="mark">✓</span><span>coherent</span></div>
+        <!-- Leaves under citation grounding -->
+        <div class="tree-node leaf n8 pass" id="tn8"><span class="mark">✓</span><span>source attribution</span></div>
+        <div class="tree-node leaf n9 fail" id="tn9"><span class="mark">✗</span><span>URL verified</span></div>
       </div>
     </div>
   </div>
 
   <!-- Phase 3: Training -->
   <div class="scene" id="sc-training">
-    <div class="ds-wrap">
-      <div class="ds-panel">
-        <div class="ds-kicker">Training recipe</div>
-        <div class="ds-title">Rubric-tree tasks feed a three-stage agent curriculum.</div>
-        <div class="ds-copy">Training is shown compactly here: MT adapts the base model to long-context agent states, SFT teaches high-quality tool-use trajectories, and RL optimizes full research outcomes with rubric and citation rewards.</div>
-        <div class="protocol-grid">
-          <div class="protocol-card" id="pc0"><div class="num">MT</div><div class="lbl">context state + evidence extraction</div></div>
-          <div class="protocol-card" id="pc1"><div class="num">SFT</div><div class="lbl">filtered tool-use trajectories</div></div>
-          <div class="protocol-card" id="pc2"><div class="num">RL</div><div class="lbl">rubric-tree reward</div></div>
-          <div class="protocol-card" id="pc3"><div class="num">fact</div><div class="lbl">citation faithfulness</div></div>
+    <div class="ds-panel" style="height:100%">
+      <div class="ds-kicker">Training</div>
+      <div class="ds-title">A progressive three-stage training pipeline.</div>
+      <div class="train-flow">
+        <div class="train-step" id="pc0">
+          <div class="num">01</div>
+          <div class="name">Mid-training</div>
+          <div class="desc">adapt the model to long-horizon research states</div>
         </div>
-      </div>
-      <div class="ds-panel">
-        <div class="ds-kicker">stage handoff</div>
-        <div class="code-lines">
-          <div class="code-line" id="cl0"><span class="kw">MT</span>&nbsp;&nbsp;learn(memory_state, extracted_evidence)</div>
-          <div class="code-line" id="cl1"><span class="kw">SFT</span>&nbsp;imitate(successful_teacher_trajectories)</div>
-          <div class="code-line" id="cl2"><span class="kw">RL</span>&nbsp;&nbsp;rollout(agent, synthetic_task)</div>
-          <div class="code-line" id="cl3">reward = 0.75 * rubric_score</div>
-          <div class="code-line" id="cl4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.25 * citation_score</div>
-          <div class="code-line" id="cl5"><span class="cm"># trained policy is then used at inference time</span></div>
+        <div class="flow-arrow" id="ta0"></div>
+        <div class="train-step" id="pc1">
+          <div class="num">02</div>
+          <div class="name">Supervised Fine-tuning</div>
+          <div class="desc">imitate clean tool-use trajectories</div>
+        </div>
+        <div class="flow-arrow" id="ta1"></div>
+        <div class="train-step" id="pc2">
+          <div class="num">03</div>
+          <div class="name">Reinforcement Learning</div>
+          <div class="desc">optimize outcomes with rubric-tree rewards</div>
         </div>
       </div>
     </div>
@@ -444,19 +562,21 @@
 <script>
 const T0 = performance.now();
 
-// Phase windows in ms
+// Phase windows in ms  (tr0/tr1/tr2 are 3800 ms chapter-card transitions)
 const P = [
-  {name:"seed",     start:0,     end:4000  },
-  {name:"evidence", start:4000,  end:8500  },
-  {name:"rubric",   start:8500,  end:15500 },
-  {name:"training", start:15500, end:20500 },
-  {name:"q",        start:20500, end:23000 },
-  {name:"tt1",      start:23000, end:34500 },
-  {name:"cd",       start:34500, end:40500 },
-  {name:"tt2",      start:40500, end:45500 },
-  {name:"ans",      start:45500, end:51000 },
+  {name:"tr0",      start:0,     end:3800  },
+  {name:"seed",     start:3800,  end:10300 },
+  {name:"rubric",   start:10300, end:16800 },
+  {name:"tr1",      start:16800, end:20600 },
+  {name:"training", start:20600, end:25600 },
+  {name:"tr2",      start:25600, end:29400 },
+  {name:"q",        start:29400, end:31900 },
+  {name:"tt1",      start:31900, end:44400 },
+  {name:"cd",       start:44400, end:50400 },
+  {name:"tt2",      start:50400, end:55900 },
+  {name:"ans",      start:55900, end:62400 },
 ];
-const TOTAL = 51000;
+const TOTAL = 62400;
 
 // Real first-round reasoning is ~1100 chars; here is a faithful trimmed version
 // so viewers see substantive thinking, not a one-liner.
@@ -546,31 +666,39 @@ function setActivePhase(phaseIdx){
 }
 
 function setScene(name){
-  ['seed','evidence','rubric','training','q','tt1','cd','tt2','ans'].forEach(n => {
+  ['tr0','seed','evidence','rubric','tr1','training','tr2','q','tt1','cd','tt2','ans'].forEach(n => {
     document.getElementById('sc-' + n).classList.toggle('show', n === name);
   });
 }
 
 const fillEl = document.getElementById('fill');
 const roundEl = document.getElementById('round');
+const roundLabelEl = document.getElementById('roundLabel');
+const roundPillEl = document.getElementById('roundPill');
 const msgsEl = { set textContent(v){} };  // msgs pill removed; keep stub so existing assignments are no-ops
 const tokTxt = document.getElementById('tokTxt');
 const barLabel = document.getElementById('barLabel');
 const budgetLabel = document.getElementById('budgetLabel');
 const thrEl = document.getElementById('thr');
+const tokensEl = document.getElementById('tokens');
 
 window.__renderAt = function(ms){
   const t = Math.min(ms, TOTAL);
   let phase = 0;
   for (let i = 0; i < P.length; i++) if (t >= P[i].start) phase = i;
-  const macroPhase = phase < 3 ? 0 : (phase === 3 ? 1 : 2);
+  // macro: 0=Data Synthesis (tr0,seed,rubric), 1=Training (tr1,training), 2=Inference (tr2+)
+  const macroPhase = phase <= 2 ? 0 : (phase <= 4 ? 1 : 2);
   setActivePhase(macroPhase);
   setScene(P[phase].name);
+  tokensEl.classList.toggle('hidden', macroPhase !== 2);
+  // hide round pill during Data Synthesis and Training; only show during Inference
+  roundPillEl.style.visibility = macroPhase === 2 ? 'visible' : 'hidden';
+  roundLabelEl.textContent = 'round';
 
-  if (phase < 3){
+  if (phase <= 2){
     barLabel.textContent = 'Synthesis progress';
     budgetLabel.textContent = '/ 100 pipeline';
-  } else if (phase === 3) {
+  } else if (phase <= 4) {
     barLabel.textContent = 'Training progress';
     budgetLabel.textContent = '/ MT+SFT+RL';
   } else {
@@ -578,39 +706,84 @@ window.__renderAt = function(ms){
     budgetLabel.textContent = '/ 80,000 budget';
   }
 
+  // ── chapter cards ──
   if (phase === 0){
     const local = (t - P[0].start) / (P[0].end - P[0].start);
-    const prog = Math.round(ease(local) * 18);
-    roundEl.textContent='data';msgsEl.textContent='1';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
-    for (let i = 0; i < 4; i++) document.getElementById('seed' + i).classList.toggle('in', local > 0.16 + i * 0.12);
-  }
-  if (phase === 1){
-    const local = (t - P[1].start) / (P[1].end - P[1].start);
-    const prog = Math.round(18 + ease(local) * 22);
-    roundEl.textContent='mine';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
-    for (let i = 0; i < 5; i++) document.getElementById('ev' + i).classList.toggle('in', local > 0.10 + i * 0.13);
-  }
-  if (phase === 2){
-    const local = (t - P[2].start) / (P[2].end - P[2].start);
-    const prog = Math.round(40 + ease(local) * 28);
-    roundEl.textContent='tree';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
-    for (let i = 0; i < 7; i++) document.getElementById('te' + i).classList.toggle('in', local > 0.13 + i * 0.06);
-    for (let i = 0; i < 8; i++) document.getElementById('tn' + i).classList.toggle('in', local > 0.06 + i * 0.075);
-    document.getElementById('rp0').classList.toggle('in', local > 0.72);
-    document.getElementById('rp1').classList.toggle('in', local > 0.82);
+    fillEl.style.width='0%'; tokTxt.textContent='0'; thrEl.classList.remove('visible');
+    document.getElementById('trb0').classList.toggle('in', local > 0.12);
+    document.getElementById('trh0').classList.toggle('in', local > 0.28);
+    document.getElementById('trs0').classList.toggle('in', local > 0.44);
   }
   if (phase === 3){
     const local = (t - P[3].start) / (P[3].end - P[3].start);
-    const prog = Math.round(ease(local) * 100);
-    roundEl.textContent='train';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
-    for (let i = 0; i < 4; i++) document.getElementById('pc' + i).classList.toggle('in', local > 0.12 + i * 0.10);
-    for (let i = 0; i < 6; i++) document.getElementById('cl' + i).classList.toggle('in', local > 0.10 + i * 0.105);
-  }
-  if (phase === 4){
-    roundEl.textContent='0';msgsEl.textContent='1';fillEl.style.width='0%';tokTxt.textContent='0';thrEl.classList.remove('visible');
+    fillEl.style.width='68%'; tokTxt.textContent='68'; thrEl.classList.remove('visible');
+    document.getElementById('trb1').classList.toggle('in', local > 0.12);
+    document.getElementById('trh1').classList.toggle('in', local > 0.28);
+    document.getElementById('trs1').classList.toggle('in', local > 0.44);
   }
   if (phase === 5){
     const local = (t - P[5].start) / (P[5].end - P[5].start);
+    fillEl.style.width='0%'; tokTxt.textContent='0'; thrEl.classList.remove('visible');
+    document.getElementById('trb2').classList.toggle('in', local > 0.12);
+    document.getElementById('trh2').classList.toggle('in', local > 0.28);
+    document.getElementById('trs2').classList.toggle('in', local > 0.44);
+  }
+
+  // ── data synthesis ──
+  if (phase === 1){
+    const local = (t - P[1].start) / (P[1].end - P[1].start);
+    const prog = Math.round(ease(local) * 34);
+    fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    document.getElementById('flow0').classList.toggle('in', local > 0.08);
+    document.getElementById('fa0').classList.toggle('in', local > 0.28);
+    document.getElementById('flow1').classList.toggle('in', local > 0.40);
+    document.getElementById('fa1').classList.toggle('in', local > 0.62);
+    document.getElementById('flow2').classList.toggle('in', local > 0.74);
+  }
+  if (phase === 2){
+    const local = (t - P[2].start) / (P[2].end - P[2].start);
+    const prog = Math.round(34 + ease(local) * 34);
+    fillEl.style.width=prog+'%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    document.getElementById('tn0').classList.toggle('in', local > 0.05);
+    document.getElementById('te0').classList.toggle('in', local > 0.11);
+    document.getElementById('te1').classList.toggle('in', local > 0.14);
+    document.getElementById('te2').classList.toggle('in', local > 0.17);
+    document.getElementById('tn1').classList.toggle('in', local > 0.20);
+    document.getElementById('tn2').classList.toggle('in', local > 0.24);
+    document.getElementById('tn3').classList.toggle('in', local > 0.28);
+    document.getElementById('te3').classList.toggle('in', local > 0.32);
+    document.getElementById('te4').classList.toggle('in', local > 0.35);
+    document.getElementById('te5').classList.toggle('in', local > 0.38);
+    document.getElementById('te6').classList.toggle('in', local > 0.41);
+    document.getElementById('te7').classList.toggle('in', local > 0.44);
+    document.getElementById('te8').classList.toggle('in', local > 0.47);
+    document.getElementById('tn4').classList.toggle('in', local > 0.35);
+    document.getElementById('tn5').classList.toggle('in', local > 0.38);
+    document.getElementById('tn6').classList.toggle('in', local > 0.41);
+    document.getElementById('tn7').classList.toggle('in', local > 0.44);
+    document.getElementById('tn8').classList.toggle('in', local > 0.47);
+    document.getElementById('tn9').classList.toggle('in', local > 0.50);
+    for (let i = 0; i < 3; i++) document.getElementById('cap'+i).classList.toggle('in', local > 0.58 + i * 0.10);
+  }
+
+  // ── training ──
+  if (phase === 4){
+    const local = (t - P[4].start) / (P[4].end - P[4].start);
+    const prog = Math.round(ease(local) * 100);
+    fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    document.getElementById('pc0').classList.toggle('in', local > 0.10);
+    document.getElementById('ta0').classList.toggle('in', local > 0.30);
+    document.getElementById('pc1').classList.toggle('in', local > 0.42);
+    document.getElementById('ta1').classList.toggle('in', local > 0.62);
+    document.getElementById('pc2').classList.toggle('in', local > 0.74);
+  }
+
+  // ── inference ──
+  if (phase === 6){
+    roundEl.textContent='0';fillEl.style.width='0%';tokTxt.textContent='0';thrEl.classList.remove('visible');
+  }
+  if (phase === 7){
+    const local = (t - P[7].start) / (P[7].end - P[7].start);
     const e = ease(local);
     const round = Math.round(1 + e * 61);
     const msgs = Math.round(2 + e * 120);
@@ -621,8 +794,8 @@ window.__renderAt = function(ms){
     renderStream(tt1Stream, tt1Steps, local, tt1Weights);
     document.getElementById('tt1Round').textContent = round;
   }
-  if (phase === 6){
-    const local = (t - P[6].start) / (P[6].end - P[6].start);
+  if (phase === 8){
+    const local = (t - P[8].start) / (P[8].end - P[8].start);
     const dropProg = Math.min(1, local / 0.55);
     const tok = Math.round(80824 - dropProg * (80824 - 2400));
     tokTxt.textContent = fmt(tok);
@@ -635,8 +808,8 @@ window.__renderAt = function(ms){
     for (let i = 0; i < stats.length; i++) document.getElementById(stats[i]).classList.toggle('in', local > 0.18 + i * 0.08);
     for (let i = 0; i < facts.length; i++) document.getElementById(facts[i]).classList.toggle('in', local > 0.5 + i * 0.10);
   }
-  if (phase === 7){
-    const local = (t - P[7].start) / (P[7].end - P[7].start);
+  if (phase === 9){
+    const local = (t - P[9].start) / (P[9].end - P[9].start);
     const e = ease(local);
     const round = Math.round(63 + e * 24);
     const msgs = Math.round(2 + e * 49);
@@ -647,8 +820,8 @@ window.__renderAt = function(ms){
     document.getElementById('tt2Round').textContent = round;
     thrEl.classList.remove('visible');
   }
-  if (phase === 8){
-    const local = (t - P[8].start) / (P[8].end - P[8].start);
+  if (phase === 10){
+    const local = (t - P[10].start) / (P[10].end - P[10].start);
     roundEl.textContent = '87'; msgsEl.textContent = '51';
     tokTxt.textContent = fmt(41721);
     fillEl.style.width = (41721 / 80000 * 100) + '%';
