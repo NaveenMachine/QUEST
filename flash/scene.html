@@ -862,6 +862,74 @@ window.__renderAt = function(ms){
   }
 };
 window.__TOTAL = TOTAL;
+
+// ── Interactive player (hidden when captured by Puppeteer) ──
+if (!navigator.webdriver) {
+  const playerUI = document.createElement('div');
+  playerUI.id = 'player-ui';
+  playerUI.innerHTML = `
+    <button id="pp-btn" title="Play / Pause">⏸</button>
+    <input type="range" id="scrubber" min="0" max="${TOTAL}" value="0" step="50">
+    <span id="time-disp">0:00</span>
+  `;
+  document.body.appendChild(playerUI);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #player-ui{
+      position:fixed;bottom:0;left:0;right:0;
+      display:flex;align-items:center;gap:10px;
+      padding:8px 20px;
+      background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+      border-top:1px solid rgba(10,15,40,.10);
+      font-family:Manrope,system-ui,sans-serif;font-size:12px;color:#475569;
+      z-index:9999;
+    }
+    #pp-btn{
+      width:30px;height:30px;border:none;border-radius:50%;
+      background:var(--accent,#0B9E8A);color:#fff;font-size:13px;
+      cursor:pointer;display:grid;place-items:center;flex-shrink:0;
+    }
+    #scrubber{flex:1;accent-color:var(--accent,#0B9E8A);cursor:pointer}
+    #time-disp{min-width:42px;text-align:right;font-variant-numeric:tabular-nums}
+  `;
+  document.head.appendChild(style);
+
+  let cur = 0, playing = true, raf;
+  let lastTs = null;
+  const btn = document.getElementById('pp-btn');
+  const scrub = document.getElementById('scrubber');
+  const disp = document.getElementById('time-disp');
+
+  function fmt2(ms){ const s=Math.floor(ms/1000); return Math.floor(s/60)+':'+(s%60).toString().padStart(2,'0'); }
+
+  function tick(ts){
+    if(lastTs === null) lastTs = ts;
+    const dt = ts - lastTs; lastTs = ts;
+    if(playing){ cur = Math.min(cur + dt, TOTAL); }
+    window.__renderAt(cur);
+    scrub.value = cur;
+    disp.textContent = fmt2(cur);
+    if(cur < TOTAL || !playing) raf = requestAnimationFrame(tick);
+    else { playing = false; btn.textContent = '▶'; lastTs = null; }
+  }
+
+  btn.addEventListener('click', () => {
+    playing = !playing;
+    btn.textContent = playing ? '⏸' : '▶';
+    if(playing){ if(cur >= TOTAL) cur = 0; lastTs = null; raf = requestAnimationFrame(tick); }
+  });
+  scrub.addEventListener('input', () => {
+    cur = +scrub.value;
+    window.__renderAt(cur);
+    disp.textContent = fmt2(cur);
+  });
+  scrub.addEventListener('mousedown', () => { playing = false; btn.textContent = '▶'; cancelAnimationFrame(raf); });
+
+  window.__renderAt(0);
+  lastTs = null;
+  raf = requestAnimationFrame(tick);
+}
 </script>
 
 </body>
