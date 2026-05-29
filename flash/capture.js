@@ -6,11 +6,14 @@
   const FPS = 18;
   const W = 1200, H = 675;
   const OUT = '/tmp/gif_build/frames';
+  const chromePath = fs.existsSync('/usr/bin/google-chrome')
+    ? '/usr/bin/google-chrome'
+    : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
   fs.mkdirSync(OUT, { recursive: true });
   for (const f of fs.readdirSync(OUT)) fs.unlinkSync(path.join(OUT, f));
 
   const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/google-chrome',
+    executablePath: chromePath,
     headless: 'new',
     args: ['--no-sandbox', '--disable-gpu', `--window-size=${W},${H}`,
            '--force-device-scale-factor=2'],

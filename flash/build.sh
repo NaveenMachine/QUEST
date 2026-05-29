@@ -9,7 +9,7 @@ BUILD_DIR=/tmp/gif_build
 OUT_DIR="$(cd "$SRC_DIR/.." && pwd)"
 
 mkdir -p "$BUILD_DIR/frames"
-cp -u "$SRC_DIR/scene.html" "$SRC_DIR/capture.js" "$BUILD_DIR/"
+cp -f "$SRC_DIR/scene.html" "$SRC_DIR/capture.js" "$BUILD_DIR/"
 
 # 1. install puppeteer-core if /tmp got wiped
 if [ ! -d /tmp/node_modules/puppeteer-core ]; then
@@ -20,7 +20,9 @@ fi
 # 2. load ffmpeg module if not on PATH
 if ! command -v ffmpeg >/dev/null 2>&1; then
   echo ">> loading ffmpeg module"
-  module load ffmpeg/6.1.1
+  if command -v module >/dev/null 2>&1; then
+    module load ffmpeg/6.1.1
+  fi
 fi
 
 if [ "${1:-}" != "encode" ]; then

@@ -158,6 +158,62 @@
   .ans-row .pip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#0A8070;
     background:rgba(11,158,138,.08);padding:2px 6px;border-radius:4px;display:inline-block}
   .ans-row .pip.no{color:var(--muted);background:#F8FAFC}
+
+  /* ── data synthesis scenes ── */
+  .ds-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:18px;flex:1;min-height:0}
+  .ds-panel{border:1px solid var(--line);border-radius:12px;background:#F8FAFC;
+    padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-height:0}
+  .ds-kicker{font-size:10.5px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .ds-title{font-size:18px;font-weight:800;color:var(--ink);line-height:1.2}
+  .ds-copy{font-size:13px;line-height:1.5;color:#334155}
+  .seed-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:auto}
+  .seed{border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 10px;
+    display:flex;flex-direction:column;gap:2px;opacity:0;transform:translateY(8px);
+    transition:opacity .35s,transform .35s}
+  .seed.in{opacity:1;transform:none}
+  .seed b{font-size:12px;color:var(--ink)}
+  .seed span{font-size:11px;color:var(--muted)}
+  .evidence-stack{display:flex;flex-direction:column;gap:8px;justify-content:center}
+  .evidence-row{display:grid;grid-template-columns:54px 1fr 74px;gap:8px;align-items:center;
+    border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 10px;
+    opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s}
+  .evidence-row.in{opacity:1;transform:none}
+  .evidence-row .src{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;
+    color:#1D4ED8;background:rgba(37,99,235,.09);padding:3px 5px;border-radius:4px;text-align:center}
+  .evidence-row .txt{font-size:12px;color:var(--ink);line-height:1.35}
+  .evidence-row .tag{font-size:10px;color:#0A8070;background:rgba(11,158,138,.09);
+    padding:3px 5px;border-radius:4px;text-align:center;font-weight:700}
+  .tree-stage{position:relative;flex:1;min-height:260px;display:grid;place-items:center}
+  .tree-svg{width:100%;height:100%;overflow:visible}
+  .tree-edge{fill:none;stroke:#9DB3C3;stroke-width:5;stroke-linecap:round;opacity:.42;
+    stroke-dasharray:260;stroke-dashoffset:260;transition:stroke-dashoffset .7s ease,opacity .3s}
+  .tree-edge.in{stroke-dashoffset:0;opacity:.88}
+  .tree-node{position:absolute;width:112px;min-height:42px;border:2px solid #8EA7BA;border-radius:13px;
+    background:#FFFFFF;box-shadow:0 3px 10px rgba(20,40,70,.10);display:flex;align-items:center;gap:7px;
+    padding:7px 9px;font-size:11px;line-height:1.15;font-weight:700;color:#25364A;
+    opacity:0;transform:scale(.88);transition:opacity .35s,transform .35s,background .35s,border-color .35s}
+  .tree-node.in{opacity:1;transform:scale(1)}
+  .tree-node.pass{background:#EAF6F1;border-color:#7FA99A}
+  .tree-node.fail{background:#F7E7E7;border-color:#B98B92}
+  .tree-node .mark{width:18px;height:18px;border-radius:999px;display:grid;place-items:center;color:#fff;
+    font-size:12px;font-weight:900;flex:0 0 auto}
+  .tree-node.pass .mark{background:var(--good)}
+  .tree-node.fail .mark{background:#C75B4F}
+  .tree-node.root{left:50%;top:0;transform:translateX(-50%) scale(.88);width:126px}
+  .tree-node.root.in{transform:translateX(-50%) scale(1)}
+  .tree-node.n1{left:17%;top:29%}.tree-node.n2{left:44%;top:25%}.tree-node.n3{right:16%;top:31%}
+  .tree-node.n4{left:7%;bottom:2%}.tree-node.n5{left:28%;bottom:5%}.tree-node.n6{right:28%;bottom:5%}.tree-node.n7{right:7%;bottom:2%}
+  .protocol-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+  .protocol-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:11px 12px;
+    opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
+  .protocol-card.in{opacity:1;transform:none}
+  .protocol-card .num{font-size:20px;font-weight:850;color:var(--accent);line-height:1}
+  .protocol-card .lbl{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+  .code-lines{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.55;color:#334155;
+    background:#0D1117;border-radius:10px;padding:12px 14px;min-height:160px;display:flex;flex-direction:column;justify-content:center}
+  .code-line{opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;color:#D7E0EA}
+  .code-line.in{opacity:1;transform:none}
+  .code-line .kw{color:#7DD3FC}.code-line .fn{color:#FBBF24}.code-line .cm{color:#94A3B8}
 </style>
 </head>
 <body>
@@ -171,22 +227,18 @@
 
 <div class="phase-row">
   <div class="phases" id="phases">
-    <div class="step" data-i="0"><div class="dot">Q</div><div class="label">Question</div></div>
+    <div class="step" data-i="0"><div class="dot">D</div><div class="label">Data Synthesis</div></div>
     <div class="seg"></div>
-    <div class="step" data-i="1"><div class="dot">T</div><div class="label">Thinking + Tool Use</div></div>
+    <div class="step" data-i="1"><div class="dot">T</div><div class="label">Training</div></div>
     <div class="seg"></div>
-    <div class="step" data-i="2"><div class="dot">C</div><div class="label">Condenser</div></div>
-    <div class="seg"></div>
-    <div class="step" data-i="3"><div class="dot">T</div><div class="label">Thinking + Tool Use</div></div>
-    <div class="seg"></div>
-    <div class="step" data-i="4"><div class="dot">A</div><div class="label">Answer</div></div>
+    <div class="step" data-i="2"><div class="dot">I</div><div class="label">Inference</div></div>
   </div>
 </div>
 
 <div class="tokens">
   <div class="info">
-    <span>Context tokens</span>
-    <span><b id="tokTxt">0</b> <span style="color:var(--muted)">/ 80,000 budget</span>
+    <span id="barLabel">Synthesis progress</span>
+    <span><b id="tokTxt">0</b> <span id="budgetLabel" style="color:var(--muted)">/ 100 pipeline</span>
       <span class="threshold" id="thr">· threshold reached, compressing…</span></span>
   </div>
   <div class="tbar"><div class="fill" id="fill"></div><div class="threshold-line"></div></div>
@@ -194,8 +246,118 @@
 
 <div class="stage">
 
-  <!-- Phase 0: Question -->
-  <div class="scene show" id="sc-q">
+  <!-- Phase 0: Keywords -->
+  <div class="scene show" id="sc-seed">
+    <div class="ds-wrap">
+      <div class="ds-panel">
+        <div class="ds-kicker">Synthetic data construction</div>
+        <div class="ds-title">Start from real-world topics, not hand-written QA pairs.</div>
+        <div class="ds-copy">QUEST samples topical seeds, asks a strong synthesizer to browse the web, and turns discovered constraints into training tasks.</div>
+        <div class="seed-grid">
+          <div class="seed" id="seed0"><b>retrieval systems</b><span>trending technical topic</span></div>
+          <div class="seed" id="seed1"><b>GitHub repositories</b><span>multi-entity search space</span></div>
+          <div class="seed" id="seed2"><b>installation claims</b><span>verifiable constraint</span></div>
+          <div class="seed" id="seed3"><b>PyPI evidence</b><span>source-backed check</span></div>
+        </div>
+      </div>
+      <div class="ds-panel">
+        <div class="ds-kicker">Generated task sketch</div>
+        <div class="q-text" style="font-size:15px">
+          Find popular <span class="hl">retrieval-augmented-generation</span> projects,
+          verify whether each README contains a single
+          <span class="hl">pip install &lt;package&gt;</span> command, and ground every claim with source evidence.
+        </div>
+        <div class="evidence-stack" style="margin-top:auto">
+          <div class="evidence-row in"><div class="src">topic</div><div class="txt">GitHub topic page gives candidate repositories and star order.</div><div class="tag">searchable</div></div>
+          <div class="evidence-row in"><div class="src">README</div><div class="txt">Installation text can be checked repo by repo.</div><div class="tag">verifiable</div></div>
+          <div class="evidence-row in"><div class="src">PyPI</div><div class="txt">Package pages validate package names when README lines are ambiguous.</div><div class="tag">grounded</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 1: Evidence -->
+  <div class="scene" id="sc-evidence">
+    <div class="ds-wrap">
+      <div class="ds-panel">
+        <div class="ds-kicker">Web exploration by synthesizer</div>
+        <div class="ds-title">Collect facts that can become rubric leaves.</div>
+        <div class="ds-copy">The generator browses pages and keeps constraints that can later be checked automatically: entity identity, ordering, installation command, package URL, and citation support.</div>
+      </div>
+      <div class="ds-panel evidence-stack" id="evStack">
+        <div class="evidence-row" id="ev0"><div class="src">Search</div><div class="txt">Topic page: top repositories under retrieval-augmented-generation.</div><div class="tag">entity set</div></div>
+        <div class="evidence-row" id="ev1"><div class="src">Visit</div><div class="txt">README: exact command appears as <code>pip install lightrag-hku</code>.</div><div class="tag">leaf</div></div>
+        <div class="evidence-row" id="ev2"><div class="src">Visit</div><div class="txt">README: Docker-only setup, no single pip command.</div><div class="tag">leaf</div></div>
+        <div class="evidence-row" id="ev3"><div class="src">PyPI</div><div class="txt">Package page confirms name and release metadata.</div><div class="tag">support</div></div>
+        <div class="evidence-row" id="ev4"><div class="src">Judge</div><div class="txt">Drop constraints that cannot be resolved into reliable checks.</div><div class="tag">refine</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2: Rubric tree -->
+  <div class="scene" id="sc-rubric">
+    <div class="ds-wrap">
+      <div class="ds-panel">
+        <div class="ds-kicker">Rubric tree</div>
+        <div class="ds-title">Turn evidence into a hierarchy of checks.</div>
+        <div class="ds-copy">Internal nodes aggregate task-specific criteria. Leaf nodes are directly verifiable and produce binary scores; the root becomes a fine-grained reward instead of a pass/fail label.</div>
+        <div class="protocol-grid">
+          <div class="protocol-card" id="rp0"><div class="num">1.0</div><div class="lbl">root score</div></div>
+          <div class="protocol-card" id="rp1"><div class="num">7</div><div class="lbl">checkable leaves</div></div>
+        </div>
+      </div>
+      <div class="tree-stage">
+        <svg class="tree-svg" viewBox="0 0 520 300" preserveAspectRatio="none">
+          <path class="tree-edge" id="te0" d="M260 48 C210 78 160 96 128 130" />
+          <path class="tree-edge" id="te1" d="M260 48 C248 86 242 104 236 120" />
+          <path class="tree-edge" id="te2" d="M260 48 C318 78 372 98 404 132" />
+          <path class="tree-edge" id="te3" d="M128 160 C86 190 70 226 64 260" />
+          <path class="tree-edge" id="te4" d="M128 160 C156 200 172 226 184 260" />
+          <path class="tree-edge" id="te5" d="M404 162 C354 198 344 226 336 260" />
+          <path class="tree-edge" id="te6" d="M404 162 C452 198 466 226 470 260" />
+        </svg>
+        <div class="tree-node root pass" id="tn0"><span class="mark">✓</span><span>overall task score</span></div>
+        <div class="tree-node n1 pass" id="tn1"><span class="mark">✓</span><span>repo set + order</span></div>
+        <div class="tree-node n2 pass" id="tn2"><span class="mark">✓</span><span>source citations</span></div>
+        <div class="tree-node n3 fail" id="tn3"><span class="mark">×</span><span>install claims</span></div>
+        <div class="tree-node n4 pass" id="tn4"><span class="mark">✓</span><span>top-10 entities</span></div>
+        <div class="tree-node n5 pass" id="tn5"><span class="mark">✓</span><span>star ranking</span></div>
+        <div class="tree-node n6 pass" id="tn6"><span class="mark">✓</span><span>pip line found</span></div>
+        <div class="tree-node n7 fail" id="tn7"><span class="mark">×</span><span>ambiguous package</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Training -->
+  <div class="scene" id="sc-training">
+    <div class="ds-wrap">
+      <div class="ds-panel">
+        <div class="ds-kicker">Training recipe</div>
+        <div class="ds-title">Rubric-tree tasks feed a three-stage agent curriculum.</div>
+        <div class="ds-copy">Training is shown compactly here: MT adapts the base model to long-context agent states, SFT teaches high-quality tool-use trajectories, and RL optimizes full research outcomes with rubric and citation rewards.</div>
+        <div class="protocol-grid">
+          <div class="protocol-card" id="pc0"><div class="num">MT</div><div class="lbl">context state + evidence extraction</div></div>
+          <div class="protocol-card" id="pc1"><div class="num">SFT</div><div class="lbl">filtered tool-use trajectories</div></div>
+          <div class="protocol-card" id="pc2"><div class="num">RL</div><div class="lbl">rubric-tree reward</div></div>
+          <div class="protocol-card" id="pc3"><div class="num">fact</div><div class="lbl">citation faithfulness</div></div>
+        </div>
+      </div>
+      <div class="ds-panel">
+        <div class="ds-kicker">stage handoff</div>
+        <div class="code-lines">
+          <div class="code-line" id="cl0"><span class="kw">MT</span>&nbsp;&nbsp;learn(memory_state, extracted_evidence)</div>
+          <div class="code-line" id="cl1"><span class="kw">SFT</span>&nbsp;imitate(successful_teacher_trajectories)</div>
+          <div class="code-line" id="cl2"><span class="kw">RL</span>&nbsp;&nbsp;rollout(agent, synthetic_task)</div>
+          <div class="code-line" id="cl3">reward = 0.75 * rubric_score</div>
+          <div class="code-line" id="cl4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.25 * citation_score</div>
+          <div class="code-line" id="cl5"><span class="cm"># trained policy is then used at inference time</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4: Question -->
+  <div class="scene" id="sc-q">
     <div class="q-box">
       <div class="q-badge">QUESTION</div>
       <div class="q-text">
@@ -284,13 +446,17 @@ const T0 = performance.now();
 
 // Phase windows in ms
 const P = [
-  {name:"q",   start:0,     end:3500  },  // 3.5s
-  {name:"tt1", start:3500,  end:17500 },  // 14.0s — think+tool ×62, tokens 0→80,824 (slowed)
-  {name:"cd",  start:17500, end:25500 },  // 8.0s — condenser (slowed)
-  {name:"tt2", start:25500, end:31500 },  // 6.0s — think+tool ×25 (slowed)
-  {name:"ans", start:31500, end:38500 },  // 7.0s — 10-row answer reveal (slowed)
+  {name:"seed",     start:0,     end:4000  },
+  {name:"evidence", start:4000,  end:8500  },
+  {name:"rubric",   start:8500,  end:15500 },
+  {name:"training", start:15500, end:20500 },
+  {name:"q",        start:20500, end:23000 },
+  {name:"tt1",      start:23000, end:34500 },
+  {name:"cd",       start:34500, end:40500 },
+  {name:"tt2",      start:40500, end:45500 },
+  {name:"ans",      start:45500, end:51000 },
 ];
-const TOTAL = 38500;
+const TOTAL = 51000;
 
 // Real first-round reasoning is ~1100 chars; here is a faithful trimmed version
 // so viewers see substantive thinking, not a one-liner.
@@ -380,7 +546,7 @@ function setActivePhase(phaseIdx){
 }
 
 function setScene(name){
-  ['q','tt1','cd','tt2','ans'].forEach(n => {
+  ['seed','evidence','rubric','training','q','tt1','cd','tt2','ans'].forEach(n => {
     document.getElementById('sc-' + n).classList.toggle('show', n === name);
   });
 }
@@ -389,20 +555,62 @@ const fillEl = document.getElementById('fill');
 const roundEl = document.getElementById('round');
 const msgsEl = { set textContent(v){} };  // msgs pill removed; keep stub so existing assignments are no-ops
 const tokTxt = document.getElementById('tokTxt');
+const barLabel = document.getElementById('barLabel');
+const budgetLabel = document.getElementById('budgetLabel');
 const thrEl = document.getElementById('thr');
 
 window.__renderAt = function(ms){
   const t = Math.min(ms, TOTAL);
   let phase = 0;
   for (let i = 0; i < P.length; i++) if (t >= P[i].start) phase = i;
-  setActivePhase(phase);
+  const macroPhase = phase < 3 ? 0 : (phase === 3 ? 1 : 2);
+  setActivePhase(macroPhase);
   setScene(P[phase].name);
 
+  if (phase < 3){
+    barLabel.textContent = 'Synthesis progress';
+    budgetLabel.textContent = '/ 100 pipeline';
+  } else if (phase === 3) {
+    barLabel.textContent = 'Training progress';
+    budgetLabel.textContent = '/ MT+SFT+RL';
+  } else {
+    barLabel.textContent = 'Context tokens';
+    budgetLabel.textContent = '/ 80,000 budget';
+  }
+
   if (phase === 0){
-    roundEl.textContent='0';msgsEl.textContent='1';fillEl.style.width='0%';tokTxt.textContent='0';thrEl.classList.remove('visible');
+    const local = (t - P[0].start) / (P[0].end - P[0].start);
+    const prog = Math.round(ease(local) * 18);
+    roundEl.textContent='data';msgsEl.textContent='1';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    for (let i = 0; i < 4; i++) document.getElementById('seed' + i).classList.toggle('in', local > 0.16 + i * 0.12);
   }
   if (phase === 1){
     const local = (t - P[1].start) / (P[1].end - P[1].start);
+    const prog = Math.round(18 + ease(local) * 22);
+    roundEl.textContent='mine';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    for (let i = 0; i < 5; i++) document.getElementById('ev' + i).classList.toggle('in', local > 0.10 + i * 0.13);
+  }
+  if (phase === 2){
+    const local = (t - P[2].start) / (P[2].end - P[2].start);
+    const prog = Math.round(40 + ease(local) * 28);
+    roundEl.textContent='tree';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    for (let i = 0; i < 7; i++) document.getElementById('te' + i).classList.toggle('in', local > 0.13 + i * 0.06);
+    for (let i = 0; i < 8; i++) document.getElementById('tn' + i).classList.toggle('in', local > 0.06 + i * 0.075);
+    document.getElementById('rp0').classList.toggle('in', local > 0.72);
+    document.getElementById('rp1').classList.toggle('in', local > 0.82);
+  }
+  if (phase === 3){
+    const local = (t - P[3].start) / (P[3].end - P[3].start);
+    const prog = Math.round(ease(local) * 100);
+    roundEl.textContent='train';fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    for (let i = 0; i < 4; i++) document.getElementById('pc' + i).classList.toggle('in', local > 0.12 + i * 0.10);
+    for (let i = 0; i < 6; i++) document.getElementById('cl' + i).classList.toggle('in', local > 0.10 + i * 0.105);
+  }
+  if (phase === 4){
+    roundEl.textContent='0';msgsEl.textContent='1';fillEl.style.width='0%';tokTxt.textContent='0';thrEl.classList.remove('visible');
+  }
+  if (phase === 5){
+    const local = (t - P[5].start) / (P[5].end - P[5].start);
     const e = ease(local);
     const round = Math.round(1 + e * 61);
     const msgs = Math.round(2 + e * 120);
@@ -413,8 +621,8 @@ window.__renderAt = function(ms){
     renderStream(tt1Stream, tt1Steps, local, tt1Weights);
     document.getElementById('tt1Round').textContent = round;
   }
-  if (phase === 2){
-    const local = (t - P[2].start) / (P[2].end - P[2].start);
+  if (phase === 6){
+    const local = (t - P[6].start) / (P[6].end - P[6].start);
     const dropProg = Math.min(1, local / 0.55);
     const tok = Math.round(80824 - dropProg * (80824 - 2400));
     tokTxt.textContent = fmt(tok);
@@ -427,8 +635,8 @@ window.__renderAt = function(ms){
     for (let i = 0; i < stats.length; i++) document.getElementById(stats[i]).classList.toggle('in', local > 0.18 + i * 0.08);
     for (let i = 0; i < facts.length; i++) document.getElementById(facts[i]).classList.toggle('in', local > 0.5 + i * 0.10);
   }
-  if (phase === 3){
-    const local = (t - P[3].start) / (P[3].end - P[3].start);
+  if (phase === 7){
+    const local = (t - P[7].start) / (P[7].end - P[7].start);
     const e = ease(local);
     const round = Math.round(63 + e * 24);
     const msgs = Math.round(2 + e * 49);
@@ -439,8 +647,8 @@ window.__renderAt = function(ms){
     document.getElementById('tt2Round').textContent = round;
     thrEl.classList.remove('visible');
   }
-  if (phase === 4){
-    const local = (t - P[4].start) / (P[4].end - P[4].start);
+  if (phase === 8){
+    const local = (t - P[8].start) / (P[8].end - P[8].start);
     roundEl.textContent = '87'; msgsEl.textContent = '51';
     tokTxt.textContent = fmt(41721);
     fillEl.style.width = (41721 / 80000 * 100) + '%';
