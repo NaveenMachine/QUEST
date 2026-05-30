@@ -452,7 +452,8 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow-card);
 }
 
-.hero-run-trace img {
+.hero-run-trace img,
+.hero-run-trace video {
   display: block;
   width: 100%;
   height: auto;
@@ -2859,7 +2860,8 @@ sup.val-dagger {
     padding: 6px;
     border-radius: 14px;
   }
-  .hero-run-trace img {
+  .hero-run-trace img,
+  .hero-run-trace video {
     border-radius: 10px;
   }
   .top-benchmark-showcase { padding: 18px 22px 26px; }
