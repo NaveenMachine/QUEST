@@ -40,8 +40,6 @@
         </div>
 
         <nav class="site-nav">
-          <a href="#run-trace">Run Trace</a>
-          <a href="#demo">Demo</a>
           <a href="#tasks">Overview</a>
           <a href="#quest">Analysis</a>
           <a href="#data">Recipe</a>
@@ -53,9 +51,7 @@
         <nav class="toc-sidebar" aria-label="Table of contents">
           <div class="toc-label">Contents</div>
           <ol class="toc-list">
-            <li><a href="#run-trace">Run Trace</a></li>
             <li><a href="#snapshot">Snapshot</a></li>
-            <li><a href="#demo">Try QUEST</a></li>
             <li><a href="#tasks">Overview</a></li>
             <li><a href="#quest">Analysis</a></li>
             <li><a href="#data">Training Recipe</a></li>
@@ -117,7 +113,7 @@
                   <span>†Project Lead</span>
                 </p>
               </div>
-              <figure id="run-trace" class="hero-run-trace" aria-label="QUEST research run trace animation">
+              <figure id="preview" class="hero-run-trace" aria-label="QUEST agent preview">
                 <div class="vc-wrapper">
                   <video
                     id="trace-video"
@@ -268,59 +264,6 @@
                 </p>
               </div>
 
-          </section>
-
-          <section id="demo" class="section">
-            <div class="section-head">
-              <h2>Try <span class="brand">QUEST</span></h2>
-            </div>
-
-            <div class="body-copy">
-              <p>
-                Send a question to
-                <a href="https://huggingface.co/spaces/osunlp/QUEST" target="_blank" rel="noopener" style="text-decoration: underline;">QUEST HuggingFace Space</a>.
-                The first request may take 30–60 seconds while the Space wakes up.
-                If you see a connection error, please wait a moment and retry.
-              </p>
-            </div>
-
-            <div class="quest-chat" aria-label="QUEST demo chat">
-              <div class="quest-chat-stream" id="quest-chat-stream" aria-live="polite"></div>
-
-              <form class="quest-chat-input" id="quest-chat-form">
-                <textarea
-                  id="qc-question"
-                  rows="2"
-                  placeholder="Ask QUEST a research question…"
-                  required>Compare the LLM-safety research approaches of Anthropic, OpenAI, and Google DeepMind over the past 18 months, focusing on alignment techniques and red-teaming methodologies.</textarea>
-                <button type="submit" id="qc-send">Run Research</button>
-              </form>
-
-              <details class="quest-chat-advanced">
-                <summary>Advanced settings</summary>
-                <div class="quest-chat-controls">
-                  <label>
-                    Max turns
-                    <input type="number" id="qc-max-turns" value="15" min="1" max="50" step="1">
-                  </label>
-                  <label>
-                    Context strategy
-                    <select id="qc-context">
-                      <option value="condenser" selected>Condenser (default)</option>
-                      <option value="vanilla">Vanilla</option>
-                      <option value="discard_all">Discard-all</option>
-                      <option value="hide_tool_result">Hide-tool-result</option>
-                    </select>
-                  </label>
-                  <label>
-                    Temperature
-                    <input type="number" id="qc-temperature" value="1" min="0" max="1.5" step="0.1">
-                  </label>
-                </div>
-              </details>
-
-              <p class="quest-chat-status" id="qc-status"></p>
-            </div>
           </section>
 
           <section id="tasks" class="section">
@@ -1157,7 +1100,6 @@
       <footer class="site-footer">
         <p>QUEST · OSU NLP</p>
         <div class="footer-links">
-          <a href="#demo">Demo</a>
           <a href="#tasks">Overview</a>
           <a href="#quest">Analysis</a>
           <a href="#data">Recipe</a>
@@ -1167,7 +1109,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <button
       class="back-to-top"
@@ -1845,7 +1786,6 @@
           timeDisp.textContent = fmt(vid.currentTime) + " / " + fmt(vid.duration);
         }
 
-        // Mouse drag on progress bar
         let dragging = false;
         progWrap.addEventListener("mousedown", (e) => {
           dragging = true;
@@ -1859,35 +1799,29 @@
           vid.play().catch(() => {});
         });
 
-        // Touch drag on progress bar
         progWrap.addEventListener("touchstart", (e) => { seekFromEvent(e.touches[0].clientX); }, { passive: true });
         progWrap.addEventListener("touchmove",  (e) => { seekFromEvent(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
 
-        // Play / Pause button
         playBtn.addEventListener("click", () => {
           if (vid.paused) vid.play().catch(() => {});
           else vid.pause();
         });
 
-        // Mute button
         muteBtn.addEventListener("click", () => {
           vid.muted = !vid.muted;
           updateMuteBtn();
         });
 
-        // Click on video toggles play/pause
         vid.addEventListener("click", () => {
           if (vid.paused) vid.play().catch(() => {});
           else vid.pause();
         });
 
-        // Video events
         vid.addEventListener("timeupdate",     updateProgress);
         vid.addEventListener("play",           updatePlayBtn);
         vid.addEventListener("pause",          updatePlayBtn);
         vid.addEventListener("loadedmetadata", updateProgress);
 
-        // Keyboard (Space / ← / →) when wrapper focused
         wrapper.setAttribute("tabindex", "0");
         wrapper.addEventListener("keydown", (e) => {
           if (e.code === "Space")       { e.preventDefault(); vid.paused ? vid.play().catch(()=>{}) : vid.pause(); }
@@ -1898,168 +1832,8 @@
         updatePlayBtn();
         updateMuteBtn();
       })();
+
     </script>
 
-    <script type="module">
-      // ── QUEST demo chat ──────────────────────────────────────
-      import { Client } from "https://esm.sh/@gradio/client";
-
-      const SPACE_ID = "osunlp/QUEST";
-      const API_NAME = "/run_ui";
-      const DEFAULTS = { maxTurns: 15, contextStrategy: "condenser", temperature: 1 };
-
-      const form     = document.getElementById('quest-chat-form');
-      const textarea = document.getElementById('qc-question');
-      const stream   = document.getElementById('quest-chat-stream');
-      const statusEl = document.getElementById('qc-status');
-      const sendBtn  = document.getElementById('qc-send');
-      const maxTurnsInput    = document.getElementById('qc-max-turns');
-      const contextInput     = document.getElementById('qc-context');
-      const temperatureInput = document.getElementById('qc-temperature');
-      if (!form) { /* demo section absent */ } else {
-
-      function readSettings() {
-        const n  = parseInt(maxTurnsInput?.value, 10);
-        const t  = parseFloat(temperatureInput?.value);
-        const contextStrategy = (contextInput?.value || '').trim();
-        return {
-          maxTurns:    Number.isFinite(n) && n > 0 ? n : DEFAULTS.maxTurns,
-          contextStrategy: contextStrategy || DEFAULTS.contextStrategy,
-          temperature: Number.isFinite(t) && t >= 0 ? t : DEFAULTS.temperature,
-        };
-      }
-
-      let appPromise = null;
-      const getApp = () => {
-        if (!appPromise) {
-          const urlToken = new URLSearchParams(location.search).get("token");
-          const opts = urlToken ? { hf_token: urlToken, token: urlToken } : {};
-          appPromise = Client.connect(SPACE_ID, opts);
-        }
-        return appPromise;
-      };
-
-      const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => (
-        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-      ));
-
-      function appendMessage(role, html) {
-        const row = document.createElement('div');
-        row.className = `qc-msg qc-msg-${role}`;
-        const bubble = document.createElement('div');
-        bubble.className = 'qc-bubble';
-        bubble.innerHTML = html;
-        row.appendChild(bubble);
-        stream.appendChild(row);
-        stream.scrollTop = stream.scrollHeight;
-        return bubble;
-      }
-
-      const renderMd = (s) => (window.marked ? marked.parse(s) : escapeHtml(s));
-
-      // Send on Enter (Shift+Enter for newline)
-      textarea.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          form.requestSubmit();
-        }
-      });
-
-      // Track in-flight state with a flag (not the button's disabled prop)
-      // so a hung streaming connection can never permanently block Q2.
-      // Two timers protect us:
-      //   stallTimer: armed/reset on every data msg; if no data for 15s
-      //               after first response, we consider the run "done"
-      //               and unblock the UI (the for-await may still be
-      //               waiting forever — we just stop caring).
-      //   watchdog:   absolute 180s ceiling in case nothing arrives at all.
-      let inFlight = false;
-      let stallTimer = null;
-      let watchdog = null;
-      function endRun() {
-        inFlight = false;
-        sendBtn.disabled = false;
-        if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
-        if (watchdog)   { clearTimeout(watchdog);   watchdog = null;   }
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const question = textarea.value.trim();
-        if (!question || inFlight) return;
-        inFlight = true;
-
-        textarea.value = '';
-        sendBtn.disabled = true;
-        // Single-turn UI: each submit replaces the previous Q&A in the stream.
-        stream.innerHTML = '';
-        appendMessage('user', escapeHtml(question));
-        const bubble = appendMessage(
-          'assistant',
-          '<span class="qc-thinking">Thinking…</span>'
-        );
-        statusEl.textContent =
-          'Connecting to Hugging Face Space (cold start may take 30–60s)…';
-
-        // absolute 3-minute ceiling
-        watchdog = setTimeout(() => {
-          if (!inFlight) return;
-          bubble.innerHTML =
-            '<span class="qc-error">Response timed out. Please wait a moment and retry.</span>';
-          statusEl.textContent = 'Timed out.';
-          appPromise = null;
-          endRun();
-        }, 180000);
-
-        // (re)arm the "no more data for 15s = treat as done" timer
-        function armStall() {
-          if (stallTimer) clearTimeout(stallTimer);
-          stallTimer = setTimeout(() => {
-            if (!inFlight) return;
-            statusEl.textContent = '';
-            appPromise = null;   // force a fresh reconnect next time
-            endRun();
-          }, 15000);
-        }
-
-        try {
-          const app = await getApp();
-          statusEl.textContent = 'Streaming response…';
-          const cfg = readSettings();
-          const job = app.submit(API_NAME, [
-            question,
-            cfg.maxTurns,
-            cfg.contextStrategy,
-            cfg.temperature,
-          ]);
-
-          let lastAnswer = '';
-          for await (const msg of job) {
-            if (msg.type === 'data' && Array.isArray(msg.data)) {
-              armStall();
-              const [answer] = msg.data;
-              if (typeof answer === 'string' && answer !== lastAnswer) {
-                lastAnswer = answer;
-                bubble.innerHTML = renderMd(answer);
-                stream.scrollTop = stream.scrollHeight;
-              }
-            }
-          }
-          if (!lastAnswer) {
-            bubble.innerHTML =
-              '<span class="qc-error">No response received. Please wait a moment and retry.</span>';
-          }
-          statusEl.textContent = '';
-        } catch (err) {
-          bubble.innerHTML =
-            '<span class="qc-error">Service temporarily unavailable. Please wait a moment and retry.</span>';
-          statusEl.textContent = err?.message || 'Request failed.';
-          appPromise = null; // allow reconnect on next attempt
-        } finally {
-          endRun();
-        }
-      });
-      }
-    </script>
   </body>
 </html>
