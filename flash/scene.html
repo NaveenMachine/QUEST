@@ -260,6 +260,23 @@
     display:grid;place-items:center;font-size:12px;font-weight:900;margin-top:1px}
   .cap-item b{display:block;font-size:12.5px;color:var(--ink);line-height:1.25}
   .cap-item span{display:block;font-size:11.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+  .cap-eg{display:block;font-size:10.5px;color:#64748B;font-style:italic;line-height:1.35;margin-top:5px;
+    padding:4px 7px;border-left:2px solid var(--accent);background:rgba(11,158,138,.05);border-radius:0 5px 5px 0}
+
+  /* ── examples scene ── */
+  .eg-wrap{display:flex;flex-direction:column;gap:14px;justify-content:center;flex:1}
+  .eg-hd{font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .eg-title{font-size:20px;font-weight:850;color:var(--ink);line-height:1.2;margin-bottom:4px}
+  .eg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .eg-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px;
+    display:flex;flex-direction:column;gap:8px;
+    opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+  .eg-card.in{opacity:1;transform:none;box-shadow:0 6px 18px rgba(10,15,40,.07)}
+  .eg-badge{width:22px;height:22px;border-radius:999px;background:rgba(11,158,138,.12);color:#0A8070;
+    font-size:12px;font-weight:900;display:grid;place-items:center}
+  .eg-cap{font-size:13px;font-weight:800;color:var(--ink)}
+  .eg-q{font-size:12px;color:#475569;line-height:1.5;font-style:italic;
+    border-left:2px solid var(--line);padding-left:8px;margin-top:2px}
   .train-flow{display:grid;grid-template-columns:270px 46px 270px 46px 270px;align-items:center;justify-content:center;gap:10px;flex:1}
   .train-step{border:1px solid var(--line);border-radius:9px;background:#fff;padding:12px 14px;
     min-height:106px;display:flex;flex-direction:column;justify-content:center;gap:6px;
@@ -289,14 +306,14 @@
     display:flex;align-items:center;justify-content:center;
     opacity:0;pointer-events:none;transition:opacity .4s ease}
   .intro-overlay.show{opacity:1;pointer-events:auto}
-  .intro-scene{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center}
+  .intro-scene{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;text-align:center}
   .intro-q{font-size:30px;font-weight:750;color:var(--ink);line-height:1.3;white-space:nowrap;
     opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
   .intro-q.in{opacity:1;transform:none}
-  .intro-cta{font-size:20px;color:var(--muted);font-weight:500;
+  .intro-cta{font-size:28px;color:#475569;font-weight:500;
     opacity:0;transition:opacity .55s ease}
   .intro-cta.in{opacity:1}
-  .intro-cta strong{font-family:Georgia,"Source Serif 4",serif;font-style:italic;font-size:24px;color:var(--ink)}
+  .intro-cta strong{font-family:Georgia,"Source Serif 4",serif;font-style:italic;font-size:36px;color:#BA0C2F}
 </style>
 </head>
 <body>
@@ -351,7 +368,7 @@
     <div class="tr-scene">
       <div class="tr-badge" id="trb1">②</div>
       <div class="tr-heading" id="trh1">Training</div>
-      <div class="tr-sub" id="trs1">Optimize the model on rubric-tree reward signals<br>across three research capability dimensions.</div>
+      <div class="tr-sub" id="trs1">Optimize the model with rubric-tree rewards<br>across tasks that require different capabilities.</div>
     </div>
   </div>
 
@@ -422,7 +439,34 @@
     </div>
   </div>
 
-  <!-- Phase 2: Rubric tree -->
+  <!-- Phase 3: Capability examples -->
+  <div class="scene" id="sc-examples">
+    <div class="eg-wrap">
+      <div>
+        <div class="eg-hd">Capability examples</div>
+        <div class="eg-title">Different deep research tasks require different capabilities.</div>
+      </div>
+      <div class="eg-grid">
+        <div class="eg-card" id="eg0">
+          <div class="eg-badge">1</div>
+          <div class="eg-cap">Fact seeking</div>
+          <div class="eg-q">What's the title of the EMNLP 2018–2023 paper whose first author did their undergrad at Dartmouth?</div>
+        </div>
+        <div class="eg-card" id="eg1">
+          <div class="eg-badge">2</div>
+          <div class="eg-cap">Report synthesis</div>
+          <div class="eg-q">Researching how the world's wealthiest governments invest.</div>
+        </div>
+        <div class="eg-card" id="eg2">
+          <div class="eg-badge">3</div>
+          <div class="eg-cap">Citation grounding</div>
+          <div class="eg-q">Identify five music artists who currently have between 10M and 20M monthly listeners on Spotify.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4: Rubric tree -->
   <div class="scene" id="sc-rubric">
     <div class="ds-wrap">
       <div class="ds-panel">
@@ -590,17 +634,18 @@ const P = [
   {name:"intro",    start:0,     end:3000  },
   {name:"tr0",      start:3000,  end:6800  },
   {name:"seed",     start:6800,  end:13300 },
-  {name:"rubric",   start:13300, end:19800 },
-  {name:"tr1",      start:19800, end:23600 },
-  {name:"training", start:23600, end:28600 },
-  {name:"tr2",      start:28600, end:32400 },
-  {name:"q",        start:32400, end:34900 },
-  {name:"tt1",      start:34900, end:47400 },
-  {name:"cd",       start:47400, end:53400 },
-  {name:"tt2",      start:53400, end:58900 },
-  {name:"ans",      start:58900, end:65400 },
+  {name:"examples", start:13300, end:20300 },
+  {name:"rubric",   start:20300, end:30800 },
+  {name:"tr1",      start:30800, end:34600 },
+  {name:"training", start:34600, end:39600 },
+  {name:"tr2",      start:39600, end:43400 },
+  {name:"q",        start:43400, end:45900 },
+  {name:"tt1",      start:45900, end:58400 },
+  {name:"cd",       start:58400, end:64400 },
+  {name:"tt2",      start:64400, end:69900 },
+  {name:"ans",      start:69900, end:76400 },
 ];
-const TOTAL = 65400;
+const TOTAL = 76400;
 
 // Real first-round reasoning is ~1100 chars; here is a faithful trimmed version
 // so viewers see substantive thinking, not a one-liner.
@@ -692,7 +737,7 @@ function setActivePhase(phaseIdx){
 function setScene(name){
   // intro overlay uses its own show class
   document.getElementById('sc-intro').classList.toggle('show', name === 'intro');
-  ['tr0','seed','evidence','rubric','tr1','training','tr2','q','tt1','cd','tt2','ans'].forEach(n => {
+  ['tr0','seed','evidence','examples','rubric','tr1','training','tr2','q','tt1','cd','tt2','ans'].forEach(n => {
     document.getElementById('sc-' + n).classList.toggle('show', n === name);
   });
 }
@@ -712,8 +757,8 @@ window.__renderAt = function(ms){
   const t = Math.min(ms, TOTAL);
   let phase = 0;
   for (let i = 0; i < P.length; i++) if (t >= P[i].start) phase = i;
-  // macro: 0=Data Synthesis (intro,tr0,seed,rubric), 1=Training (tr1,training), 2=Inference (tr2+)
-  const macroPhase = phase <= 3 ? 0 : (phase <= 5 ? 1 : 2);
+  // macro: 0=Data Synthesis (intro,tr0,seed,examples,rubric), 1=Training (tr1,training), 2=Inference (tr2+)
+  const macroPhase = phase <= 4 ? 0 : (phase <= 6 ? 1 : 2);
   setActivePhase(macroPhase);
   setScene(P[phase].name);
   tokensEl.classList.toggle('hidden', macroPhase !== 2);
@@ -721,10 +766,10 @@ window.__renderAt = function(ms){
   roundPillEl.style.visibility = macroPhase === 2 ? 'visible' : 'hidden';
   roundLabelEl.textContent = 'round';
 
-  if (phase <= 2){
+  if (phase <= 4){
     barLabel.textContent = 'Synthesis progress';
     budgetLabel.textContent = '/ 100 pipeline';
-  } else if (phase <= 4) {
+  } else if (phase <= 6) {
     barLabel.textContent = 'Training progress';
     budgetLabel.textContent = '/ MT+SFT+RL';
   } else {
@@ -747,15 +792,15 @@ window.__renderAt = function(ms){
     document.getElementById('trh0').classList.toggle('in', local > 0.28);
     document.getElementById('trs0').classList.toggle('in', local > 0.44);
   }
-  if (phase === 4){
-    const local = (t - P[4].start) / (P[4].end - P[4].start);
+  if (phase === 5){
+    const local = (t - P[5].start) / (P[5].end - P[5].start);
     fillEl.style.width='68%'; tokTxt.textContent='68'; thrEl.classList.remove('visible');
     document.getElementById('trb1').classList.toggle('in', local > 0.12);
     document.getElementById('trh1').classList.toggle('in', local > 0.28);
     document.getElementById('trs1').classList.toggle('in', local > 0.44);
   }
-  if (phase === 6){
-    const local = (t - P[6].start) / (P[6].end - P[6].start);
+  if (phase === 7){
+    const local = (t - P[7].start) / (P[7].end - P[7].start);
     fillEl.style.width='0%'; tokTxt.textContent='0'; thrEl.classList.remove('visible');
     document.getElementById('trb2').classList.toggle('in', local > 0.12);
     document.getElementById('trh2').classList.toggle('in', local > 0.28);
@@ -775,7 +820,15 @@ window.__renderAt = function(ms){
   }
   if (phase === 3){
     const local = (t - P[3].start) / (P[3].end - P[3].start);
-    const prog = Math.round(34 + ease(local) * 34);
+    const prog = Math.round(34 + ease(local) * 17);
+    fillEl.style.width=prog+'%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
+    document.getElementById('eg0').classList.toggle('in', local > 0.12);
+    document.getElementById('eg1').classList.toggle('in', local > 0.42);
+    document.getElementById('eg2').classList.toggle('in', local > 0.72);
+  }
+  if (phase === 4){
+    const local = (t - P[4].start) / (P[4].end - P[4].start);
+    const prog = Math.round(51 + ease(local) * 17);
     fillEl.style.width=prog+'%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
     document.getElementById('tn0').classList.toggle('in', local > 0.05);
     document.getElementById('te0').classList.toggle('in', local > 0.11);
@@ -800,8 +853,8 @@ window.__renderAt = function(ms){
   }
 
   // ── training ──
-  if (phase === 5){
-    const local = (t - P[5].start) / (P[5].end - P[5].start);
+  if (phase === 6){
+    const local = (t - P[6].start) / (P[6].end - P[6].start);
     const prog = Math.round(ease(local) * 100);
     fillEl.style.width=prog + '%';tokTxt.textContent=prog;thrEl.classList.remove('visible');
     document.getElementById('pc0').classList.toggle('in', local > 0.10);
@@ -812,11 +865,11 @@ window.__renderAt = function(ms){
   }
 
   // ── inference ──
-  if (phase === 7){
+  if (phase === 8){
     roundEl.textContent='0';fillEl.style.width='0%';tokTxt.textContent='0';thrEl.classList.remove('visible');
   }
-  if (phase === 8){
-    const local = (t - P[8].start) / (P[8].end - P[8].start);
+  if (phase === 9){
+    const local = (t - P[9].start) / (P[9].end - P[9].start);
     const e = ease(local);
     const round = Math.round(1 + e * 61);
     const msgs = Math.round(2 + e * 120);
@@ -827,8 +880,8 @@ window.__renderAt = function(ms){
     renderStream(tt1Stream, tt1Steps, local, tt1Weights);
     document.getElementById('tt1Round').textContent = round;
   }
-  if (phase === 9){
-    const local = (t - P[9].start) / (P[9].end - P[9].start);
+  if (phase === 10){
+    const local = (t - P[10].start) / (P[10].end - P[10].start);
     const dropProg = Math.min(1, local / 0.55);
     const tok = Math.round(80824 - dropProg * (80824 - 2400));
     tokTxt.textContent = fmt(tok);
@@ -841,8 +894,8 @@ window.__renderAt = function(ms){
     for (let i = 0; i < stats.length; i++) document.getElementById(stats[i]).classList.toggle('in', local > 0.18 + i * 0.08);
     for (let i = 0; i < facts.length; i++) document.getElementById(facts[i]).classList.toggle('in', local > 0.5 + i * 0.10);
   }
-  if (phase === 10){
-    const local = (t - P[10].start) / (P[10].end - P[10].start);
+  if (phase === 11){
+    const local = (t - P[11].start) / (P[11].end - P[11].start);
     const e = ease(local);
     const round = Math.round(63 + e * 24);
     const msgs = Math.round(2 + e * 49);
@@ -853,8 +906,8 @@ window.__renderAt = function(ms){
     document.getElementById('tt2Round').textContent = round;
     thrEl.classList.remove('visible');
   }
-  if (phase === 11){
-    const local = (t - P[11].start) / (P[11].end - P[11].start);
+  if (phase === 12){
+    const local = (t - P[12].start) / (P[12].end - P[12].start);
     roundEl.textContent = '87'; msgsEl.textContent = '51';
     tokTxt.textContent = fmt(41721);
     fillEl.style.width = (41721 / 80000 * 100) + '%';
