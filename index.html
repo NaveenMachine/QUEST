@@ -118,28 +118,43 @@
                 </p>
               </div>
               <figure id="run-trace" class="hero-run-trace" aria-label="QUEST research run trace animation">
-                <video
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  controls
-                  preload="metadata"
-                  poster="./quest_run_1200.gif"
-                  width="1200"
-                  height="676"
-                  aria-label="Animated trace of QUEST performing a long-horizon research task with tool use, context compression, and final answer synthesis."
-                >
-                  <source src="./quest_run_1200.mp4" type="video/mp4" />
-                  <img
-                    src="./quest_run_1200.gif"
-                    alt="Animated trace of QUEST performing a long-horizon research task with tool use, context compression, and final answer synthesis."
+                <div class="vc-wrapper">
+                  <video
+                    id="trace-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    poster="./quest_run_1200.gif"
                     width="1200"
-                    height="675"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </video>
+                    height="676"
+                    aria-label="Animated trace of QUEST performing a long-horizon research task with tool use, context compression, and final answer synthesis."
+                  >
+                    <source src="./quest_run_1200.mp4" type="video/mp4" />
+                    <img
+                      src="./quest_run_1200.gif"
+                      alt="Animated trace of QUEST performing a long-horizon research task with tool use, context compression, and final answer synthesis."
+                      width="1200"
+                      height="675"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </video>
+                  <div class="vc-controls" id="trace-controls" aria-label="Video controls">
+                    <button class="vc-btn" id="vc-play" aria-label="Pause">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="9" y="1" width="4" height="12" rx="1"/></svg>
+                    </button>
+                    <div class="vc-progress-wrap" id="vc-progress" role="slider" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                      <div class="vc-track"><div class="vc-fill" id="vc-fill"></div></div>
+                      <div class="vc-thumb" id="vc-thumb"></div>
+                    </div>
+                    <span class="vc-time" id="vc-time" aria-live="off">0:00 / 0:00</span>
+                    <button class="vc-btn" id="vc-mute" aria-label="Unmute">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                  </div>
+                </div>
               </figure>
               <div class="resource-links" aria-label="QUEST resources">
                 <a class="resource-link" href="https://arxiv.org/abs/2605.24218" target="_blank" rel="noopener">
@@ -1771,6 +1786,117 @@
 
         window.addEventListener("scroll", onScroll, { passive: true });
         onScroll();
+      })();
+
+      // ── Custom trace-video player ─────────────────────────────
+      (function () {
+        const vid = document.getElementById("trace-video");
+        if (!vid) return;
+
+        const wrapper  = vid.closest(".vc-wrapper");
+        const playBtn  = document.getElementById("vc-play");
+        const muteBtn  = document.getElementById("vc-mute");
+        const progWrap = document.getElementById("vc-progress");
+        const fill     = document.getElementById("vc-fill");
+        const thumb    = document.getElementById("vc-thumb");
+        const timeDisp = document.getElementById("vc-time");
+
+        const SVG = {
+          play:  `<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M3 2l9 5-9 5V2z"/></svg>`,
+          pause: `<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="4" height="12" rx="1"/><rect x="9" y="1" width="4" height="12" rx="1"/></svg>`,
+          muted: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+          sound: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M19 5a10 10 0 0 1 0 14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+        };
+
+        function fmt(s) {
+          const t = isFinite(s) ? s : 0;
+          return Math.floor(t / 60) + ":" + String(Math.floor(t % 60)).padStart(2, "0");
+        }
+
+        function setProgress(pct) {
+          fill.style.width  = (pct * 100) + "%";
+          thumb.style.left  = (pct * 100) + "%";
+          progWrap.setAttribute("aria-valuenow", Math.round(pct * 100));
+        }
+
+        function updateProgress() {
+          const pct = vid.duration ? vid.currentTime / vid.duration : 0;
+          setProgress(pct);
+          timeDisp.textContent = fmt(vid.currentTime) + " / " + fmt(vid.duration);
+        }
+
+        function updatePlayBtn() {
+          const paused = vid.paused;
+          playBtn.innerHTML = paused ? SVG.play : SVG.pause;
+          playBtn.setAttribute("aria-label", paused ? "Play" : "Pause");
+          wrapper.classList.toggle("paused", paused);
+        }
+
+        function updateMuteBtn() {
+          muteBtn.innerHTML = vid.muted ? SVG.muted : SVG.sound;
+          muteBtn.setAttribute("aria-label", vid.muted ? "Unmute" : "Mute");
+        }
+
+        function seekFromEvent(clientX) {
+          const rect = progWrap.getBoundingClientRect();
+          const pct  = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+          vid.currentTime = pct * (vid.duration || 0);
+          setProgress(pct);
+          timeDisp.textContent = fmt(vid.currentTime) + " / " + fmt(vid.duration);
+        }
+
+        // Mouse drag on progress bar
+        let dragging = false;
+        progWrap.addEventListener("mousedown", (e) => {
+          dragging = true;
+          seekFromEvent(e.clientX);
+          vid.pause();
+        });
+        window.addEventListener("mousemove", (e) => { if (dragging) seekFromEvent(e.clientX); });
+        window.addEventListener("mouseup", () => {
+          if (!dragging) return;
+          dragging = false;
+          vid.play().catch(() => {});
+        });
+
+        // Touch drag on progress bar
+        progWrap.addEventListener("touchstart", (e) => { seekFromEvent(e.touches[0].clientX); }, { passive: true });
+        progWrap.addEventListener("touchmove",  (e) => { seekFromEvent(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+
+        // Play / Pause button
+        playBtn.addEventListener("click", () => {
+          if (vid.paused) vid.play().catch(() => {});
+          else vid.pause();
+        });
+
+        // Mute button
+        muteBtn.addEventListener("click", () => {
+          vid.muted = !vid.muted;
+          updateMuteBtn();
+        });
+
+        // Click on video toggles play/pause
+        vid.addEventListener("click", () => {
+          if (vid.paused) vid.play().catch(() => {});
+          else vid.pause();
+        });
+
+        // Video events
+        vid.addEventListener("timeupdate",     updateProgress);
+        vid.addEventListener("play",           updatePlayBtn);
+        vid.addEventListener("pause",          updatePlayBtn);
+        vid.addEventListener("loadedmetadata", updateProgress);
+
+        // Keyboard (Space / ← / →) when wrapper focused
+        wrapper.setAttribute("tabindex", "0");
+        wrapper.addEventListener("keydown", (e) => {
+          if (e.code === "Space")       { e.preventDefault(); vid.paused ? vid.play().catch(()=>{}) : vid.pause(); }
+          if (e.code === "ArrowLeft")   { e.preventDefault(); vid.currentTime = Math.max(0, vid.currentTime - 5); }
+          if (e.code === "ArrowRight")  { e.preventDefault(); vid.currentTime = Math.min(vid.duration || 0, vid.currentTime + 5); }
+        });
+
+        updatePlayBtn();
+        updateMuteBtn();
       })();
     </script>
 
