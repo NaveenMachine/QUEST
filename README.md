@@ -1,5 +1,11 @@
 # QUEST
 
+<p align="center">
+  <a href="assets/readme/quest_run_1200.mp4">
+    <img src="assets/readme/quest_run_1200.gif" alt="QUEST research run trace" width="100%">
+  </a>
+</p>
+
 <div align="center" style="line-height: 1; margin-top: 16px;">
   <a href="https://arxiv.org/abs/2605.24218"><img src="https://img.shields.io/badge/Paper-B31B1B?style=for-the-badge&logo=arXiv&logoColor=white" alt="Paper"></a>
   <a href="https://osu-nlp-group.github.io/QUEST/"><img src="https://img.shields.io/badge/Website-0F766E?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website"></a>
