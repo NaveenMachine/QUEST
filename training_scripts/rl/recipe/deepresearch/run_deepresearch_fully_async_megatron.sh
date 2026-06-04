@@ -45,7 +45,7 @@ max_num_gen_batches=${MAX_NUM_GEN_BATCHES:-10}
 # -----------------------------
 # Dynamic Curriculum Learning (C1-C9)
 # -----------------------------
-# Enable by default; set CURRICULUM_ENABLED=False to disable.
+# disable by default; set CURRICULUM_ENABLED=True to enable.
 curriculum_enabled=${CURRICULUM_ENABLED:-False}
 curriculum_objective=${CURRICULUM_OBJECTIVE:-adv}   # 'adv' (larger |advantage| has higher priority) or 'progress' (faster reward improvement has higher priority)
 curriculum_lr=${CURRICULUM_LR:-0.1}
