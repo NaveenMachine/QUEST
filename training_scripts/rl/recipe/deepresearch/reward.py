@@ -14,7 +14,6 @@
 """
 Reward function for DeepResearch RL training.
 Supports dynamic eval scripts per task with async API calls.
-Migrated from slime/examples/deepresearch/deepresearch_reward.py
 """
 
 import asyncio
