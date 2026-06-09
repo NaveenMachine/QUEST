@@ -14,7 +14,6 @@
 """
 DeepResearch Agent Loop for verl framework.
 Implements multi-turn tool calling with memory/condenser support.
-Migrated from slime/examples/deepresearch/deepresearch_generate.py
 """
 
 import asyncio
