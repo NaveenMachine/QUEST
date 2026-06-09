@@ -14,7 +14,6 @@
 """
 Memory/Condenser system for DeepResearch.
 Maintains state summary to prevent redundant search/visit actions.
-Migrated from slime/examples/deepresearch/tool_memory.py
 """
 
 import asyncio
