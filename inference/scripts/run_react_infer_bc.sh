@@ -136,7 +136,7 @@ load_server_endpoints_from_file() {
 # Hostname List Configuration (multi-node access settings)
 # Default values; can be overridden by server_endpoints.conf or external environment variables
 # Example: export HOSTNAME_LIST="node1,node2,node3"
-export HOSTNAME_LIST="${HOSTNAME_LIST:-c0820,c0821,c0827,c0822}"
+export HOSTNAME_LIST="${HOSTNAME_LIST:-your_endpoint}"
 
 # Main model port list, comma-separated
 export PORTS="${PORTS:-6000,6001,6002,6003}"
