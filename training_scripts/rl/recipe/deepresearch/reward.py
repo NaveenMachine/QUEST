@@ -2312,6 +2312,7 @@ async def compute_score(
     citation_base_scale = min(max(base_score, 0.0), 1.0)
     result["citation_score_raw"] = citation_score
     result["citation_score_base_scale"] = citation_base_scale
+    # result["citation_score_added"] = min(citation_score, base_score) // discarded for better training stability, will update the paper soon.
     result["citation_score_added"] = (citation_score * citation_base_scale) if citation_applied else 0.0
     result["score"] = (base_score * base_score_weight) + result["citation_score_added"]
     result["score_with_citation"] = result["score"]
