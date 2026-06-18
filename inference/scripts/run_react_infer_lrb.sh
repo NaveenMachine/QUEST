@@ -86,7 +86,7 @@ if [ ! -f "$DATASET" ]; then
 fi
 
 export ROLLOUT_COUNT=3
-export TEMPERATURE=1
+export TEMPERATURE=0
 export PRESENCE_PENALTY=1.1
 export MAX_WORKERS="${MAX_WORKERS:-70}"
 export MAX_TURN="${MAX_TURN:-400}"
