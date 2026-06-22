@@ -18,7 +18,7 @@
 We release **QUEST**, a family of open models (ranging from 2B to 35B) that serve as ***general-purpose*** deep research agents designed to handle a wide range of long-horizon search tasks, with strong capabilities in ***fact seeking***, ***citation grounding***, and ***report synthesis***.
 
 ## 🚀 Updates
-
+- **06/22/2026**: We released the [Context Summarization](https://huggingface.co/datasets/osunlp/QUEST-Mid-Training-Data) data used for mid-training.
 - **05/26/2026**: We released QUEST, including model checkpoints, data, and code.
 
 ## Table of Contents
@@ -56,16 +56,12 @@ You can also try the hosted [demo](https://huggingface.co/spaces/osunlp/QUEST).
 | 35B checkpoints | [RL](https://huggingface.co/osunlp/QUEST-35B-RL), [MT+SFT](https://huggingface.co/osunlp/QUEST-35B-MT-Plus-SFT), [MT](https://huggingface.co/osunlp/QUEST-35B-MT), [SFT](https://huggingface.co/osunlp/QUEST-35B-SFT) |
 | 30B checkpoints | [RL](https://huggingface.co/osunlp/QUEST-30B-RL), [MT+SFT](https://huggingface.co/osunlp/QUEST-30B-MT-Plus-SFT), [SFT](https://huggingface.co/osunlp/QUEST-30B-SFT) |
 | Smaller checkpoints | [9B](https://huggingface.co/osunlp/QUEST-9B), [4B](https://huggingface.co/osunlp/QUEST-4B), [2B](https://huggingface.co/osunlp/QUEST-2B) |
-| Training data | [RL data](https://huggingface.co/datasets/osunlp/QUEST-RL-Data), [SFT objective data](https://huggingface.co/datasets/osunlp/QUEST-SFT-Data-Objective), [SFT open-ended data](https://huggingface.co/datasets/osunlp/QUEST-SFT-Data-Open-ended) |
+| Training data | [RL data](https://huggingface.co/datasets/osunlp/QUEST-RL-Data), [SFT objective data](https://huggingface.co/datasets/osunlp/QUEST-SFT-Data-Objective), [SFT open-ended data](https://huggingface.co/datasets/osunlp/QUEST-SFT-Data-Open-ended), [Mid-training data](https://huggingface.co/datasets/osunlp/QUEST-Mid-Training-Data) |
 
 Model selection note: if you only need to evaluate objective tasks and do not
 need open-ended task evaluation, we recommend the MT+SFT checkpoints because
 they perform better on reasoning-heavy objective benchmarks. For a more comprehensive evaluation
 across both objective and open-ended tasks, we recommend the RL checkpoints.
-
-Release note: cached databases and mid-training data are still under legal
-review. We will release them only after confirming that their release is legally
-compliant.
 
 ## 📊 Results Snapshot
 
