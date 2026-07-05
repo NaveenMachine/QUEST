@@ -1,7 +1,7 @@
 {
   "common": {
-    "SERPER_KEY_ID": "your_serper_api_key",
-    "JINA_API_KEYS": "your_jina_api_key",
+    "SERPER_KEY_ID": "957c0e0f883a8c4215f60a7f20086c7d9f6cd2b5",
+    "JINA_API_KEYS": "jina_a8c0b9cbca6d4836959deae52c593aa0tSq_QqMQDjjzq1spjXcwPXtip7BE",
     "API_KEY": "your_azure_api_key",
     "API_BASE": "",
     "SUMMARY_MODEL_NAME": "gpt-5-mini",
