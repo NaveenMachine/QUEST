@@ -2,7 +2,14 @@
 set -euo pipefail
 
 # Configure judge environment here.
-# Uncomment and fill in the provider you use.
+# --- Local vLLM judge (free; reuses the model already served on localhost:6000) ---
+# litellm routes "openai/<name>" to an OpenAI-compatible server at OPENAI_API_BASE.
+export JUDGE_MODEL_NAME="openai/deepresearch"
+export OPENAI_API_BASE="http://localhost:6000/v1"
+export OPENAI_API_KEY="EMPTY"
+export JUDGE_OPENAI_API_KEY="EMPTY"
+#
+# Alternatives (uncomment and fill in to use an external judge instead):
 # export JUDGE_MODEL_NAME="gpt-4o-mini"
 # export JUDGE_OPENAI_API_KEY="..."
 #
@@ -11,15 +18,15 @@ set -euo pipefail
 # export JUDGE_AWS_SECRET_ACCESS_KEY="..."
 # export JUDGE_AWS_REGION_NAME="..."
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 TARGET_DIRS=(
-  "your_output_dir/results/deepresearch/gaia-text-only-103"
+  "${SCRIPT_DIR}/../../inference/outputs/test/results/deepresearch/mini"
 )
 
 
-export DATASET_PATH="gaia-103-org.json" # please unzip gaia-103-org.zip, password: 8sK9pR2xQ7bT5gA3
-export WORKERS=150
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export DATASET_PATH="${SCRIPT_DIR}/gaia-103-org.json" # unzipped from gaia-103-org.zip, password: 8sK9pR2xQ7bT5gA3
+export WORKERS=4
 
 for TARGET_DIR in "${TARGET_DIRS[@]}"; do
   echo "=========================================="
