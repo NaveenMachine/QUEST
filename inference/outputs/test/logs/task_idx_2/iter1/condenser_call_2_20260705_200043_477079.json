@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 2,
+  "timestamp": "20260705_200043_477079",
+  "datetime": "2026-07-05T20:00:43.477112",
+  "round": 12,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"irori/unlambda\" python",
+        "\"Unlambda interpreter\" python"
+      ]
+    }
+  },
+  "original_message_count": 18,
+  "compressed_message_count": 2,
+  "messages_removed": 16
+}

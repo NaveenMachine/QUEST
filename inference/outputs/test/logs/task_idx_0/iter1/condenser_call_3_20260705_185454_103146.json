@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 3,
+  "timestamp": "20260705_185454_103146",
+  "datetime": "2026-07-05T18:54:54.103182",
+  "round": 18,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "visit",
+    "arguments": {
+      "url": [
+        "https://www.mapquest.com/us/florida/fred-howard-park-4792017"
+      ],
+      "goal": "Find the address of Fred Howard Park and its ZIP code."
+    }
+  },
+  "original_message_count": 8,
+  "compressed_message_count": 2,
+  "messages_removed": 6
+}

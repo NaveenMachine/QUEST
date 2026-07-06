@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 6,
+  "timestamp": "20260705_185713_131680",
+  "datetime": "2026-07-05T18:57:13.131719",
+  "round": 33,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "visit",
+    "arguments": {
+      "url": [
+        "https://nas.er.usgs.gov/queries/CollectionInfo.aspx?SpeciesID=3243&State=FL"
+      ],
+      "goal": "Extract precise location (city, address, zip code) for the reported occurrence of Amphiprion ocellaris in Florida from the USGS NAS database."
+    }
+  },
+  "original_message_count": 8,
+  "compressed_message_count": 2,
+  "messages_removed": 6
+}

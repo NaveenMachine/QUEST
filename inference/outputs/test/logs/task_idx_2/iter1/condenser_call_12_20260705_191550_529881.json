@@ -1,0 +1,18 @@
+{
+  "condenser_call_number": 12,
+  "timestamp": "20260705_191550_529881",
+  "datetime": "2026-07-05T19:15:50.529923",
+  "round": 84,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Unlambda\" \".\" print character"
+      ]
+    }
+  },
+  "original_message_count": 10,
+  "compressed_message_count": 2,
+  "messages_removed": 8
+}

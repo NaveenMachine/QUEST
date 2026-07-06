@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 9,
+  "timestamp": "20260705_201533_524490",
+  "datetime": "2026-07-05T20:15:33.524533",
+  "round": 68,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Adding a single backtick completes the function application\"",
+        "\"Unlambda\" \"For penguins\" \"backtick\""
+      ]
+    }
+  },
+  "original_message_count": 20,
+  "compressed_message_count": 2,
+  "messages_removed": 18
+}

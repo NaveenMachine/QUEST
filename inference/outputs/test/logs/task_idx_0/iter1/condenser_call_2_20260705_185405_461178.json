@@ -1,0 +1,20 @@
+{
+  "condenser_call_number": 2,
+  "timestamp": "20260705_185405_461178",
+  "datetime": "2026-07-05T18:54:05.461226",
+  "round": 15,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Amphiprion ocellaris\" \"zip\" \"USGS\"",
+        "\"Amphiprion ocellaris\" \"Florida\" \"USGS\"",
+        "\"Amphiprion ocellaris\" \"nonnative\" \"Florida\" \"zip\""
+      ]
+    }
+  },
+  "original_message_count": 14,
+  "compressed_message_count": 2,
+  "messages_removed": 12
+}

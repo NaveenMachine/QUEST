@@ -1,0 +1,21 @@
+{
+  "condenser_call_number": 7,
+  "timestamp": "20260705_185744_176585",
+  "datetime": "2026-07-05T18:57:44.176618",
+  "round": 39,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Amphiprion ocellaris\" \"34689\"",
+        "\"clown anemonefish\" \"zip code\" \"34689\"",
+        "\"Amphiprion ocellaris\" \"Fred Howard\" \"34689\"",
+        "\"nonindigenous occurrence\" \"Amphiprion ocellaris\" \"Florida\" \"Zip\""
+      ]
+    }
+  },
+  "original_message_count": 14,
+  "compressed_message_count": 2,
+  "messages_removed": 12
+}

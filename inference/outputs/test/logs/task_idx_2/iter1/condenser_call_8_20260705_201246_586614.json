@@ -1,0 +1,18 @@
+{
+  "condenser_call_number": 8,
+  "timestamp": "20260705_201246_586614",
+  "datetime": "2026-07-05T20:12:46.586667",
+  "round": 59,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"For penguins\" Unlambda"
+      ]
+    }
+  },
+  "original_message_count": 20,
+  "compressed_message_count": 2,
+  "messages_removed": 18
+}

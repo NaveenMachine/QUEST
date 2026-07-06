@@ -1,0 +1,23 @@
+{
+  "condenser_call_number": 5,
+  "timestamp": "20260705_185652_740181",
+  "datetime": "2026-07-05T18:56:52.740216",
+  "round": 30,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Amphiprion ocellaris\" \"nonindigenous\" \"USGS\"",
+        "\"clown anemonefish\" \"USGS\" \"nonindigenous\"",
+        "\"Amphiprion ocellaris\" \"nonnative\" \"USGS\"",
+        "\"amphiprion ocellaris\" \"USGS\" \"occurrence\"",
+        "\"USGS nonindigenous\" \"amphiprion\"",
+        "\"USGS\" \"nonindigenous\" \"amphiprion\""
+      ]
+    }
+  },
+  "original_message_count": 12,
+  "compressed_message_count": 2,
+  "messages_removed": 10
+}

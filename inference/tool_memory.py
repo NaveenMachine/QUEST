@@ -362,9 +362,11 @@ class Memory(BaseTool):
             full_messages = messages.copy()
             has_system = any(msg.get("role") == "system" for msg in full_messages)
             if not has_system:
+                # Qwen chat templates allow only ONE system message, and it must be
+                # first — two consecutive system messages trigger vLLM's
+                # "System message must be at the beginning" 400 error. Merge them.
                 full_messages = [
-                    {"role": "system", "content": memory_system_prompt},
-                    {"role": "system", "content": MEMORY_LOCAL_SYSTEM_PROMPT},
+                    {"role": "system", "content": memory_system_prompt + "\n\n" + MEMORY_LOCAL_SYSTEM_PROMPT},
                 ] + full_messages
 
             last_error = None

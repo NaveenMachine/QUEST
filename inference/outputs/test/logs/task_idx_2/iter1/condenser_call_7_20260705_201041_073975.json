@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 7,
+  "timestamp": "20260705_201041_073975",
+  "datetime": "2026-07-05T20:10:41.074027",
+  "round": 50,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "visit",
+    "arguments": {
+      "url": [
+        "https://esolangs.org/wiki/Unlambda"
+      ],
+      "goal": "Identify Unlambda syntax: usage of backticks, lambda abstraction, and parentheses."
+    }
+  },
+  "original_message_count": 16,
+  "compressed_message_count": 2,
+  "messages_removed": 14
+}
