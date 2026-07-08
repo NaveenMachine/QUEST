@@ -1,0 +1,32 @@
+[
+  {
+    "file": "iter1.jsonl",
+    "line": 1,
+    "question_id": "17b5a6a3-bc87-42e8-b0fb-6ab0781ef2cc",
+    "question": "I’m researching species that became invasive after people who kept them as pets released them. There’s a certain species of fish that was popularized as a pet by being the main character of the movie Finding Nemo. According to the USGS, where was this fish found as a nonnative species, before the year 2020? I need the answer formatted as the five-digit zip codes of the places the species was found, separated by commas if there is more than one place.",
+    "ground_truth": "34689",
+    "predicted_answer": "<answer>34689</answer>",
+    "judgment": "true",
+    "is_correct": true
+  },
+  {
+    "file": "iter1.jsonl",
+    "line": 2,
+    "question_id": "04a04a9b-226c-43fd-b319-d5e89743676f",
+    "question": "If we assume all articles published by Nature in 2020 (articles, only, not book reviews/columns, etc) relied on statistical significance to justify their findings and they on average came to a p-value of 0.04, how many papers would be incorrect as to their claims of statistical significance? Round the value up to the next integer.",
+    "ground_truth": "41",
+    "predicted_answer": "<answer>38</answer>",
+    "judgment": "false",
+    "is_correct": false
+  },
+  {
+    "file": "iter1.jsonl",
+    "line": 3,
+    "question_id": "14569e28-c88c-43e4-8c32-097d35b9a67d",
+    "question": "In Unlambda, what exact charcter or text needs to be added to correct the following code to output \"For penguins\"? If what is needed is a character, answer with the name of the character. If there are different names for the character, use the shortest. The text location is not needed. Code:\n\n`r```````````.F.o.r. .p.e.n.g.u.i.n.si",
+    "ground_truth": "backtick",
+    "predicted_answer": "<answer>`</answer>",
+    "judgment": "true",
+    "is_correct": true
+  }
+]
