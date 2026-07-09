@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 4,
+  "timestamp": "20260708_223748_466486",
+  "datetime": "2026-07-08T22:37:48.466508",
+  "round": 24,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "Eliud Kipchoge marathon world record 2:01:09 Berlin 2022",
+        "Eliud Kipchoge marathon record 2:01:09"
+      ]
+    }
+  },
+  "original_message_count": 20,
+  "compressed_message_count": 2,
+  "messages_removed": 18
+}

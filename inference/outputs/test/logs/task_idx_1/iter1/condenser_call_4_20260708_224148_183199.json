@@ -1,0 +1,25 @@
+{
+  "condenser_call_number": 4,
+  "timestamp": "20260708_224148_183199",
+  "datetime": "2026-07-08T22:41:48.183247",
+  "round": 22,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"2000\" \"Mercedes Sosa\" \"album\"",
+        "\"2001\" \"Mercedes Sosa\" \"album\"",
+        "\"2002\" \"Mercedes Sosa\" \"album\"",
+        "\"2003\" \"Mercedes Sosa\" \"studio\"",
+        "\"2004\" \"Mercedes Sosa\" \"album\"",
+        "\"2006\" \"Mercedes Sosa\" \"album\"",
+        "\"2007\" \"Mercedes Sosa\" \"album\"",
+        "\"2008\" \"Mercedes Sosa\" \"album\""
+      ]
+    }
+  },
+  "original_message_count": 16,
+  "compressed_message_count": 2,
+  "messages_removed": 14
+}

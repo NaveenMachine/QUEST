@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 7,
+  "timestamp": "20260708_225053_813512",
+  "datetime": "2026-07-08T22:50:53.813559",
+  "round": 36,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "visit",
+    "arguments": {
+      "url": [
+        "https://en.wikipedia.org/wiki/Mercedes_Sosa#Discography"
+      ],
+      "goal": "Extract list of studio albums released by Mercedes Sosa between 2000 and 2009 inclusive."
+    }
+  },
+  "original_message_count": 8,
+  "compressed_message_count": 2,
+  "messages_removed": 6
+}

@@ -2,16 +2,16 @@
   "total_questions": 3,
   "best_at_k": {
     "best@1": {
-      "correct": 3,
+      "correct": 2,
       "total": 3,
-      "accuracy": 1.0
+      "accuracy": 0.6666666666666666
     }
   },
   "by_file": {
     "iter1.jsonl": {
       "total": 3,
-      "correct": 3,
-      "accuracy": 1.0
+      "correct": 2,
+      "accuracy": 0.6666666666666666
     }
   }
 }

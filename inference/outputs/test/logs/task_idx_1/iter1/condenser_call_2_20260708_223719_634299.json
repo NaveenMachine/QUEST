@@ -1,0 +1,21 @@
+{
+  "condenser_call_number": 2,
+  "timestamp": "20260708_223719_634299",
+  "datetime": "2026-07-08T22:37:19.634344",
+  "round": 13,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Mercedes Sosa\" \"2002\" \"album\"",
+        "\"Mercedes Sosa\" \"2003\" \"album\"",
+        "\"Mercedes Sosa\" \"2007\" \"album\"",
+        "\"Mercedes Sosa\" \"2008\" \"album\""
+      ]
+    }
+  },
+  "original_message_count": 12,
+  "compressed_message_count": 2,
+  "messages_removed": 10
+}

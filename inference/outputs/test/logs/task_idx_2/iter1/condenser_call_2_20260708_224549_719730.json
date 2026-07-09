@@ -1,0 +1,23 @@
+{
+  "condenser_call_number": 2,
+  "timestamp": "20260708_224549_719730",
+  "datetime": "2026-07-08T22:45:49.719770",
+  "round": 6,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Early Middle Stone Age personal ornaments from Bizmoune Cave\" abstract",
+        "\"Science Advances\" 2021 \"Bizmoune Cave\" abstract",
+        "\"Science Advances\" 2021 \"early middle stone age\" \"abstract\"",
+        "\"Science Advances\" 2021 abstract \"Bizmoune\"",
+        "\"Nassa gibbosula\" \"Science Advances\" 2021",
+        "\"Tritia gibbosula\" abstract \"Science Advances\" 2021"
+      ]
+    }
+  },
+  "original_message_count": 4,
+  "compressed_message_count": 2,
+  "messages_removed": 2
+}

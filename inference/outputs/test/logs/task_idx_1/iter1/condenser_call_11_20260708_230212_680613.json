@@ -1,0 +1,14 @@
+{
+  "condenser_call_number": 11,
+  "timestamp": "20260708_230212_680613",
+  "datetime": "2026-07-08T23:02:12.680670",
+  "round": 63,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "role": "assistant",
+    "content": "... Let's try searching for \"Al Despertar\" ..."
+  },
+  "original_message_count": 24,
+  "compressed_message_count": 2,
+  "messages_removed": 22
+}

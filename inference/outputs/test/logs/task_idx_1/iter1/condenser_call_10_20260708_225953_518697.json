@@ -1,0 +1,22 @@
+{
+  "condenser_call_number": 10,
+  "timestamp": "20260708_225953_518697",
+  "datetime": "2026-07-08T22:59:53.518742",
+  "round": 52,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Mercedes Sosa\" discography Wikipedia",
+        "\"Mercedes Sosa\" \"studio album\" 2000",
+        "\"Mercedes Sosa\" \"studio album\" 2005",
+        "\"Mercedes Sosa\" \"studio album\" 2009",
+        "\"Cantora\" Mercedes Sosa 2009 studio album"
+      ]
+    }
+  },
+  "original_message_count": 12,
+  "compressed_message_count": 2,
+  "messages_removed": 10
+}

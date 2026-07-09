@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 3,
+  "timestamp": "20260708_223618_221686",
+  "datetime": "2026-07-08T22:36:18.221724",
+  "round": 15,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "visit",
+    "arguments": {
+      "url": [
+        "https://en.wikipedia.org/wiki/Marathon_(run)"
+      ],
+      "goal": "Find the official marathon race distance in kilometers"
+    }
+  },
+  "original_message_count": 10,
+  "compressed_message_count": 2,
+  "messages_removed": 8
+}

@@ -1,0 +1,19 @@
+{
+  "condenser_call_number": 3,
+  "timestamp": "20260708_223853_568116",
+  "datetime": "2026-07-08T22:38:53.568165",
+  "round": 15,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "visit",
+    "arguments": {
+      "url": [
+        "https://r.jina.ai/http://en.wikipedia.org/wiki/Mercedes_Sosa"
+      ],
+      "goal": "Extract the list of studio albums and their release years."
+    }
+  },
+  "original_message_count": 6,
+  "compressed_message_count": 2,
+  "messages_removed": 4
+}

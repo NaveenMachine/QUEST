@@ -1,0 +1,22 @@
+{
+  "condenser_call_number": 1,
+  "timestamp": "20260708_223054_198659",
+  "datetime": "2026-07-08T22:30:54.198700",
+  "round": 6,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "Eliud Kipchoge official world record marathon time 2:01:09 Berlin 2022",
+        "Eliud Kipchoge average speed marathon 2:01:09 km/h",
+        "Moon perigee minimum distance 356,355 km",
+        "Orbit of the Moon minimum perigee distance",
+        "minimum perigee distance moon wikipedia"
+      ]
+    }
+  },
+  "original_message_count": 14,
+  "compressed_message_count": 2,
+  "messages_removed": 12
+}

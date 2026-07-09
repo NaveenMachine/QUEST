@@ -1,0 +1,13 @@
+{
+  "condenser_call_number": 2,
+  "timestamp": "20260708_223418_392200",
+  "datetime": "2026-07-08T22:34:18.392236",
+  "round": 11,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "final_answer": "17"
+  },
+  "original_message_count": 12,
+  "compressed_message_count": 2,
+  "messages_removed": 10
+}

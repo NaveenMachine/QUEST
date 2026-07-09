@@ -1,0 +1,25 @@
+{
+  "condenser_call_number": 5,
+  "timestamp": "20260708_224635_736531",
+  "datetime": "2026-07-08T22:46:35.736573",
+  "round": 29,
+  "trigger_reason": "CONTEXT_THRESHOLD",
+  "state": {
+    "name": "search",
+    "arguments": {
+      "query": [
+        "\"Mercedes Sosa\" discography \"studio\"",
+        "\"Mercedes Sosa\" discography \"2003\"",
+        "\"Mercedes Sosa\" discography \"2004\"",
+        "\"Mercedes Sosa\" discography \"2005\"",
+        "\"Mercedes Sosa\" discography \"2006\"",
+        "\"Mercedes Sosa\" discography \"2007\"",
+        "\"Mercedes Sosa\" discography \"2008\"",
+        "\"Mercedes Sosa\" discography \"2009\""
+      ]
+    }
+  },
+  "original_message_count": 16,
+  "compressed_message_count": 2,
+  "messages_removed": 14
+}
