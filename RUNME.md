@@ -50,3 +50,35 @@ export LD_PRELOAD="$CONDA_PREFIX/lib/python3.10/site-packages/nvidia/nccl/lib/li
 export HF_HOME=/fs/scratch/PAS2699/naveenkamath/hf_cache                               # 4. downloads off home quota
 
 
+starting the VLLM with 2 gpu on 1 node:
+module load miniconda3/24.1.2-py310
+conda activate deepresearch
+export LD_PRELOAD="$CONDA_PREFIX/lib/python3.10/site-packages/nvidia/nccl/lib/libnccl.so.2"
+export HF_HOME=/fs/scratch/PAS2699/naveenkamath/hf_cache
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export VLLM_USE_FLASHINFER_SAMPLER=0
+
+vllm serve osunlp/QUEST-35B-RL \
+    --host 0.0.0.0 --port 6000 \
+    --served-model-name deepresearch \
+    --tensor-parallel-size 2 \
+    --gpu-memory-utilization 0.90 \
+    --gdn-prefill-backend triton
+
+
+
+
+How to run Qwen vllm:
+# env block (same as before)
+export LD_PRELOAD="$CONDA_PREFIX/lib/python3.10/site-packages/nvidia/nccl/lib/libnccl.so.2"
+export HF_HOME=/fs/scratch/PAS2699/naveenkamath/hf_cache
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export VLLM_USE_FLASHINFER_SAMPLER=0
+
+vllm serve Qwen/Qwen2.5-32B-Instruct \
+    --host 0.0.0.0 --port 6000 \
+    --served-model-name qwen32b \
+    --tensor-parallel-size 1 \
+    --gpu-memory-utilization 0.90
